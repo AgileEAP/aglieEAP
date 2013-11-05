@@ -4,7 +4,7 @@
 
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
-<!DOCTYPE html>
+<html class="ng-app" id="ng-app"  ng-app >
 <html>
 <head>
 <title><sitemesh:title /></title>
@@ -28,6 +28,9 @@
 <script type="text/javascript" src="${ctx}/js/jquery.validate.diy.js"></script>
 <script type="text/javascript" src="${ctx}/js/datepicker/WdatePicker.js"></script>
 <script type="text/javascript" src="${ctx}/js/utils.js"></script>
+<!--[if lt IE 9]>
+    <script type="text/javascript" src="${ctx}/js/json2.js"></script>
+<![endif]-->
 <sitemesh:head />
 </head>
 <body>

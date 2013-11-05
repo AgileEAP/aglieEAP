@@ -334,35 +334,35 @@ function initEndActivity(activity) {
 function initProcessActivity(activity) {
     initManualActivity(activity);
 }
-function initProcessDefine($scope) {
+function ActivityDetailCtrl($scope) {
     $scope.processDefine = window.parent.$("#actionDialog").find("#bg_div_iframe")[0].contentWindow.processDefine;
     $scope.Ativity = function () {
         var Ativity = "";
-        var processDefID = $.query.get("ProcessDefID");
-        var activityID = $.query.get("ActivityID");
-        angular.forEach($scope.processDefine.Activities, function (Activitie) {
-            if (Activitie.ID == activityID) {//&&processDefID == $scope.processDefine.ID) {
+        var processDefID = $.query.get("processDefID");
+        var activityID = $.query.get("activityID");
+        angular.forEach($scope.processDefine.activities, function (activitie) {
+            if (activitie.id == activityID) {//&&processDefID == $scope.processDefine.id) {
                 Ativity= Activitie;
-               if (Activitie.NewID==null) {
-                    Activitie.NewID = activityID;
+               if (activitie.newID==null) {
+            	   activitie.newID = activityID;
                 }
-                if (!Activitie.SplitType) {
+                if (!activitie.SplitType) {
                     var splitType = new SplitType();
-                    Activitie.SplitType = splitType.XOR;
+                    activitie.SplitType = splitType.XOR;
                 }
-                if (!Activitie.JoinType) {
+                if (!activitie.JoinType) {
                     var joinType = new JoinType();
-                    Activitie.JoinType = joinType.AND;
+                    activitie.JoinType = joinType.AND;
                 }
-                if (Activitie.MultiWorkItem) {
-                    if (!Activitie.MultiWorkItem.FinishRquiredNum) {
-                        Activitie.MultiWorkItem.FinishRquiredNum = 0;
+                if (activitie.MultiWorkItem) {
+                    if (!activitie.MultiWorkItem.FinishRquiredNum) {
+                    	activitie.MultiWorkItem.FinishRquiredNum = 0;
                     }
-                    if (!Activitie.MultiWorkItem.FinishRequiredPercent) {
-                        Activitie.MultiWorkItem.FinishRequiredPercent = 0;
+                    if (!activitie.MultiWorkItem.FinishRequiredPercent) {
+                    	activitie.MultiWorkItem.FinishRequiredPercent = 0;
                     }
                 }
-                    window.parent.$("#actionDialog").find("#bg_div_iframe")[0].contentWindow.editActivityName(Activitie.ID, Activitie.Name);
+                    window.parent.$("#actionDialog").find("#bg_div_iframe")[0].contentWindow.editActivityName(activitie.id, activitie.Name);
             }
         });
         return Ativity;
@@ -441,7 +441,7 @@ function initProcessDefine($scope) {
         var rad = table.find(":checked ").first();
         //alert($(rad).val());
         angular.forEach($scope.Participant().Participantors, function (Participantor) {
-            if ($(rad).val() == Participantor.ID) {
+            if ($(rad).val() == Participantor.id) {
                 var position = $scope.Ativity().Participant.Participantors.indexOf(Participantor);
                 // alert("xuan");
                 $scope.Ativity().Participant.Participantors.splice(position, 1);
@@ -590,7 +590,7 @@ function initProcessDefine($scope) {
         var rad = table.find("input:checked ").first();
         // alert($(rad).val());
         angular.forEach($scope.TriggerEvents(), function (TriggerEvent) {
-            if ($(rad).val() == TriggerEvent.ID) {
+            if ($(rad).val() == TriggerEvent.id) {
                 var position = $scope.TriggerEvents().indexOf(TriggerEvent);
                 // alert("xuan");
                 $scope.TriggerEvents().splice(position, 1);
@@ -684,7 +684,7 @@ function initProcessDefine($scope) {
         var table = $("#tblFreeRange");
         var rad = table.find("input:checked ").first();
         angular.forEach($scope.FreeFlowRule().FreeRangeActivities, function (FreeRangeActivity) {
-            if ($(rad).val() == FreeRangeActivity.ID) {
+            if ($(rad).val() == FreeRangeActivity.id) {
                 var position = $scope.FreeFlowRule().FreeRangeActivities.indexOf(FreeRangeActivity);
                 // alert("xuan");
                 $scope.FreeFlowRule().FreeRangeActivities.splice(position, 1);
@@ -729,8 +729,8 @@ function initProcessDefine($scope) {
     };
     $scope.FormDesigner = function () {
        // var form = window.parent.parent.parent.showDialog("actionDialog3", "表单设计器", "/FormDesigner/Home/FormDesigner", 1250, 700);
-      // var form = openOperateDialog("表单设计器", "/FormDesigner/Home/FormDesigner?ActivityID=" + $scope.Ativity().ID+"&&ProcessDefID=" + $.query.get("ProcessDefID"), 1250, 700, true, 1);
-        var form = openDialog2({ title: "表单设计器", url: "/FormDesigner/Home/FormDesigner?ActivityID=" + $scope.Ativity().ID + "&&ProcessDefID=" + $.query.get("ProcessDefID"), dialogType: 1, showModal: true,height:screen.height-80,width:screen.width-10,windowStyle: { style: "dialogLeft:0;dialogTop:-100;edge: Raised; center: Yes; resizable: Yes; status: no;scrollbars=no;", auguments: window } });
+      // var form = openOperateDialog("表单设计器", "/FormDesigner/Home/FormDesigner?ActivityID=" + $scope.Ativity().id+"&&ProcessDefID=" + $.query.get("ProcessDefID"), 1250, 700, true, 1);
+        var form = openDialog2({ title: "表单设计器", url: "/FormDesigner/Home/FormDesigner?ActivityID=" + $scope.Ativity().id + "&&ProcessDefID=" + $.query.get("ProcessDefID"), dialogType: 1, showModal: true,height:screen.height-80,width:screen.width-10,windowStyle: { style: "dialogLeft:0;dialogTop:-100;edge: Raised; center: Yes; resizable: Yes; status: no;scrollbars=no;", auguments: window } });
         //alert(formResult);
        //alert(form);
         if (!form || !form.Fields || form.Fields.length == 0) return;

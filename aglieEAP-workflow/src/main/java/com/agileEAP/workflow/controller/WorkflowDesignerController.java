@@ -70,7 +70,7 @@ public class WorkflowDesignerController
 				Map<String,Object> parameters=new HashMap<String,Object>();
 				parameters.put("name", processDefine.getID());
 				parameters.put("version", processDefine.getVersion());
-				parameters.put("_rawsql", "id<>"+processDefID);
+				parameters.put("_rawsql", "id!='"+processDefID+"'");
 				List<ProcessDef> proDefs =processDefService.search(parameters);
 				if (proDefs != null&&proDefs.size()>0)
 				{
@@ -115,7 +115,7 @@ public class WorkflowDesignerController
   
 	@RequestMapping(value = "getProcessInfo")
 	@ResponseBody
-	public final Map<String, Object> GetProcessInfo(@RequestParam String processDefID,@RequestParam String processInstID)
+	public final Map<String, Object> GetProcessInfo(@RequestParam String processDefID,@RequestParam(required=false) String processInstID)
 	{
 		Map<String, Object> retValue=new HashMap<String,Object>();
 		if (processDefID!=null&&processDefID.length()>0)

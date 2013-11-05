@@ -181,7 +181,7 @@
             and Modifier like '${modifier}%'
         </if> 
         <if test="_rawsql!=null">
-            ${_rawsql}
+            and ${_rawsql}
         </if>
     </sql>
     
@@ -229,7 +229,7 @@
     	</foreach>
     </delete>  
     
-	<select id="search" parameterType="map" resultType="com.agileEAP.workflow.entity.ProcessDef">
+	<select id="search" statementType="STATEMENT" parameterType="map" resultType="com.agileEAP.workflow.entity.ProcessDef">
 		select
         <include refid="columns" />
 		from WF_ProcessDef where 1=1

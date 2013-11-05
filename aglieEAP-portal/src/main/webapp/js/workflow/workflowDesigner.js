@@ -24,11 +24,11 @@
     var temporaryDrop = new Array();
     var lineStyle = "Straight";
     var ProcessDefine = function () {
-        this.Version = "1.0";
-        this.Name = "ProcessDefine";
-        this.Author = "AgileEAP";
-        this.Transitions = [];
-        this.Activities = [];
+        this.version = "1.0";
+        this.name = "processDefine";
+        this.author = "agileEAP";
+        this.transitions = [];
+        this.activities = [];
     };
     var processDefine = new ProcessDefine();
     jsPlumb.importDefaults({
@@ -83,46 +83,46 @@
     function delControl(id, cutElement) {
         if (id) {
             jsPlumb.removeAllEndpoints(id);
-            var ActivitiesCount = processDefine.Activities.length;
+            var ActivitiesCount = processDefine.activities.length;
             for (var j = 0; j < ActivitiesCount; j++) {
-                if (id == processDefine.Activities[j].ID) {
-                    var position = processDefine.Activities.indexOf(processDefine.Activities[j]);
-                    processDefine.Activities[j].Style.Left = $("#" + id).offset().left;
-                    processDefine.Activities[j].Style.Top = $("#" + id).offset().top;
-                    processDefine.Activities[j].Style.Width = $("#" + id).width();
-                    processDefine.Activities[j].Style.Height = $("#" + id).height();
-                    processDefine.Activities[j].Style.ZIndex = 0;
+                if (id == processDefine.activities[j].id) {
+                    var position = processDefine.activities.indexOf(processDefine.activities[j]);
+                    processDefine.activities[j].style.left = $("#" + id).offset().left;
+                    processDefine.activities[j].style.top = $("#" + id).offset().top;
+                    processDefine.activities[j].style.width = $("#" + id).width();
+                    processDefine.activities[j].style.height = $("#" + id).height();
+                    processDefine.activities[j].style.zIndex = 0;
                     if (operate.length < 10) {
-                        operate.push({ bindEvent: "activitycontextmenu", bindObject: processDefine.Activities[j], bind: "designerActivity", result: "delActivity" });
+                        operate.push({ bindEvent: "activitycontextmenu", bindObject: processDefine.activities[j], bind: "designerActivity", result: "delActivity" });
                     }
                     else {
                         operate.shift();
-                        operate.push({ bindEvent: "activitycontextmenu", bindObject: processDefine.Activities[j], bind: "designerActivity", result: "delActivity" });
+                        operate.push({ bindEvent: "activitycontextmenu", bindObject: processDefine.activities[j], bind: "designerActivity", result: "delActivity" });
                     }
                     if (cutElement) {
-                        selectactivity = processDefine.Activities[j];
+                        selectactivity = processDefine.activities[j];
                     }
-                    processDefine.Activities.splice(position, 1);
+                    processDefine.activities.splice(position, 1);
                     ActivitiesCount--;
                     j = -1;
 
                 }
             }
-            var connectionCount = processDefine.Transitions.length;
+            var connectionCount = processDefine.transitions.length;
             for (var i = 0 ; i < connectionCount; i++) {
-                if (processDefine.Transitions[i].SrcActivity == id || processDefine.Transitions[i].DestActivity == id) {
-                    var conPosition = processDefine.Transitions.indexOf(processDefine.Transitions[i]);
-                    processDefine.Transitions.splice(conPosition, 1);
+                if (processDefine.transitions[i].srcActivity == id || processDefine.transitions[i].destActivity == id) {
+                    var conPosition = processDefine.transitions.indexOf(processDefine.transitions[i]);
+                    processDefine.transitions.splice(conPosition, 1);
                     connectionCount--;
                     i = -1;
                 }
             }
             if (operate.length < 10) {
-                operate.push({ bindEvent: "conncontextmenu", bindObject: processDefine.Transitions[i], bind: "connection", result: "delconnection" });
+                operate.push({ bindEvent: "conncontextmenu", bindObject: processDefine.transitions[i], bind: "connection", result: "delconnection" });
             }
             else {
                 operate.shift();
-                operate.push({ bindEvent: "conncontextmenu", bindObject: processDefine.Transitions[i], bind: "connection", result: "delconnection" });
+                operate.push({ bindEvent: "conncontextmenu", bindObject: processDefine.transitions[i], bind: "connection", result: "delconnection" });
             }
             $("#" + id).remove();
         }
@@ -131,22 +131,22 @@
         delControl(id, true);
     }
     function copyControl(id) {
-        for (var j = 0; j < processDefine.Activities.length; j++) {
-            if (id == processDefine.Activities[j].ID) {
-                var position = processDefine.Activities.indexOf(processDefine.Activities[j]);
-                processDefine.Activities[j].Style.Left = $("#" + id).offset().left;
-                processDefine.Activities[j].Style.Top = $("#" + id).offset().top;
-                processDefine.Activities[j].Style.Width = $("#" + id).width();
-                processDefine.Activities[j].Style.Height = $("#" + id).height();
-                processDefine.Activities[j].Style.ZIndex = 0;
+        for (var j = 0; j < processDefine.activities.length; j++) {
+            if (id == processDefine.activities[j].id) {
+                var position = processDefine.activities.indexOf(processDefine.activities[j]);
+                processDefine.activities[j].style.left = $("#" + id).offset().left;
+                processDefine.activities[j].style.top = $("#" + id).offset().top;
+                processDefine.activities[j].style.width = $("#" + id).width();
+                processDefine.activities[j].style.height = $("#" + id).height();
+                processDefine.activities[j].style.zIndex = 0;
                 var newID = id + new Date().getTime();
-                for (var ActivitieElement in processDefine.Activities[j]) {
+                for (var ActivitieElement in processDefine.activities[j]) {
                     if (!selectactivity) {
                         selectactivity = new Object();
                     }
-                    selectactivity[ActivitieElement] = processDefine.Activities[j][ActivitieElement];
+                    selectactivity[ActivitieElement] = processDefine.activities[j][ActivitieElement];
                 }
-                selectactivity.ID = newID;
+                selectactivity.id = newID;
             }
         }
     }
@@ -177,13 +177,13 @@
             if (action == "formControl") {
               
                 var activityType = $("#" + id).attr("activitytype");
-                if (activityType == ActivityType.ManualActivity && processDefine.Activities) {
+                if (activityType == ActivityType.ManualActivity && processDefine.activities) {
                     // window.parent.parent.openTopDialog("actionDialog2", '设计表单', "/FormDesigner/Home/FormDesigner?ProcessDefID=" + $.query.get("processDefID") + "&ActivityID=" + id + "&ActivityType=" + activityType, 850, 580, true);
-                    for (var i = 0; i < processDefine.Activities.length; i++) {
-                        if (id == processDefine.Activities[i].ID) {
-                            processDefine.Activities[i].eForm = processDefine.Activities[i].eForm ? processDefine.Activities[i].eForm : new Date().getTime();
+                    for (var i = 0; i < processDefine.activities.length; i++) {
+                        if (id == processDefine.activities[i].id) {
+                            processDefine.activities[i].eForm = processDefine.activities[i].eForm ? processDefine.activities[i].eForm : new Date().getTime();
 
-                            openDialog2({ title: "表单设计器", url: "/FormDesigner/Home/FormDesigner?eFormID=" + processDefine.Activities[i].eForm, dialogType: 1, showModal: true, height: screen.height - 80, width: screen.width - 10, windowStyle: { style: "dialogLeft:0;dialogTop:-100;edge: Raised; center: Yes; resizable: Yes; status: no;scrollbars=no;", auguments: window } });
+                            openDialog2({ title: "表单设计器", url: "/FormDesigner/Home/FormDesigner?eFormID=" + processDefine.activities[i].eForm, dialogType: 1, showModal: true, height: screen.height - 80, width: screen.width - 10, windowStyle: { style: "dialogLeft:0;dialogTop:-100;edge: Raised; center: Yes; resizable: Yes; status: no;scrollbars=no;", auguments: window } });
                         }
                     }
                 }
@@ -215,20 +215,20 @@
                 var action = $(this).attr('href').substr(1);
                 switch (action) {
                     case "pasteControl":
-                        if (selectactivity && selectactivity.ID) {
-                            var id = selectactivity.ID;
-                            var name = selectactivity.Name;
-                            var activityType = selectactivity.ActivityType;
-                            var left = x; //selectactivity.Style.Left;
-                            var top = y; //selectactivity.Style.Top;
-                            var img = "/Plugins/WorkflowDesigner/Content/Themes/Default/images/" + selectactivity.ActivityType + ".png";
+                        if (selectactivity && selectactivity.id) {
+                            var id = selectactivity.id;
+                            var name = selectactivity.name;
+                            var activityType = selectactivity.activityType;
+                            var left = x; //selectactivity.style.left;
+                            var top = y; //selectactivity.style.top;
+                            var img = "/Plugins/WorkflowDesigner/Content/Themes/Default/images/" + selectactivity.activityType + ".png";
                             var activityResource = "<div id=\"" + id + "\"  class=\"designeractivity\" name=\"" + name + "\" ActivityType=\"" + activityType + "\" style=\"left:" + left + "px;top:" + top + "px;width:40px;height:40px;position:absolute\"><img style=\"width:40px;height:40px;\" src=\"" + img + "\" /><label style=\"width:100px;position:absolute;Top:40px;left:-30px\">" + name + "</label></div>";
                             $("#" + containerment).append(activityResource);
                             $("#" + id).bind("mouseover", function () { jsPlumb.show(id, $("#" + id)); });
-                            $("#" + id).bind("dblclick", function () { openTopDialog("actionDialog2", "workflow/designer/activity?processDefID=" + processDefine.ID + "&activityID=" + id + "&activityType=" + activityType,'活动配置', 850, 580, true);});
+                            $("#" + id).bind("dblclick", function () { openTopDialog("actionDialog2", "workflow/designer/activity?processDefID=" + processDefine.id + "&activityID=" + id + "&activityType=" + activityType,'活动配置', 850, 580, true);});
                             initContextMenu();
                             var activity = selectactivity;
-                            processDefine.Activities.push(activity);
+                            processDefine.activities.push(activity);
                             var exampleGreyEndpointOptions = {
                                 isSource: true,
                                 isTarget: true,
@@ -333,33 +333,33 @@
         //$("#contexmenu_del").click(function () {
         //    if (selectactivity != null) {
         //        jsPlumb.removeAllEndpoints(selectactivity.id);
-        //        var ActivitiesCount = processDefine.Activities.length;
+        //        var ActivitiesCount = processDefine.activities.length;
         //        for (var j = 0; j < ActivitiesCount; j++) {
-        //            if (selectactivity.id == processDefine.Activities[j].ID) {
-        //                var position = processDefine.Activities.indexOf(processDefine.Activities[j]);
-        //                processDefine.Activities[j].Style.Left = $("#" + selectactivity.id).offset().left;
-        //                processDefine.Activities[j].Style.Top = $("#" + selectactivity.id).offset().top;
-        //                processDefine.Activities[j].Style.Width = $("#" + selectactivity.id).width();
-        //                processDefine.Activities[j].Style.Height = $("#" + selectactivity.id).height();
-        //                processDefine.Activities[j].Style.ZIndex = 0;
+        //            if (selectactivity.id == processDefine.activities[j].id) {
+        //                var position = processDefine.activities.indexOf(processDefine.activities[j]);
+        //                processDefine.activities[j].style.left = $("#" + selectactivity.id).offset().left;
+        //                processDefine.activities[j].style.top = $("#" + selectactivity.id).offset().top;
+        //                processDefine.activities[j].style.width = $("#" + selectactivity.id).width();
+        //                processDefine.activities[j].style.height = $("#" + selectactivity.id).height();
+        //                processDefine.activities[j].style.zIndex = 0;
         //                if (operate.length < 10) {
-        //                    operate.push({ bindEvent: "activitycontextmenu", bindObject: processDefine.Activities[j], bind: "designerActivity", result: "delActivity" });
+        //                    operate.push({ bindEvent: "activitycontextmenu", bindObject: processDefine.activities[j], bind: "designerActivity", result: "delActivity" });
         //                }
         //                else {
         //                    operate.shift();
-        //                    operate.push({ bindEvent: "activitycontextmenu", bindObject: processDefine.Activities[j], bind: "designerActivity", result: "delActivity" });
+        //                    operate.push({ bindEvent: "activitycontextmenu", bindObject: processDefine.activities[j], bind: "designerActivity", result: "delActivity" });
         //                }
-        //                processDefine.Activities.splice(position, 1);
+        //                processDefine.activities.splice(position, 1);
         //                ActivitiesCount--;
         //                j = -1;
 
         //            }
         //        }
-        //        var connectionCount = processDefine.Transitions.length;
+        //        var connectionCount = processDefine.transitions.length;
         //        for (var i = 0 ; i < connectionCount; i++) {
-        //            if (processDefine.Transitions[i].SrcActivity == selectactivity.id || processDefine.Transitions[i].DestActivity == selectactivity.id) {
-        //                var conPosition = processDefine.Transitions.indexOf(processDefine.Transitions[i]);
-        //                processDefine.Transitions.splice(conPosition, 1);
+        //            if (processDefine.transitions[i].srcActivity == selectactivity.id || processDefine.transitions[i].destActivity == selectactivity.id) {
+        //                var conPosition = processDefine.transitions.indexOf(processDefine.transitions[i]);
+        //                processDefine.transitions.splice(conPosition, 1);
         //                connectionCount--;
         //                i = -1;
         //            }
@@ -401,10 +401,10 @@
         for (var i = 0; i < currentObject.length; i++) {
             var left = currentObject[i].left;
             var top = currentObject[i].top;
-            currentObject[i].left = $("#" + currentObject[i].ID).css("left");
-            currentObject[i].top = $("#" + currentObject[i].ID).css("top");
-            $("#" + currentObject[i].ID).css("left", left);
-            $("#" + currentObject[i].ID).css("top", top);
+            currentObject[i].left = $("#" + currentObject[i].id).css("left");
+            currentObject[i].top = $("#" + currentObject[i].id).css("top");
+            $("#" + currentObject[i].id).css("left", left);
+            $("#" + currentObject[i].id).css("top", top);
         }
     }
     //前进一步
@@ -422,19 +422,19 @@
                         temporaryDrop.push(currentObject);
                     } break;
                 case "addActivity":
-                    var id = currentObject.ID;
-                    var name = currentObject.Name;
-                    var activityType = currentObject.ActivityType;
-                    var left = currentObject.Style.Left;
-                    var top = currentObject.Style.Top;
-                    var img = "/Plugins/WorkflowDesigner/Content/Themes/Default/images/" + currentObject.ActivityType + ".png";
+                    var id = currentObject.id;
+                    var name = currentObject.name;
+                    var activityType = currentObject.activityType;
+                    var left = currentObject.style.left;
+                    var top = currentObject.style.top;
+                    var img = "/Plugins/WorkflowDesigner/Content/Themes/Default/images/" + currentObject.activityType + ".png";
                     var activityResource = "<div id=\"" + id + "\"  class=\"designeractivity\" name=\"" + name + "\" ActivityType=\"" + activityType + "\" style=\"left:" + left + "px;top:" + top + "px;width:40px;height:40px;position:absolute\"><img style=\"width:40px;height:40px;\" src=\"" + img + "\" /><label style=\"width:100px;position:absolute;Top:40px;left:-30px\">" + name + "</label></div>"
                     $("#" + containerment).append(activityResource);
                     $("#" + id).bind("mouseover", function () { jsPlumb.show(id, $("#" + id)); });
-                    $("#" + id).bind("dblclick", function () { openTopDialog("actionDialog2", "workflow/designer/activity?processDefID=" + processDefine.ID + "&activityID=" + id + "&activityType=" + activityType,'活动配置', 850, 580, true); });
+                    $("#" + id).bind("dblclick", function () { openTopDialog("actionDialog2", "workflow/designer/activity?processDefID=" + processDefine.id + "&activityID=" + id + "&activityType=" + activityType,'活动配置', 850, 580, true); });
                     initContextMenu();
                     var activity = currentObject;
-                    processDefine.Activities.push(activity);
+                    processDefine.activities.push(activity);
                     var exampleGreyEndpointOptions = {
                         isSource: true,
                         isTarget: true,
@@ -476,28 +476,28 @@
                     operate.push(currentOperate);
                     break;
                 case "activitycontextmenu":
-                    var id = currentObject.ID;
+                    var id = currentObject.id;
                     jsPlumb.removeAllEndpoints(id);
-                    var ActivitiesCount = processDefine.Activities.length;
+                    var ActivitiesCount = processDefine.activities.length;
                     for (var j = 0; j < ActivitiesCount; j++) {
-                        if (id == processDefine.Activities[j].ID) {
-                            var position = processDefine.Activities.indexOf(processDefine.Activities[j]);
-                            processDefine.Activities[j].Style.Left = $("#" + id).offset().left;
-                            processDefine.Activities[j].Style.Top = $("#" + id).offset().top;
-                            processDefine.Activities[j].Style.Width = $("#" + id).width();
-                            processDefine.Activities[j].Style.Height = $("#" + id).height();
-                            processDefine.Activities[j].Style.ZIndex = 0;
-                            currentOperate = { bindEvent: "activitycontextmenu", bindObject: processDefine.Activities[j], bind: currentOperate.bind, result: currentOperate.result };
-                            processDefine.Activities.splice(position, 1);
+                        if (id == processDefine.activities[j].id) {
+                            var position = processDefine.activities.indexOf(processDefine.activities[j]);
+                            processDefine.activities[j].style.left = $("#" + id).offset().left;
+                            processDefine.activities[j].style.top = $("#" + id).offset().top;
+                            processDefine.activities[j].style.width = $("#" + id).width();
+                            processDefine.activities[j].style.height = $("#" + id).height();
+                            processDefine.activities[j].style.zIndex = 0;
+                            currentOperate = { bindEvent: "activitycontextmenu", bindObject: processDefine.activities[j], bind: currentOperate.bind, result: currentOperate.result };
+                            processDefine.activities.splice(position, 1);
                             ActivitiesCount--;
                             j = -1;
                         }
                     }
-                    var connectionCount = processDefine.Transitions.length;
+                    var connectionCount = processDefine.transitions.length;
                     for (var i = 0 ; i < connectionCount; i++) {
-                        if (processDefine.Transitions[i].SrcActivity == id || processDefine.Transitions[i].DestActivity == id) {
-                            var conPosition = processDefine.Transitions.indexOf(processDefine.Transitions[i]);
-                            processDefine.Transitions.splice(conPosition, 1);
+                        if (processDefine.transitions[i].srcActivity == id || processDefine.transitions[i].destActivity == id) {
+                            var conPosition = processDefine.transitions.indexOf(processDefine.transitions[i]);
+                            processDefine.transitions.splice(conPosition, 1);
                             connectionCount--;
                             i = -1;
                         }
@@ -518,14 +518,14 @@
                         }
                     }
                     else {
-                        anchors = [currentObject.SourceOrientation, currentObject.SinkOrientation];
+                        anchors = [currentObject.sourceOrientation, currentObject.sinkOrientation];
                     }
-                    jsPlumb.show(currentObject.SrcActivity, $("#" + currentObject.SrcActivity));
-                    jsPlumb.show(currentObject.DestActivity, $("#" + currentObject.DestActivity));
+                    jsPlumb.show(currentObject.srcActivity, $("#" + currentObject.srcActivity));
+                    jsPlumb.show(currentObject.destActivity, $("#" + currentObject.destActivity));
                     jsPlumb.connect({
                         paintStyle: { fillStyle: "Green", strokeStyle: "Green", lineWidth: 2, radius: 7 },
-                        source: currentObject.SrcActivity,
-                        target: currentObject.DestActivity,
+                        source: currentObject.srcActivity,
+                        target: currentObject.destActivity,
                         anchors: anchors,
                         connector: lineStyle,
                         hoverPaintStyle: connectorHoverStyle,
@@ -534,17 +534,17 @@
                         scope: "process",
                         endpointStyles: [{ fillStyle: "#528E21" }, { fillStyle: "#528E21" }]
                     });
-                    processDefine.Transitions.push(currentObject);
+                    processDefine.transitions.push(currentObject);
                     console.log("前进到删除连接前，重连对象");
 
                     break;
                 case "conncontextmenu":
-                    for (var i = 0; i < processDefine.Transitions.length; i++) {
-                        var sourceAnchor = processDefine.Transitions[i].SourceOrientation;
-                        var sinkAnchor = processDefine.Transitions[i].SinkOrientation;
-                        if (sourceAnchor == currentObject.sourceEndpoint.anchor.type && sinkAnchor == currentObject.targetEndpoint.anchor.type && processDefine.Transitions[i].SrcActivity == currentObject.sourceId && processDefine.Transitions[i].DestActivity == currentObject.targetId) {
-                            operate.push({ bindEvent: "conncontextmenu", bindObject: processDefine.Transitions[i], bind: "connection", result: "connection" });
-                            processDefine.Transitions.splice(i, 1);
+                    for (var i = 0; i < processDefine.transitions.length; i++) {
+                        var sourceAnchor = processDefine.transitions[i].sourceOrientation;
+                        var sinkAnchor = processDefine.transitions[i].sinkOrientation;
+                        if (sourceAnchor == currentObject.sourceEndpoint.anchor.type && sinkAnchor == currentObject.targetEndpoint.anchor.type && processDefine.transitions[i].srcActivity == currentObject.sourceId && processDefine.transitions[i].destActivity == currentObject.targetId) {
+                            operate.push({ bindEvent: "conncontextmenu", bindObject: processDefine.transitions[i], bind: "connection", result: "connection" });
+                            processDefine.transitions.splice(i, 1);
                         }
                     }
                     jsPlumb.detach(currentObject);
@@ -586,29 +586,29 @@
                         temporaryDrop.unshift(currentObject);
                     } break;
                 case "addActivity":
-                    var id = currentObject.ID;
+                    var id = currentObject.id;
                     jsPlumb.removeAllEndpoints(id);
                    // jsPlumb.detachAllConnections(id);
-                    var ActivitiesCount = processDefine.Activities.length;
+                    var ActivitiesCount = processDefine.activities.length;
                     for (var j = 0; j < ActivitiesCount; j++) {
-                        if (id == processDefine.Activities[j].ID) {
-                            var position = processDefine.Activities.indexOf(processDefine.Activities[j]);
-                            processDefine.Activities[j].Style.Left = $("#" + id).offset().left;
-                            processDefine.Activities[j].Style.Top = $("#" + id).offset().top;
-                            processDefine.Activities[j].Style.Width = $("#" + id).width();
-                            processDefine.Activities[j].Style.Height = $("#" + id).height();
-                            processDefine.Activities[j].Style.ZIndex = 0;
-                            currentOperate = { bindEvent: "addActivity", bindObject: processDefine.Activities[j], bind: currentOperate.bind, result: currentOperate.result };
-                            processDefine.Activities.splice(position, 1);
+                        if (id == processDefine.activities[j].id) {
+                            var position = processDefine.activities.indexOf(processDefine.activities[j]);
+                            processDefine.activities[j].style.left = $("#" + id).offset().left;
+                            processDefine.activities[j].style.top = $("#" + id).offset().top;
+                            processDefine.activities[j].style.width = $("#" + id).width();
+                            processDefine.activities[j].style.height = $("#" + id).height();
+                            processDefine.activities[j].style.zIndex = 0;
+                            currentOperate = { bindEvent: "addActivity", bindObject: processDefine.activities[j], bind: currentOperate.bind, result: currentOperate.result };
+                            processDefine.activities.splice(position, 1);
                             ActivitiesCount--;
                             j = -1;
                         }
                     }
-                    var connectionCount = processDefine.Transitions.length;
+                    var connectionCount = processDefine.transitions.length;
                     for (var i = 0 ; i < connectionCount; i++) {
-                        if (processDefine.Transitions[i].SrcActivity == id || processDefine.Transitions[i].DestActivity == id) {
-                            var conPosition = processDefine.Transitions.indexOf(processDefine.Transitions[i]);
-                            processDefine.Transitions.splice(conPosition, 1);
+                        if (processDefine.transitions[i].srcActivity == id || processDefine.transitions[i].destActivity == id) {
+                            var conPosition = processDefine.transitions.indexOf(processDefine.transitions[i]);
+                            processDefine.transitions.splice(conPosition, 1);
                             connectionCount--;
                             i = -1;
                         }
@@ -618,16 +618,16 @@
                     temporaryObject.push(currentOperate);
                     break;
                 case "activitycontextmenu":
-                    var id = currentObject.ID;
-                    var name = currentObject.Name;
-                    var activityType = currentObject.ActivityType;
-                    var left = currentObject.Style.Left;
-                    var top = currentObject.Style.Top;
-                    var img = "/Plugins/WorkflowDesigner/Content/Themes/Default/images/" + currentObject.ActivityType + ".png";
+                    var id = currentObject.id;
+                    var name = currentObject.name;
+                    var activityType = currentObject.activityType;
+                    var left = currentObject.style.left;
+                    var top = currentObject.style.top;
+                    var img = "/Plugins/WorkflowDesigner/Content/Themes/Default/images/" + currentObject.activityType + ".png";
                     var activityResource = "<div id=\"" + id + "\"  class=\"designeractivity\" name=\"" + name + "\" ActivityType=\"" + activityType + "\" style=\"left:" + left + "px;top:" + top + "px;width:40px;height:40px;position:absolute\"><img style=\"width:40px;height:40px;\" src=\"" + img + "\" /><label style=\"width:100px;position:absolute;Top:40px;left:-30px\">" + name + "</label></div>"
                     $("#" + containerment).append(activityResource);
                     $("#" + id).bind("mouseover", function () { jsPlumb.show(id, $("#" + id)); });
-                    $("#" + id).bind("dblclick", function () { openTopDialog("actionDialog2", "workflow/designer/activity?processDefID=" + processDefine.ID + "&activityID=" + id + "&activityType=" + activityType,'活动配置', 850, 580, true);});
+                    $("#" + id).bind("dblclick", function () { openTopDialog("actionDialog2", "workflow/designer/activity?processDefID=" + processDefine.id + "&activityID=" + id + "&activityType=" + activityType,'活动配置', 850, 580, true);});
                     //$("#" + id).bind("contextmenu", function () {
                     //    selectactivity = $("#" + id)[0];
                     //    e = window.event || arguments[0];
@@ -639,7 +639,7 @@
                     //});
                     initContextMenu();
                     var activity = currentObject;
-                    processDefine.Activities.push(activity);
+                    processDefine.activities.push(activity);
                     var exampleGreyEndpointOptions = {
                         isSource: true,
                         isTarget: true,
@@ -681,19 +681,19 @@
                     temporaryObject.push(currentOperate);
                     break;
                 case "connection":
-                    for (var i = 0; i < processDefine.Transitions.length; i++) {
-                        var sourceAnchor = processDefine.Transitions[i].SourceOrientation;
-                        var sinkAnchor = processDefine.Transitions[i].SinkOrientation;
-                        if (sourceAnchor == currentObject.sourceEndpoint.anchor.type && sinkAnchor == currentObject.targetEndpoint.anchor.type && processDefine.Transitions[i].SrcActivity == currentObject.sourceId && processDefine.Transitions[i].DestActivity == currentObject.targetId) {
-                            temporaryObject.push({ bindEvent: "connection", bindObject: processDefine.Transitions[i], bind: "connection", result: "lineConnection" });
-                            processDefine.Transitions.splice(i, 1);
+                    for (var i = 0; i < processDefine.transitions.length; i++) {
+                        var sourceAnchor = processDefine.transitions[i].sourceOrientation;
+                        var sinkAnchor = processDefine.transitions[i].sinkOrientation;
+                        if (sourceAnchor == currentObject.sourceEndpoint.anchor.type && sinkAnchor == currentObject.targetEndpoint.anchor.type && processDefine.transitions[i].srcActivity == currentObject.sourceId && processDefine.transitions[i].destActivity == currentObject.targetId) {
+                            temporaryObject.push({ bindEvent: "connection", bindObject: processDefine.transitions[i], bind: "connection", result: "lineConnection" });
+                            processDefine.transitions.splice(i, 1);
                         }
                     }
-                    //for (var i = 0; i < processDefine.Transitions.length; i++) {
-                    //    var sourceAnchor = processDefine.Transitions[i].SourceOrientation;
-                    //    var sinkAnchor = processDefine.Transitions[i].SinkOrientation;
-                    //    if (sourceAnchor == currentObject.SourceOrientation && sinkAnchor == currentObject.SinkOrientation && processDefine.Transitions[i].SrcActivity == currentObject.SrcActivity && processDefine.Transitions[i].DestActivity == currentObject.DestActivity) {
-                    //        processDefine.Transitions.splice(i, 1);
+                    //for (var i = 0; i < processDefine.transitions.length; i++) {
+                    //    var sourceAnchor = processDefine.transitions[i].sourceOrientation;
+                    //    var sinkAnchor = processDefine.transitions[i].sinkOrientation;
+                    //    if (sourceAnchor == currentObject.sourceOrientation && sinkAnchor == currentObject.sinkOrientation && processDefine.transitions[i].srcActivity == currentObject.srcActivity && processDefine.transitions[i].destActivity == currentObject.destActivity) {
+                    //        processDefine.transitions.splice(i, 1);
                     //    }
                     //}
                     jsPlumb.detach(currentObject);
@@ -720,15 +720,15 @@
                         }
                     }
                     else {
-                        anchors = [currentObject.SourceOrientation, currentObject.SinkOrientation];
+                        anchors = [currentObject.sourceOrientation, currentObject.sinkOrientation];
                     }
 
-                    jsPlumb.show(currentObject.SrcActivity, $("#" + currentObject.SrcActivity));
-                    jsPlumb.show(currentObject.DestActivity, $("#" + currentObject.DestActivity));
+                    jsPlumb.show(currentObject.srcActivity, $("#" + currentObject.srcActivity));
+                    jsPlumb.show(currentObject.destActivity, $("#" + currentObject.destActivity));
                     jsPlumb.connect({
                         paintStyle: { fillStyle: "Green", strokeStyle: "Green", lineWidth: 2, radius: 7 },
-                        source: currentObject.SrcActivity,
-                        target: currentObject.DestActivity,
+                        source: currentObject.srcActivity,
+                        target: currentObject.destActivity,
                         anchors: anchors,
                         connector: lineStyle,
                         hoverPaintStyle: connectorHoverStyle,
@@ -737,7 +737,7 @@
                         scope: "process",
                         endpointStyles: [{ fillStyle: "#528E21" }, { fillStyle: "#528E21" }]
                     });
-                    processDefine.Transitions.push(currentObject);
+                    processDefine.transitions.push(currentObject);
                     //temporaryObject.push(currentOperate);
                     console.log("回退到删除活动前，重连对象");
                     break;
@@ -799,7 +799,7 @@
                     if (confirm("是否保存该流程图")) {
                         saveProcessDefine();
                     }
-                    processDefine.ID = null;
+                    processDefine.id = null;
                     jsPlumb.reset();
                     $(".designeractivity").each(function () {
                         $(this).remove();
@@ -879,7 +879,7 @@
                     if (field.standard) {
                         for (var i = 0; i < selectItems.length; i++) {
                             var left = field.left + "px";
-                            $("#" + selectItems[i].ID).css("left", left);
+                            $("#" + selectItems[i].id).css("left", left);
                         }
                         jsPlumb.repaintEverything();
                         if (operate.length < 10) {
@@ -921,8 +921,8 @@
                     });
                     if (field.standard) {
                         for (var i = 0; i < selectItems.length; i++) {
-                            var left = field.left + field.width / 2 - $("#" + selectItems[i].ID).width() / 2 + "px";
-                            $("#" + selectItems[i].ID).css("left", left);
+                            var left = field.left + field.width / 2 - $("#" + selectItems[i].id).width() / 2 + "px";
+                            $("#" + selectItems[i].id).css("left", left);
                         }
                         jsPlumb.repaintEverything();
                         if (operate.length < 10) {
@@ -965,9 +965,9 @@
                     if (field.standard) {
                         for (var i = 0; i < selectItems.length; i++) {
                             var standardleft = field.left + field.width;
-                            var width = $("#" + selectItems[i].ID).width();
+                            var width = $("#" + selectItems[i].id).width();
                             var left = standardleft - width + "px";
-                            $("#" + selectItems[i].ID).css("left", left);
+                            $("#" + selectItems[i].id).css("left", left);
                         }
                         jsPlumb.repaintEverything();
                         if (operate.length < 10) {
@@ -1052,13 +1052,13 @@
     //初始化流程图结束，同步流程信息到变量processDefine中
     function initProcessDefine(proDefine) {
         startConnection = 1;
-        processDefine.Activities = proDefine.Activities;
-        processDefine.Transitions = proDefine.Transitions;
+        processDefine.activities = proDefine.activities;
+        processDefine.transitions = proDefine.transitions;
         var connections = jsPlumb.getConnections({ scope: "process" });
         for (var j = 0; j < connections.length; j++) {
-            for (var i = 0; i < processDefine.Transitions.length; i++) {
-                var sourceAnchor = processDefine.Transitions[i].SourceOrientation;
-                var sinkAnchor = processDefine.Transitions[i].SinkOrientation;
+            for (var i = 0; i < processDefine.transitions.length; i++) {
+                var sourceAnchor = processDefine.transitions[i].sourceOrientation;
+                var sinkAnchor = processDefine.transitions[i].sinkOrientation;
                 switch (sourceAnchor) {
                     case "Left": sourceAnchor = "LeftMiddle"; break;
                     case "Top": sourceAnchor = "TopCenter"; break;
@@ -1071,9 +1071,9 @@
                     case "Right": sinkAnchor = "RightMiddle"; break;
                     case "Bottom": sinkAnchor = "BottomCenter"; break;
                 }
-                if (sourceAnchor == connections[j].endpoints[0].anchor.type && sinkAnchor == connections[j].endpoints[1].anchor.type && processDefine.Transitions[i].SrcActivity == connections[j].sourceId && processDefine.Transitions[i].DestActivity == connections[j].targetId) {
+                if (sourceAnchor == connections[j].endpoints[0].anchor.type && sinkAnchor == connections[j].endpoints[1].anchor.type && processDefine.transitions[i].srcActivity == connections[j].sourceId && processDefine.transitions[i].destActivity == connections[j].targetId) {
                     connectionLabel = connections[j];
-                    setConnectionLabel(processDefine.Transitions[i].Name);
+                    setConnectionLabel(processDefine.transitions[i].name);
                 }
             }
         }
@@ -1086,59 +1086,59 @@
             return;
         }
         var checkActivities = new Array();
-        for (var j = 0; j < processDefine.Activities.length; j++) {
-            if (processDefine.Activities[j].NewID) {
+        for (var j = 0; j < processDefine.activities.length; j++) {
+            if (processDefine.activities[j].newID) {
                 for (var i = 0; i < checkActivities.length; i++) {
-                    if (processDefine.Activities[j].NewID == checkActivities[i]) {
-                        alert("活动存在相同ID,相同ID为" + processDefine.Activities[j].NewID + "，请检查后在保存!");
+                    if (processDefine.activities[j].newID == checkActivities[i]) {
+                        alert("活动存在相同ID,相同ID为" + processDefine.activities[j].newID + "，请检查后在保存!");
                         return false;
                     }
                 }
-                checkActivities.push(processDefine.Activities[j].NewID);
+                checkActivities.push(processDefine.activities[j].newID);
             }
             else {
                 for (var i = 0; i < checkActivities.length; i++) {
-                    if (processDefine.Activities[j].ID == checkActivities[i]) {
-                        alert("活动存在相同ID,相同ID为" + processDefine.Activities[j].ID + "，请检查后在保存!");
+                    if (processDefine.activities[j].id == checkActivities[i]) {
+                        alert("活动存在相同ID,相同ID为" + processDefine.activities[j].id + "，请检查后在保存!");
                         return false;
                     }
                 }
-                checkActivities.push(processDefine.Activities[j].ID);
+                checkActivities.push(processDefine.activities[j].id);
             }
 
         }
 
 
-        for (var i = 0; i < processDefine.Transitions.length; i++) {
-            for (var j = 0; j < processDefine.Activities.length; j++) {
-                if (processDefine.Transitions[i].SrcActivity == processDefine.Activities[j].ID && processDefine.Activities[j].NewID) {
-                    processDefine.Transitions[i].SrcActivity = processDefine.Activities[j].NewID;
+        for (var i = 0; i < processDefine.transitions.length; i++) {
+            for (var j = 0; j < processDefine.activities.length; j++) {
+                if (processDefine.transitions[i].srcActivity == processDefine.activities[j].id && processDefine.activities[j].newID) {
+                    processDefine.transitions[i].srcActivity = processDefine.activities[j].newID;
                 }
-                if (processDefine.Transitions[i].DestActivity == processDefine.Activities[j].ID && processDefine.Activities[j].NewID) {
-                    processDefine.Transitions[i].DestActivity = processDefine.Activities[j].NewID;
+                if (processDefine.transitions[i].destActivity == processDefine.activities[j].id && processDefine.activities[j].newID) {
+                    processDefine.transitions[i].destActivity = processDefine.activities[j].newID;
                 }
             }
         }
-        $(processDefine.Activities).each(function () {
+        $(processDefine.activities).each(function () {
             var me = this;
             $(".designeractivity").each(function () {
-                if (this.id == me.ID) {
-                    me.Style.Left = $(this).offset().left - $("#main_leftcontent").width();
-                    me.Style.Top = $(this).offset().top - $("#header").height() - $("#tabcontainer").height() - $("#designer_title").height();
-                    me.Style.Width = $(this).width();
-                    me.Style.Height = $(this).height();
-                    me.Style.ZIndex = 0;
+                if (this.id == me.id) {
+                    me.style.left = $(this).offset().left - $("#main_leftcontent").width();
+                    me.style.top = $(this).offset().top - $("#header").height() - $("#tabcontainer").height() - $("#designer_title").height();
+                    me.style.width = $(this).width();
+                    me.style.height = $(this).height();
+                    me.style.zIndex = 0;
                 }
             });
         });
-        for (var j = 0; j < processDefine.Activities.length; j++) {
-            if (processDefine.Activities[j].NewID) {
-                processDefine.Activities[j].ID = processDefine.Activities[j].NewID;
+        for (var j = 0; j < processDefine.activities.length; j++) {
+            if (processDefine.activities[j].newID) {
+                processDefine.activities[j].id = processDefine.activities[j].newID;
             }
         }
 
 
-        var Name = $.trim($("#processName").val());
+        var name = $.trim($("#processName").val());
         var text = $.trim($("#processText").val());
         var version = $.trim($("#version").val());
         var description = $.trim($("#description").val());
@@ -1147,17 +1147,17 @@
         var currentFlag = $.trim($("#currentFlag").val());
         var currentStatus = $.trim($("#currentStatus").val());
         var categoryID = $.trim($("#categoryID").val());
-        processDefine.Name = text;
-        processDefine.Version = version;
-        processDefine.Author = startor;
-        processDefine.StartURL = $.trim($("#starturl").val());
-        processDefine.ID = Name;//2012.11.16
-        var processDefContent = JSON2.stringify(processDefine);
+        processDefine.name = text;
+        processDefine.version = version;
+        processDefine.author = startor;
+        processDefine.startURL = $.trim($("#starturl").val());
+        processDefine.id = name;//2012.11.16
+        var processDefContent = JSON.stringify(processDefine);
         var processDefID = $.query.get("processDefID");
         if ($.query.get("action") == 'cloneProcess' && processDefID) {//代码bug，如果对方传过来的参数为&
             processDefID = null;
         }
-        $.post("/workflow/designer/processdefine/save", { processDefID: processDefID, categoryID: categoryID, processDefContent: processDefContent, name: Name, text: text, version: version, description: description, startor: startor, isActive: isActive, currentFlag: currentFlag, currentStatus: currentStatus }, function (message) {
+        $.post("../workflow/designer/processdefine/save", { processDefID: processDefID, categoryID: categoryID, processDefContent: processDefContent, name: name, text: text, version: version, description: description, startor: startor, isActive: isActive, currentFlag: currentFlag, currentStatus: currentStatus }, function (message) {
             alert(message);
         });
     }
@@ -1188,7 +1188,7 @@
                         var activityResource = "<div id=\"" + id + "\"  class=\"designeractivity\" name=\"" + text + "\" ActivityType=\"" + $.trim($(ui.draggable[0]).attr("id")) + "\" style=\"left:" + pointx + "px;top:" + pointy + "px;width:40px;height:40px;position:absolute\"><img style=\"width:40px;height:40px;\" src=\"" + $(img).attr("src") + "\" /><label style=\"width:100px;position:absolute;Top:40px;left:-30px\">" + text + "</label></div>"
                         $("#" + container).append(activityResource);
                         $("#" + id).bind("mouseover", function () { jsPlumb.show(id, $("#" + id)); });
-                        $("#" + id).bind("dblclick", function () { openTopDialog("actionDialog2", "workflow/designer/activity?processDefID=" + processDefine.ID + "&activityID=" + id + "&activityType=" + $.trim($(ui.draggable[0]).attr("id")),'活动配置', 850, 580, true); });
+                        $("#" + id).bind("dblclick", function () { openTopDialog("actionDialog2", "workflow/designer/activity?processDefID=" + processDefine.id + "&activityID=" + id + "&activityType=" + $.trim($(ui.draggable[0]).attr("id")),'活动配置', 850, 580, true); });
                         //$("#" + id).bind("contextmenu", function () {
                         //    selectactivity = $("#" + id)[0];
                         //    e = window.event || arguments[0];
@@ -1318,8 +1318,8 @@
                                 }
                             }
                         });
-                        var activity = { Name: text, ID: id, ActivityType: $.trim($(ui.draggable[0]).attr("id")), Style: {} };
-                        processDefine.Activities.push(activity);
+                        var activity = { name: text, id: id, activityType: $.trim($(ui.draggable[0]).attr("id")), style: {} };
+                        processDefine.activities.push(activity);
                         var exampleGreyEndpointOptions = {
                             isSource: true,
                             isTarget: true,
@@ -1386,35 +1386,35 @@
     //初始化流程活动
     function drawActivityInst(activity, currentState, container) {
         var imgPath = "/Plugins/WorkflowDesigner/Content/Themes/Default/images/";
-        var resource = "/Plugins/WorkflowDesigner/Content/Themes/Default/images/" + activity.ActivityType + ".png";
+        var resource = "/Plugins/WorkflowDesigner/Content/Themes/Default/images/" + activity.activityType + ".png";
         switch (currentState) {
-            case -1: resource = imgPath + activity.ActivityType + "4.png";
+            case -1: resource = imgPath + activity.activityType + "4.png";
                 break;
-            case 0: resource = imgPath + activity.ActivityType + ".png";
+            case 0: resource = imgPath + activity.activityType + ".png";
                 break;
-            case 1: resource = imgPath + activity.ActivityType + "2.png";
+            case 1: resource = imgPath + activity.activityType + "2.png";
                 break;
             case 2: break;
-            case 3: resource = imgPath + activity.ActivityType + "2.png";
+            case 3: resource = imgPath + activity.activityType + "2.png";
                 break;
-            case 4: resource = imgPath + activity.ActivityType + "3.png";
+            case 4: resource = imgPath + activity.activityType + "3.png";
                 break;
-            case 5: resource = imgPath + activity.ActivityType + "5.png";
+            case 5: resource = imgPath + activity.activityType + "5.png";
                 break;
-            case 8: resource = imgPath + activity.ActivityType + "6.png";
+            case 8: resource = imgPath + activity.activityType + "6.png";
                 break;
         }
-        if ($("#" + container).find($("#" + activity.ID))[0] != undefined) {
-            $("#" + container).find($("#" + activity.ID)).remove();
+        if ($("#" + container).find($("#" + activity.id))[0] != undefined) {
+            $("#" + container).find($("#" + activity.id)).remove();
         }
-        var left = activity.Style.Left + $("#main_leftcontent").width();
-        var height = activity.Style.Top + $("#header").height() + $("#tabcontainer").height() + $("#designer_title").height();
-        var activityResource = "<div id=\"" + activity.ID + "\"  class=\"designeractivity\" name=\"" + activity.Name + "\" ActivityType=\"" + activity.ActivityType + "\"  style=\"left:" + left + "px;top:" + height + "px;width:40px;height:40px;position:absolute\"><img style=\"width:40px;height:40px;\" src=\"" + resource + "\" /><label style=\"width:100px;position:absolute;Top:40px;left:-30px\">" + activity.Name + "</label></div>"
+        var left = activity.style.left + $("#main_leftcontent").width();
+        var height = activity.style.top + $("#header").height() + $("#tabcontainer").height() + $("#designer_title").height();
+        var activityResource = "<div id=\"" + activity.id + "\"  class=\"designeractivity\" name=\"" + activity.name + "\" ActivityType=\"" + activity.activityType + "\"  style=\"left:" + left + "px;top:" + height + "px;width:40px;height:40px;position:absolute\"><img style=\"width:40px;height:40px;\" src=\"" + resource + "\" /><label style=\"width:100px;position:absolute;Top:40px;left:-30px\">" + activity.name + "</label></div>"
         $("#" + container).append(activityResource);
-        $("#" + activity.ID).bind("mouseover", function () { jsPlumb.show(activity.ID, $("#" + activity.ID)); });
-        $("#" + activity.ID).bind("dblclick", function () { openTopDialog("actionDialog2", "workflow/designer/activity?processDefID=" + $.query.get("processDefID") + "&activityID=" + activity.ID + "&activityType=" + $(activity).attr("ActivityType"),'活动配置', 850, 580, true); });
-        //$("#" + activity.ID).bind("contextmenu", function () {
-        //    selectactivity = $("#" + activity.ID)[0];
+        $("#" + activity.id).bind("mouseover", function () { jsPlumb.show(activity.id, $("#" + activity.id)); });
+        $("#" + activity.id).bind("dblclick", function () { openTopDialog("actionDialog2", "workflow/designer/activity?processDefID=" + $.query.get("processDefID") + "&activityID=" + activity.id + "&activityType=" + $(activity).attr("ActivityType"),'活动配置', 850, 580, true); });
+        //$("#" + activity.id).bind("contextmenu", function () {
+        //    selectactivity = $("#" + activity.id)[0];
         //    e = window.event || arguments[0];
         //    var pointx = (e.clientX + $(document).find("#" + container).scrollLeft()) || e.offsetX;
         //    var pointy = (e.clientY + $(document).find("#" + container).scrollTop()) || e.offsetY;
@@ -1423,7 +1423,7 @@
         //    $("#contexmenu").show();
         //});
         initContextMenu();
-        $("#" + activity.ID).bind("click", function () {
+        $("#" + activity.id).bind("click", function () {
            
             e = window.event || arguments[0];
             if (window.event) //停止事件向下传播
@@ -1432,7 +1432,7 @@
                 e.stopPropagation();
             }
         });
-        $("#" + activity.ID).bind("mousedown", function () {
+        $("#" + activity.id).bind("mousedown", function () {
             e = window.event || arguments[0];
             if (window.event) //停止事件向下传播
                 window.event.cancelBubble = true;
@@ -1451,7 +1451,7 @@
                         jsPlumb.show(this.id);
                         $(this).removeAttr("standardActivity")
                     });
-                    jsPlumb.show(activity.ID, $("#" + activity.ID));
+                    jsPlumb.show(activity.id, $("#" + activity.id));
                     $(this).attr("standardActivity", "true");
                 }
                 else {
@@ -1604,7 +1604,7 @@
         var status = 0;
         if (activityInstList != null && activityInstList.length > 0) {
             for (var i = 0; i < activityInstList.length; i++) {
-                if (transition.DestActivity == activityInstList[i].ActivityDefID)//查找目标
+                if (transition.destActivity == activityInstList[i].ActivityDefID)//查找目标
                 {
                     switch (activityInstList[i].CurrentState) {
                         case -1: currentStatus = -1; break;//未运行到
@@ -1616,9 +1616,9 @@
                         case 5: currentStatus = 5; break;//回退
                     }
                     for (var j = 0; j < activityInstList.length; j++) {
-                        if (transition.SrcActivity == activityInstList[j].ActivityDefID && activityInstList[i].CurrentState == 4) {
+                        if (transition.srcActivity == activityInstList[j].ActivityDefID && activityInstList[i].CurrentState == 4) {
                             for (var n = 0; n < transitionControlList.length; n++) {
-                                if (transitionControlList[n].DestActID == activityInstList[i].ActivityDefID && transitionControlList[n].SrcActID == transition.SrcActivity) {
+                                if (transitionControlList[n].DestActID == activityInstList[i].ActivityDefID && transitionControlList[n].SrcActID == transition.srcActivity) {
                                     switch (activityInstList[j].CurrentState) {
                                         case -1: currentStatus = -1; break;
                                         case 0: currentStatus = -1; break;
@@ -1635,13 +1635,13 @@
                             status = 1;
                         }
 
-                        if (transition.SrcActivity == activityInstList[j].ActivityDefID && currentStatus != 4) {
+                        if (transition.srcActivity == activityInstList[j].ActivityDefID && currentStatus != 4) {
                             for (var m = 0; m < transitionControlList.length; m++) {
-                                if (transitionControlList[m].DestActID == activityInstList[i].ActivityDefID && transitionControlList[m].SrcActID == transition.SrcActivity) {
+                                if (transitionControlList[m].DestActID == activityInstList[i].ActivityDefID && transitionControlList[m].SrcActID == transition.srcActivity) {
 
                                     if (currentStatus == 5) {
                                         for (var k = 0; k < transitionControlList.length; k++) {
-                                            if (transitionControlList[k].DestActID == transition.SrcActivity && transitionControlList[k].SrcActID == activityInstList[i].ActivityDefID) {
+                                            if (transitionControlList[k].DestActID == transition.srcActivity && transitionControlList[k].SrcActID == activityInstList[i].ActivityDefID) {
                                                 currentStatus = 5;
                                                 break;
                                             }
@@ -1675,14 +1675,14 @@
                     }
                     if (status != 1 && currentStatus != 5) {
                         currentStatus = -1;
-                        drawActivityInst(transition.SrcActivity, -1);
+                        drawActivityInst(transition.srcActivity, -1);
                     }
                     else if (status != 1 && currentStatus == 5) {
                         currentStatus = 0;
                     }
 
                 }
-                if (transition.SrcActivity == activityInstList[i].ActivityDefID) {
+                if (transition.srcActivity == activityInstList[i].ActivityDefID) {
                     for (var p = 0; p < activityInstList.length; p++) {
 
                         if (currentStatus != 1 && currentStatus != 4 && activityInstList[i].CurrentState == 4 || activityInstList[p].CurrentState == -1) {
@@ -1706,33 +1706,33 @@
             case 3:; break;
             case 5: connectionStyle = "Blue"; break;
         }
-        var sourceAnchor = transition.SourceOrientation;
-        var sinkAnchor = transition.SinkOrientation;
-        switch (transition.SourceOrientation) {
+        var sourceAnchor = transition.sourceOrientation;
+        var sinkAnchor = transition.sinkOrientation;
+        switch (transition.sourceOrientation) {
             case "Left": sourceAnchor = "LeftMiddle"; break;
             case "Top": sourceAnchor = "TopCenter"; break;
             case "Right": sourceAnchor = "RightMiddle"; break;
             case "Bottom": sourceAnchor = "BottomCenter"; break;
         }
-        switch (transition.SinkOrientation) {
+        switch (transition.sinkOrientation) {
             case "Left": sinkAnchor = "LeftMiddle"; break;
             case "Top": sinkAnchor = "TopCenter"; break;
             case "Right": sinkAnchor = "RightMiddle"; break;
             case "Bottom": sinkAnchor = "BottomCenter"; break;
         }
 
-        jsPlumb.addEndpoint(transition.SrcActivity, exampleGreyEndpointOptions, { anchor: "BottomCenter" });
-        jsPlumb.addEndpoint(transition.SrcActivity, exampleGreyEndpointOptions, { anchor: "TopCenter" });
-        jsPlumb.addEndpoint(transition.SrcActivity, exampleGreyEndpointOptions, { anchor: "LeftMiddle" });
-        jsPlumb.addEndpoint(transition.SrcActivity, exampleGreyEndpointOptions, { anchor: "RightMiddle" });
-        jsPlumb.addEndpoint(transition.DestActivity, exampleGreyEndpointOptions, { anchor: "BottomCenter" });
-        jsPlumb.addEndpoint(transition.DestActivity, exampleGreyEndpointOptions, { anchor: "TopCenter" });
-        jsPlumb.addEndpoint(transition.DestActivity, exampleGreyEndpointOptions, { anchor: "LeftMiddle" });
-        jsPlumb.addEndpoint(transition.DestActivity, exampleGreyEndpointOptions, { anchor: "RightMiddle" });
+        jsPlumb.addEndpoint(transition.srcActivity, exampleGreyEndpointOptions, { anchor: "BottomCenter" });
+        jsPlumb.addEndpoint(transition.srcActivity, exampleGreyEndpointOptions, { anchor: "TopCenter" });
+        jsPlumb.addEndpoint(transition.srcActivity, exampleGreyEndpointOptions, { anchor: "LeftMiddle" });
+        jsPlumb.addEndpoint(transition.srcActivity, exampleGreyEndpointOptions, { anchor: "RightMiddle" });
+        jsPlumb.addEndpoint(transition.destActivity, exampleGreyEndpointOptions, { anchor: "BottomCenter" });
+        jsPlumb.addEndpoint(transition.destActivity, exampleGreyEndpointOptions, { anchor: "TopCenter" });
+        jsPlumb.addEndpoint(transition.destActivity, exampleGreyEndpointOptions, { anchor: "LeftMiddle" });
+        jsPlumb.addEndpoint(transition.destActivity, exampleGreyEndpointOptions, { anchor: "RightMiddle" });
         jsPlumb.connect({
             paintStyle: { fillStyle: connectionStyle, strokeStyle: connectionStyle, lineWidth: 2, radius: 7 },
-            source: transition.SrcActivity,
-            target: transition.DestActivity,
+            source: transition.srcActivity,
+            target: transition.destActivity,
             anchors: [sourceAnchor, sinkAnchor],
             connector: lineStyle,
             hoverPaintStyle: connectorHoverStyle,
@@ -1754,15 +1754,15 @@
     WorkflowDesigner.draw = function (url, proDefContent, container) {
         $.post(url, { processDefContent: proDefContent }, function ($processDefine) {
             jsPlumb.removeEveryEndpoint();
-            for (var q = 0; q < $processDefine.Activities.length; q++) {
+            for (var q = 0; q < $processDefine.activities.length; q++) {
                 if (document.getElementById("leftcontent")) {
                     $("#leftcontent").hide();
                 }
-                drawActivityInst($processDefine.Activities[q], 0, container);
+                drawActivityInst($processDefine.activities[q], 0, container);
             }
-/*                if (ajaxResult.RetValue.processDefine.Transitions.length > 0) {
-                    for (var j = 0; j < ajaxResult.RetValue.processDefine.Transitions.length; j++) {
-                        drawConnection(ajaxResult.RetValue.processDefine.Transitions[j], ajaxResult.RetValue.activityInsts, ajaxResult.RetValue.transList, container);
+/*                if (ajaxResult.RetValue.processDefine.transitions.length > 0) {
+                    for (var j = 0; j < ajaxResult.RetValue.processDefine.transitions.length; j++) {
+                        drawConnection(ajaxResult.RetValue.processDefine.transitions[j], ajaxResult.RetValue.activityInsts, ajaxResult.RetValue.transList, container);
                     }
                 }*/
             jsPlumb.addEndpoint($(".designeractivity"), exampleGreyEndpointOptions, { anchor: "BottomCenter" });
@@ -1795,57 +1795,57 @@
 
     WorkflowDesigner.reloadXML = function (url) {
         var checkActivities = new Array();
-        for (var j = 0; j < processDefine.Activities.length; j++) {
-            if (processDefine.Activities[j].NewID) {
+        for (var j = 0; j < processDefine.activities.length; j++) {
+            if (processDefine.activities[j].newID) {
                 for (var i = 0; i < checkActivities.length; i++) {
-                    if (processDefine.Activities[j].NewID == checkActivities[i]) {
-                        alert("活动存在相同ID,相同ID为" + processDefine.Activities[j].NewID + "，请检查后在保存!");
+                    if (processDefine.activities[j].newID == checkActivities[i]) {
+                        alert("活动存在相同ID,相同ID为" + processDefine.activities[j].newID + "，请检查后在保存!");
                         return false;
                     }
                 }
-                checkActivities.push(processDefine.Activities[j].NewID);
+                checkActivities.push(processDefine.activities[j].newID);
             }
             else {
                 for (var i = 0; i < checkActivities.length; i++) {
-                    if (processDefine.Activities[j].ID == checkActivities[i]) {
-                        alert("活动存在相同ID,相同ID为" + processDefine.Activities[j].ID + "，请检查后在保存!");
+                    if (processDefine.activities[j].id == checkActivities[i]) {
+                        alert("活动存在相同ID,相同ID为" + processDefine.activities[j].id + "，请检查后在保存!");
                         return false;
                     }
                 }
-                checkActivities.push(processDefine.Activities[j].ID);
+                checkActivities.push(processDefine.activities[j].id);
             }
 
         }
 
 
-        for (var i = 0; i < processDefine.Transitions.length; i++) {
-            for (var j = 0; j < processDefine.Activities.length; j++) {
-                if (processDefine.Transitions[i].SrcActivity == processDefine.Activities[j].ID && processDefine.Activities[j].NewID) {
-                    processDefine.Transitions[i].SrcActivity = processDefine.Activities[j].NewID;
+        for (var i = 0; i < processDefine.transitions.length; i++) {
+            for (var j = 0; j < processDefine.activities.length; j++) {
+                if (processDefine.transitions[i].srcActivity == processDefine.activities[j].id && processDefine.activities[j].newID) {
+                    processDefine.transitions[i].srcActivity = processDefine.activities[j].newID;
                 }
-                if (processDefine.Transitions[i].DestActivity == processDefine.Activities[j].ID && processDefine.Activities[j].NewID) {
-                    processDefine.Transitions[i].DestActivity = processDefine.Activities[j].NewID;
+                if (processDefine.transitions[i].destActivity == processDefine.activities[j].id && processDefine.activities[j].newID) {
+                    processDefine.transitions[i].destActivity = processDefine.activities[j].newID;
                 }
             }
         }
-        $(processDefine.Activities).each(function () {
+        $(processDefine.activities).each(function () {
             var me = this;
             $(".designeractivity").each(function () {
-                if (this.id == me.ID) {
-                    me.Style.Left = $(this).offset().left - $("#main_leftcontent").width();
-                    me.Style.Top = $(this).offset().top - $("#header").height() - $("#tabcontainer").height() - $("#designer_title").height();
-                    me.Style.Width = $(this).width();
-                    me.Style.Height = $(this).height();
-                    me.Style.ZIndex = 0;
+                if (this.id == me.id) {
+                    me.style.left = $(this).offset().left - $("#main_leftcontent").width();
+                    me.style.top = $(this).offset().top - $("#header").height() - $("#tabcontainer").height() - $("#designer_title").height();
+                    me.style.width = $(this).width();
+                    me.style.height = $(this).height();
+                    me.style.zIndex = 0;
                 }
             });
         });
-        for (var j = 0; j < processDefine.Activities.length; j++) {
-            if (processDefine.Activities[j].NewID) {
-                processDefine.Activities[j].ID = processDefine.Activities[j].NewID;
+        for (var j = 0; j < processDefine.activities.length; j++) {
+            if (processDefine.activities[j].newID) {
+                processDefine.activities[j].id = processDefine.activities[j].newID;
             }
         }
-        var Name = $.trim($("#processName").val());
+        var name = $.trim($("#processName").val());
         var text = $.trim($("#processText").val());
         var version = $.trim($("#version").val());
         var description = $.trim($("#description").val());
@@ -1854,12 +1854,12 @@
         var currentFlag = $.trim($("#currentFlag").val());
         var currentStatus = $.trim($("#currentStatus").val());
         var categoryID = $.trim($("#categoryID").val());
-        processDefine.Name = text;
-        processDefine.Version = version;
-        processDefine.Author = startor;
-        processDefine.StartURL = $.trim($("#starturl").val());
-        processDefine.ID = Name;//2012.11.16
-        var processDefContent = JSON2.stringify(processDefine);
+        processDefine.name = text;
+        processDefine.version = version;
+        processDefine.author = startor;
+        processDefine.startURL = $.trim($("#starturl").val());
+        processDefine.id = name;//2012.11.16
+        var processDefContent = JSON.stringify(processDefine);
         $.post(url, { processDefContent: processDefContent }, function (xmlContent) {
             $("#XMLdesigner_content").val(xmlContent);
         });
@@ -1886,87 +1886,84 @@
 	                $("#currentFlag").val(processDef.currentFlag);
 	                $("#currentStatus").val(processDef.currentState);
 	                $("#categoryID").val(processDef.categoryID);
-	                processDefine.ID = processDef.name;//2012.11.16
+	                processDefine.id = processDef.name;//2012.11.16
 	                $("#XMLdesigner_content").val(processDef.content);
                 });
             }
-            $.post(url, { ProcessDefID: processDefID, ProcessInstID: processInstID }, function (value) {
-                var ajaxResult = value;
+            $.post(url, { processDefID: processDefID, processInstID: processInstID }, function (retValue) {
                 var message = "操作失败";
-                if (ajaxResult && ajaxResult.Result == "Success") {
-                    if (!ajaxResult.RetValue.processDefine.StartURL) {
-                        ajaxResult.RetValue.processDefine.StartURL = "workflow / eform"
-                    }
-                    $("#starturl").val(ajaxResult.RetValue.processDefine.StartURL);
-                    if (ajaxResult.RetValue.processInstID != null && ajaxResult.RetValue.processInstID != "" && ajaxResult.RetValue.processInstID != "null") {
-                        if (document.getElementById("leftcontent")) {
-                            $("#leftcontent").show();
-                        }
-                        try {
-                            for (var j = 0; ajaxResult.RetValue.processDefine.Activities.length > j; j++) {
-                                var i = 0;
-                                for (var k = 0; k < ajaxResult.RetValue.activityInsts.length; k++) {
-                                    var activityDefID = ajaxResult.RetValue.activityInsts[k].ActivityDefID;
-                                    if (activityDefID == ajaxResult.RetValue.processDefine.Activities[j].ID) {
-                                        i = 1;
-                                        var currentState = ajaxResult.RetValue.activityInsts[k].CurrentState;
-                                        drawActivityInst(ajaxResult.RetValue.processDefine.Activities[j], currentState, container);
-                                    }
-                                }
-                                if (i == 0) {
-                                    drawActivityInst(ajaxResult.RetValue.processDefine.Activities[j], 0, container);
-                                }
-                            }
-                        }
-                        catch (ex) {
-                        }
-                    }
-                    else {
-                        for (var q = 0; q < ajaxResult.RetValue.processDefine.Activities.length; q++) {
-                            if (document.getElementById("leftcontent")) {
-                                $("#leftcontent").hide();
-                            }
-                            drawActivityInst(ajaxResult.RetValue.processDefine.Activities[q], 0, container);
-                        }
-                    }
-                    if (ajaxResult.RetValue.processDefine.Transitions.length > 0) {
-                        for (var j = 0; j < ajaxResult.RetValue.processDefine.Transitions.length; j++) {
-                            drawConnection(ajaxResult.RetValue.processDefine.Transitions[j], ajaxResult.RetValue.activityInsts, ajaxResult.RetValue.transList, container);
-                        }
-                    }
-                    jsPlumb.addEndpoint($(".designeractivity"), exampleGreyEndpointOptions, { anchor: "BottomCenter" });
-                    jsPlumb.addEndpoint($(".designeractivity"), exampleGreyEndpointOptions, { anchor: "TopCenter" });
-                    jsPlumb.addEndpoint($(".designeractivity"), exampleGreyEndpointOptions, { anchor: "LeftMiddle" });
-                    jsPlumb.addEndpoint($(".designeractivity"), exampleGreyEndpointOptions, { anchor: "RightMiddle" });
-                    $(".designeractivity").each(function () {
-                        jsPlumb.hide(this.id, true);
-                    });
-                    $(".designeractivity").each(function () {
-                        jsPlumb.show(this.id);
-                    });
-                    jsPlumb.draggable(jsPlumb.getSelector(".designeractivity"),
-                       {
-                           start: function (event, ui) {
-                               console.log("开始拖动");
-                               if (operate.length < 10) {
-                                   operate.push({ bindEvent: "drag", bindObject: ui, bind: "designeractivity", result: "dragActivity" });
-                               }
-                               else {
-                                   operate.shift();
-                                   operate.push({ bindEvent: "drag", bindObject: ui, bind: "designeractivity", result: "dragActivity" });
-                               }
-                           },
-                           containment: $("#" + container)
-                       });
-                    initProcessDefine(ajaxResult.RetValue.processDefine);
+                if (!retValue.processDefine.startURL) {
+                	retValue.processDefine.startURL = "workflow / eform";
                 }
+                $("#starturl").val(retValue.processDefine.StartURL);
+                if (retValue.processInstID != null && retValue.processInstID != "" &&retValue.processInstID != "null") {
+                    if (document.getElementById("leftcontent")) {
+                        $("#leftcontent").show();
+                    }
+                    try {
+                        for (var j = 0; retValue.processDefine.activities.length > j; j++) {
+                            var i = 0;
+                            for (var k = 0; k < retValue.activityInsts.length; k++) {
+                                var activityDefID = retValue.activityInsts[k].activityDefID;
+                                if (activityDefID ==retValue.processDefine.activities[j].id) {
+                                    i = 1;
+                                    var currentState = retValue.activityInsts[k].currentState;
+                                    drawActivityInst(retValue.processDefine.activities[j], currentState, container);
+                                }
+                            }
+                            if (i == 0) {
+                                drawActivityInst(retValue.processDefine.activities[j], 0, container);
+                            }
+                        }
+                    }
+                    catch (ex) {
+                    }
+                }
+                else {
+                    for (var q = 0; q < retValue.processDefine.activities.length; q++) {
+                        if (document.getElementById("leftcontent")) {
+                            $("#leftcontent").hide();
+                        }
+                        drawActivityInst(retValue.processDefine.activities[q], 0, container);
+                    }
+                }
+                if (retValue.processDefine.transitions.length > 0) {
+                    for (var j = 0; j < retValue.processDefine.transitions.length; j++) {
+                        drawConnection(retValue.processDefine.transitions[j],retValue.activityInsts, retValue.transList, container);
+                    }
+                }
+                jsPlumb.addEndpoint($(".designeractivity"), exampleGreyEndpointOptions, { anchor: "BottomCenter" });
+                jsPlumb.addEndpoint($(".designeractivity"), exampleGreyEndpointOptions, { anchor: "TopCenter" });
+                jsPlumb.addEndpoint($(".designeractivity"), exampleGreyEndpointOptions, { anchor: "LeftMiddle" });
+                jsPlumb.addEndpoint($(".designeractivity"), exampleGreyEndpointOptions, { anchor: "RightMiddle" });
+                $(".designeractivity").each(function () {
+                    jsPlumb.hide(this.id, true);
+                });
+                $(".designeractivity").each(function () {
+                    jsPlumb.show(this.id);
+                });
+                jsPlumb.draggable(jsPlumb.getSelector(".designeractivity"),
+                   {
+                       start: function (event, ui) {
+                           console.log("开始拖动");
+                           if (operate.length < 10) {
+                               operate.push({ bindEvent: "drag", bindObject: ui, bind: "designeractivity", result: "dragActivity" });
+                           }
+                           else {
+                               operate.shift();
+                               operate.push({ bindEvent: "drag", bindObject: ui, bind: "designeractivity", result: "dragActivity" });
+                           }
+                       },
+                       containment: $("#" + container)
+                   });
+                initProcessDefine(retValue.processDefine);
             });
         }
         else {
-            processDefID = "ProcessDefine" + new Date().getTime();
-            processDefine.ID = processDefID;
+            processDefID = "processDefine" + new Date().getTime();
+            processDefine.id = processDefID;
         }
-        //  processDefine.ID = processDefID;
+        //  processDefine.id = processDefID;
         startdraw(container);
         initDocumentContextMunu();
 
@@ -2030,9 +2027,9 @@
             switch (action) {
                 case "delControl":
                     if (confirm("是否删除该连接")) {
-                        for (var i = 0; i < processDefine.Transitions.length; i++) {
-                            var sourceAnchor = processDefine.Transitions[i].SourceOrientation;
-                            var sinkAnchor = processDefine.Transitions[i].SinkOrientation;
+                        for (var i = 0; i < processDefine.transitions.length; i++) {
+                            var sourceAnchor = processDefine.transitions[i].sourceOrientation;
+                            var sinkAnchor = processDefine.transitions[i].sinkOrientation;
                             switch (sourceAnchor) {
                                 case "Left": sourceAnchor = "LeftMiddle"; break;
                                 case "Top": sourceAnchor = "TopCenter"; break;
@@ -2045,15 +2042,15 @@
                                 case "Right": sinkAnchor = "RightMiddle"; break;
                                 case "Bottom": sinkAnchor = "BottomCenter"; break;
                             }
-                            if (sourceAnchor == conn.endpoints[0].anchor.type && sinkAnchor == conn.endpoints[1].anchor.type && processDefine.Transitions[i].SrcActivity == conn.sourceId && processDefine.Transitions[i].DestActivity == conn.targetId) {
+                            if (sourceAnchor == conn.endpoints[0].anchor.type && sinkAnchor == conn.endpoints[1].anchor.type && processDefine.transitions[i].srcActivity == conn.sourceId && processDefine.transitions[i].destActivity == conn.targetId) {
                                 if (operate.length < 10) {
-                                    operate.push({ bindEvent: "conncontextmenu", bindObject: processDefine.Transitions[i], bind: "connection", result: "delconnection" });
+                                    operate.push({ bindEvent: "conncontextmenu", bindObject: processDefine.transitions[i], bind: "connection", result: "delconnection" });
                                 }
                                 else {
                                     operate.shift();
-                                    operate.push({ bindEvent: "conncontextmenu", bindObject: processDefine.Transitions[i], bind: "connection", result: "delconnection" });
+                                    operate.push({ bindEvent: "conncontextmenu", bindObject: processDefine.transitions[i], bind: "connection", result: "delconnection" });
                                 }
-                                processDefine.Transitions.splice(i, 1);
+                                processDefine.transitions.splice(i, 1);
                             }
                         }
                         jsPlumb.detach(conn);
@@ -2062,9 +2059,9 @@
                     break;
                 case "attrControl":
                     var transitionID = "";
-                    for (var i = 0; i < processDefine.Transitions.length; i++) {
-                        var sourceAnchor = processDefine.Transitions[i].SourceOrientation;
-                        var sinkAnchor = processDefine.Transitions[i].SinkOrientation;
+                    for (var i = 0; i < processDefine.transitions.length; i++) {
+                        var sourceAnchor = processDefine.transitions[i].sourceOrientation;
+                        var sinkAnchor = processDefine.transitions[i].sinkOrientation;
                         switch (sourceAnchor) {
                             case "Left": sourceAnchor = "LeftMiddle"; break;
                             case "Top": sourceAnchor = "TopCenter"; break;
@@ -2077,12 +2074,12 @@
                             case "Right": sinkAnchor = "RightMiddle"; break;
                             case "Bottom": sinkAnchor = "BottomCenter"; break;
                         }
-                        if (sourceAnchor == conn.endpoints[0].anchor.type && sinkAnchor == conn.endpoints[1].anchor.type && processDefine.Transitions[i].SrcActivity == conn.sourceId && processDefine.Transitions[i].DestActivity == conn.targetId) {
-                            transitionID = processDefine.Transitions[i].ID;
+                        if (sourceAnchor == conn.endpoints[0].anchor.type && sinkAnchor == conn.endpoints[1].anchor.type && processDefine.transitions[i].srcActivity == conn.sourceId && processDefine.transitions[i].destActivity == conn.targetId) {
+                            transitionID = processDefine.transitions[i].id;
                             connectionLabel = conn;
                         }
                     }
-                    window.parent.parent.openDialog("actionDialog3", '连接线配置', "/WorkflowDesigner/Workflow/ConnectionDetail?ProcessDefID=" + processDefine.ID + "&TransitionID=" + transitionID, 650, 380, true);
+                    window.parent.parent.openDialog("actionDialog3", '连接线配置', "/WorkflowDesigner/Workflow/ConnectionDetail?ProcessDefID=" + processDefine.id + "&TransitionID=" + transitionID, 650, 380, true);
                     break;
             }
             return false;
@@ -2096,9 +2093,9 @@
     });
     jsPlumb.bind("dblclick", function (conn, originalEvent) {
         var transitionID = "";
-        for (var i = 0; i < processDefine.Transitions.length; i++) {
-            var sourceAnchor = processDefine.Transitions[i].SourceOrientation;
-            var sinkAnchor = processDefine.Transitions[i].SinkOrientation;
+        for (var i = 0; i < processDefine.transitions.length; i++) {
+            var sourceAnchor = processDefine.transitions[i].sourceOrientation;
+            var sinkAnchor = processDefine.transitions[i].sinkOrientation;
             switch (sourceAnchor) {
                 case "Left": sourceAnchor = "LeftMiddle"; break;
                 case "Top": sourceAnchor = "TopCenter"; break;
@@ -2111,12 +2108,12 @@
                 case "Right": sinkAnchor = "RightMiddle"; break;
                 case "Bottom": sinkAnchor = "BottomCenter"; break;
             }
-            if (sourceAnchor == conn.endpoints[0].anchor.type && sinkAnchor == conn.endpoints[1].anchor.type && processDefine.Transitions[i].SrcActivity == conn.sourceId && processDefine.Transitions[i].DestActivity == conn.targetId) {
-                transitionID = processDefine.Transitions[i].ID;
+            if (sourceAnchor == conn.endpoints[0].anchor.type && sinkAnchor == conn.endpoints[1].anchor.type && processDefine.transitions[i].srcActivity == conn.sourceId && processDefine.transitions[i].destActivity == conn.targetId) {
+                transitionID = processDefine.transitions[i].id;
                 connectionLabel = conn;
             }
         }
-        window.parent.parent.openDialog("actionDialog3", '连接线配置', "/WorkflowDesigner/Workflow/ConnectionDetail?ProcessDefID=" + processDefine.ID + "&TransitionID=" + transitionID, 650, 380, true);
+        window.parent.parent.openDialog("actionDialog3", '连接线配置', "/WorkflowDesigner/Workflow/ConnectionDetail?ProcessDefID=" + processDefine.id + "&TransitionID=" + transitionID, 650, 380, true);
     });
     jsPlumb.bind("jsPlumbConnection", function (connection) {
         if (startConnection != 0) {//1.表示流程初始化结束，开始绘制流程线
@@ -2126,7 +2123,7 @@
                     label = connection.connection.getLabel();
                 }
                 if (connection.sourceId != connection.targetId) {
-                    processDefine.Transitions.push({ ID: connection.connection.id, SourcePoint: { X: $("#" + connection.sourceId).offset().left - $("#main_leftcontent").width(), Y: $("#" + connection.sourceId).offset().top - $("#header").height() - $("#tabcontainer").height() - $("#designer_title").height(), Z: 0 }, SinkPoint: { X: $("#" + connection.targetId).offset().left - $("#main_leftcontent").width(), Y: $("#" + connection.targetId).offset().top - $("#header").height() - $("#tabcontainer").height() - $("#designer_title").height(), Z: 0 }, SourceOrientation: connection.sourceEndpoint.anchor.type, SinkOrientation: connection.targetEndpoint.anchor.type, SrcActivity: connection.sourceId, DestActivity: connection.targetId, Name: label, Priority: 3, IsDefault: false, Expression: "" });
+                    processDefine.transitions.push({ id: connection.connection.id, sourcePoint: { x: $("#" + connection.sourceId).offset().left - $("#main_leftcontent").width(), y: $("#" + connection.sourceId).offset().top - $("#header").height() - $("#tabcontainer").height() - $("#designer_title").height(), z: 0 }, sinkPoint: { x: $("#" + connection.targetId).offset().left - $("#main_leftcontent").width(), y: $("#" + connection.targetId).offset().top - $("#header").height() - $("#tabcontainer").height() - $("#designer_title").height(), z: 0 }, sourceOrientation: connection.sourceEndpoint.anchor.type, sinkOrientation: connection.targetEndpoint.anchor.type, srcActivity: connection.sourceId, destActivity: connection.targetId, name: label, priority: 3, isDefault: false, expression: "" });
                     if (operate.length < 10) {
                         operate.push({ bindEvent: "connection", bindObject: connection, bind: "connection", result: "lineConnection" });
                     }
@@ -2158,4 +2155,4 @@
     window.setConnectionLabel = setConnectionLabel;
     window.WorkflowDesigner = WorkflowDesigner;
     window.processDefine = processDefine;
-})(window)
+})(window);

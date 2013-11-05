@@ -105,7 +105,10 @@ public class WorkflowEngineTest extends AbstractJUnit4SpringContextTests
 		String xml=WFUtil.parseProcessDefineToXML(processDefine);
 		
 		ProcessDefine processDefine2 =WFUtil.parseProcessDefine(xml);
-	
+		assertEquals(processDefine.getID(), processDefine2.getID());
+		
+		String json=processDefine.toJson();
+		processDefine2=ProcessDefine.parseFromJson(json);
 		assertEquals(processDefine, processDefine2);
 	}
 	

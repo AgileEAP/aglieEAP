@@ -13,48 +13,50 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-
 <!DOCTYPE html>
-<html>
+<html class="ng-app" id="ng-app"  ng-app >
 <head>
 <title>活动配置</title>
-<link href="${ctx}/themes/default/workflowDesigner/workflowDesigner.css" rel="stylesheet">
-<link href="${ctx}/themes/default/tab.css" rel="stylesheet">
 <link href="${ctx}/js/contextMenu/jquery.contextMenu.css" rel="stylesheet"	type="text/css" />
+<link href="${ctx}/themes/default/tab.css" rel="stylesheet">
+<link href="${ctx}/themes/default/workflowDesigner/activityDetail.css" rel="stylesheet">
+
 <script src="${ctx}/js/jquery.contextMenu.js"	type="text/javascript"></script>
 <script src="${ctx}/js/tab/tab.js"	type="text/javascript"></script>
-<script src="${ctx}/js/angularjs.js" type="text/javascript"></script>
+<script src="${ctx}/js/angularjs/angular.min.js" type="text/javascript"></script>
+<script src="${ctx}/js/workflow/activityDetail.js"	type="text/javascript"></script>
+
 <script type="text/javascript">
 
     $(document).ready(function () {
         switchTab('basic');
-        var processDefID = $.query.get("ProcessDefID");
-        var activityID = $.query.get("ActivityID");
-        var ProcessDefine = window.parent.$("#actionDialog").find("#bg_div_iframe")[0].contentWindow.processDefine;
-        for (var i = 0; i < ProcessDefine.Activities.length; i++) {
-            if (ProcessDefine.Activities[i].ID == activityID) {//&&processDefID == ProcessDefine.ID ) {
-                CurentActivity = ProcessDefine.Activities[i];
-                switch (ProcessDefine.Activities[i].ActivityType) {
-                    case "StartActivity": ProcessDefine.Activities[i].ActivityType = "StartActivity";
-                        initStartActivity(ProcessDefine.Activities[i]);
+        var processDefID = $.query.get("processDefID");
+        var activityID = $.query.get("activityID");
+        var processDefine = window.parent.$("#actionDialog").find("#bg_div_iframe")[0].contentWindow.processDefine;
+        for (var i = 0; i < processDefine.activities.length; i++) {
+            if (processDefine.activities[i].ID == activityID) {//&&processDefID == ProcessDefine.ID ) {
+                CurentActivity = processDefine.activities[i];
+                switch (processDefine.activities[i].activityType) {
+                    case "StartActivity": processDefine.activities[i].activityType = "StartActivity";
+                        initStartActivity(processDefine.activities[i]);
                         break;
-                    case "ManualActivity": ProcessDefine.Activities[i].ActivityType = "ManualActivity";
-                        initManualActivity(ProcessDefine.Activities[i]);
+                    case "ManualActivity": processDefine.activities[i].activityType = "ManualActivity";
+                        initManualActivity(processDefine.activities[i]);
                         break;
-                    case "RouterActivity": ProcessDefine.Activities[i].ActivityType = "RouterActivity";
-                        initRouterActivity(ProcessDefine.Activities[i]);
+                    case "RouterActivity": processDefine.activities[i].activityType = "RouterActivity";
+                        initRouterActivity(processDefine.activities[i]);
                         break;
-                    case "SubflowActivity": ProcessDefine.Activities[i].ActivityType = "SubflowActivity";
-                        initSubflowActivity(ProcessDefine.Activities[i]);
+                    case "SubflowActivity": processDefine.activities[i].activityType = "SubflowActivity";
+                        initSubflowActivity(processDefine.activities[i]);
                         break;
-                    case "AutoActivity": ProcessDefine.Activities[i].ActivityType = "AutoActivity";
-                        initAutoActivity(ProcessDefine.Activities[i]);
+                    case "AutoActivity": processDefine.activities[i].activityType = "AutoActivity";
+                        initAutoActivity(processDefine.activities[i]);
                         break;
-                    case "EndActivity": ProcessDefine.Activities[i].ActivityType = "EndActivity";
-                        initEndActivity(ProcessDefine.Activities[i]);
+                    case "EndActivity": processDefine.activities[i].activityType = "EndActivity";
+                        initEndActivity(processDefine.activities[i]);
                         break;
-                    case "ProcessActivity": ProcessDefine.Activities[i].ActivityType = "ProcessActivity";
-                        initProcessActivity(ProcessDefine.Activities[i]);
+                    case "ProcessActivity": processDefine.activities[i].activityType = "ProcessActivity";
+                        initProcessActivity(processDefine.activities[i]);
                         break;
                 }
             }
@@ -77,9 +79,9 @@
     <li id="activateRule" class="tabBg5" onclick="switchTab('activateRule');">策略</li>
 </ul>
 <div id="main_bg">
-    <div id="main_bg2" ng-controller="initProcessDefine">
+    <div id="main_bg2" ng-controller="ActivityDetailCtrl">
         <div id="tabbasic">
-            @*  基本*@
+        	<!-- 基本 -->
             <div class="div_row" style="width: 100%">
                 <div class="div_row_lable">
                     <label>
@@ -167,11 +169,11 @@
                     <input type="radio" id="rbDefaultURL" name="BusinessSetting" checked="checked" ng_click="businessSet('rbDefaultURL')" />默认URL
                 </div>
             </div>
-            @*   <div class="div_row_left_content" id="row_urltype">
+            <!--  <div class="div_row_left_content" id="row_urltype">
                 <div class="div_row_lable" style="width: 100%; text-align: left">
                     <input type="radio" id="rbTask" value="人工任务" name="BusinessSetting" />人工任务
                 </div>
-            </div>*@
+            </div>-->
             <div class="div_row_left_content" id="row_CustomizeURL">
                 <div class="div_row_lable" style="width: 100%; text-align: left">
                     <input type="radio" id="rbCustomizeURL" name="BusinessSetting" ng_click="businessSet('rbCustomizeURL')" />自定义URL
@@ -182,7 +184,7 @@
             </div>
         </div>
         <div id="tabparticipantor">
-            @*  参与者*@
+            <!--  参与者-->
             <div class="tabparticipantor_list">
                 <div class="tabparticipantor_row">
                     <div class="tabparticipantor_lable">
@@ -247,7 +249,7 @@
             </div>
         </div>
         <div id="tabform">
-            @* 表单*@
+           <!--表单-->
             <div class="div_row" style="width: 100%">
                 <div class="div_row_lable" style="width: 69px">
                     业务表单名
@@ -344,7 +346,7 @@
             </div>
         </div>
         <div id="tablimit">
-            @*  时间限制*@
+            <!--  时间限制-->
             <div class="div_row_left">
                 <input type="checkbox" id="chbIsTimeLimitSet" ng-click="SetLimit()" ng-model="TimeLimit().IsTimeLimitSet" />启用时间限制
             </div>
@@ -357,7 +359,6 @@
                         选择日历：
                     </div>
                     <div class="div_row_input">
-                        @* <agile:Combox runat="server" ID="cboCalendarType" IsSingle="true" />*@
                         <input type="text" id="cboCalendarType" disabled="disabled" value="默认日历" />
                     </div>
                 </div>
@@ -419,7 +420,7 @@
             </div>
         </div>
         <div id="tabtask">
-            @* 多工作项*@
+            <!--多工作项-->
             <div class="div_row_left">
                 <input type="checkbox" id="chbIsMulWIValid" value="启动多工作项设置" ng-click="enableMulwi()"
                     ng-model="MultiWorkItem().IsMulWIValid" />启动多工作项设置
@@ -486,7 +487,7 @@
             </div>
         </div>
         <div id="tabevent">
-            @*      <%--触发事件 --%>*@
+            <!--触发事件-->
             <div class="tabparticipantor_row">
                 <div style="float: left">
                     事件配置
@@ -540,7 +541,7 @@
             </div>
         </div>
         <div id="tabrollback">
-            @*  <%--回退 --%>*@
+            <!--回退 -->
             <div class="div_row">
                 <div class="div_row_lable">
                     类型
@@ -584,7 +585,7 @@
             </div>
         </div>
         <div id="tabfreeActivity">
-            @*  <%--自由流 --%>*@
+            <!--自由流 -->
             <div class="div_row_left">
                 <input type="checkbox" id="chbIsFreeActivity" value="设置该活动为自由活动" ng-click="chooseFree()"
                     ng-model="FreeFlowRule().IsFreeActivity" />设置该活动为自由活动
@@ -637,7 +638,7 @@
             </div>
         </div>
         <div id="tabactivateRule">
-            @* <%--启动策略 --%>*@
+           <!--启动策略 -->
             <div class="div_row_left">
                 可选规则
             </div>
@@ -679,7 +680,6 @@
                     URL类型
                 </div>
                 <div class="div_row_input">
-                    @*<agile:combox runat="server" id="cboURLType" issingle="true" />*@
                     <select id="cboURLType" ng-model="ResetURL().URLType">
                         <option value="DefaultURL">默认URL</option>
                         <option value="ManualProcess">人工处理</option>

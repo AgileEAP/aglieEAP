@@ -1,6 +1,6 @@
 ﻿@charset "utf-8";
 /* CSS Document */
-#tabcontainer {margin: 0px;padding-left: 7px; background-color: #E4E7EC;height: 23px;}
+#tabcontainer {margin: 0px;padding-left: 7px; background-color: #E4E7EC;height: 23px;list-style: none;}
 #tabcontainer ul li {list-style-type: none;margin-left:0px;}
 div {overflow:visible; border:0px;}
 img {border:0px; overflow:hidden;}
