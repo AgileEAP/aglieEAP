@@ -44,6 +44,7 @@
   	<div id="processbar"></div>
   	<div id="actionDialog"></div>
   	<div id="actionDialog2"></div>
+  	<div id="actionDialog3"></div>
   	<div id="chooseDialog"></div>   
 </body>
 </html>

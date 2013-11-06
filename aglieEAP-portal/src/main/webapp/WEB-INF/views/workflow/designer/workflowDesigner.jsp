@@ -162,11 +162,11 @@
                             class="ativityImg" /><label class="toolbox_content_title">子流程
                             </label>
                     </li>
-                    @* <li class="ativity" id="ProcessActivity">
+<%--                     @* <li class="ativity" id="ProcessActivity">
                         <img src="${ctx}/themes/default/workflowDesigner/images/ProcessActivity.png"
                             class="ativityImg" /><label class="toolbox_content_title">处理
                             </label>
-                    </li>*@
+                    </li>*@ --%>
                     <li class="ativity" id="EndActivity">
                         <img src="${ctx}/themes/default/workflowDesigner/images/EndActivity.png"
                             class="ativityImg" /><label class="toolbox_content_title">结束活动

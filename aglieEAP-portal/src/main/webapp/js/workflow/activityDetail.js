@@ -37,8 +37,8 @@ function FreeRangeStrategy() {
     this.FreeWithinNextActivites = "FreeWithinNextActivites";
 }
 function TimeLimitStrategy() {
-    this.LimitTime = "LimitTime";
-    this.RelevantLimitTime = "RelevantLimitTime"
+    this.LimitTime = "setLimit";
+    this.RelevantLimitTime = "RelevantLimitTime";
 }
 function RemindStrategy() {
     this.RemindLimtTime = "RemindLimtTime";
@@ -109,8 +109,8 @@ function initStartActivity(activity) {
     $("#row_description").css("clear", "both");
 }
 function initManualActivity(activity) {
-    if (activity.Participant && activity.Participant.ParticipantType) {
-        switch (activity.Participant.ParticipantType) {
+    if (activity.participant && activity.participant.participantType) {
+        switch (activity.participant.participantType) {
             case "Participantor":
                 $("#rblOrganization").attr("checked", "checked");
                 $("#txtParticipantRule").attr("disabled", "disabled");
@@ -126,7 +126,7 @@ function initManualActivity(activity) {
                 $("#txtspecialActivity").val(""); break;
             case "ProcessExecutor":
                 $("#rblSpecialActivity").attr("checked", "checked");
-                $("#txtspecialActivity").val(activity.Participant.ParticipantValue);
+                $("#txtspecialActivity").val(activity.participant.participantValue);
                 $("#txtParticipantRule").val("");
                 $("#txtParticipantRule").attr("disabled", "disabled");
                 $("#txtspecialActivity").removeAttr("disabled");
@@ -134,7 +134,7 @@ function initManualActivity(activity) {
                 break;
             case "CustomRegular":
                 $("#rblParticipantRule").attr("checked", "checked");
-                $("#txtParticipantRule").val(activity.Participant.ParticipantValue);
+                $("#txtParticipantRule").val(activity.participant.participantValue);
                 $("#txtspecialActivity").val("");
                 $("#txtspecialActivity").attr("disabled", "disabled");
                 $("#txtParticipantRule").removeAttr("disabled");
@@ -144,7 +144,7 @@ function initManualActivity(activity) {
         }
     }
     else {
-        activity.Participant.ParticipantType = "Participantor";
+        activity.participant.participantType = "Participantor";
         $("#txtParticipantRule").attr("disabled", "disabled");
         $("#txtspecialActivity").attr("disabled", "disabled");
         $("#txtParticipantRule").val("");
@@ -179,48 +179,48 @@ function initManualActivity(activity) {
         $("#rabRemindRelevantLimitTime").attr("disabled", "disabled");
 
     }
-    if (activity.CustomURL) {
-        if (activity.CustomURL.URLType == "CustomURL") {
+    if (activity.customURL) {
+        if (activity.customURL.urlType == "CustomURL") {
             $("#rbCustomizeURL").attr("checked", "checked");
             $("#txtSpecifyURL").removeAttr("disabled");
-            activity.CustomURL.URLType = "CustomURL";
+            activity.customURL.urlType = "CustomURL";
         }
         else {
             $("#rbDefaultURL").attr("checked", "checked");
             $("#txtSpecifyURL").attr("disabled", "disabled");
-            activity.CustomURL.URLType = "DefaultURL";
+            activity.customURL.urlType = "DefaultURL";
         }
     }
     var activateRuleType = new ActivateRuleType();
     var resetParticipant = new ResetParticipant();
-    if (activity.ActivateRule) {
-        if (activity.ActivateRule.ActivateRuleType == activateRuleType.DirectRunning) {
+    if (activity.activateRule) {
+        if (activity.activateRule.activateRuleType == activateRuleType.DirectRunning) {
             $("#rblDirectRunning").attr("Checked", "checked");
         }
-        else if (activity.ActivateRule.ActivateRuleType == activateRuleType.WaitActivate) {
+        else if (activity.activateRule.activateRuleType == activateRuleType.WaitActivate) {
             $("#rblDisenabled").attr("Checked", "checked");
         }
-        else if (activity.ActivateRule.ActivateRuleType == activateRuleType.AutoSkip)//可选规则
+        else if (activity.activateRule.activateRuleType == activateRuleType.AutoSkip)//可选规则
         {
             $("#rblAutoAfter").attr("Checked", "checked");
         }
-        if (activity.ResetParticipant == resetParticipant.FirstParticipantor) {
+        if (activity.resetParticipant == resetParticipant.FirstParticipantor) {
             $("#rbFirstParticipantor").attr("Checked", "checked");
         }
-        else if (activity.ResetParticipant == resetParticipant.LastParticipantor)  //重新启动规则
+        else if (activity.resetParticipant == resetParticipant.LastParticipantor)  //重新启动规则
         {
             $("#rbLastParticipantor").attr("Checked", "checked");
         }
     }
-    if (activity.FreeFlowRule) {
+    if (activity.freeFlowRule) {
         var freeRangeStrategy = new FreeRangeStrategy();
-        if (activity.FreeFlowRule.FreeRangeStrategy == freeRangeStrategy.FreeWithinProcess) {
+        if (activity.freeFlowRule.freeRangeStrategy == freeRangeStrategy.FreeWithinProcess) {
             $("#rblFreeWithinProcess").attr("Checked", "checked");
         }
-        else if (activity.FreeFlowRule.FreeRangeStrategy == freeRangeStrategy.FreeWithinActivities) {
+        else if (activity.freeFlowRule.freeRangeStrategy == freeRangeStrategy.FreeWithinActivities) {
             $("#rblFreeWithinActivities").attr("Checked", "checked");
         }
-        else if (activity.FreeFlowRule.FreeRangeStrategy == freeRangeStrategy.FreeWithinNextActivites) {
+        else if (activity.freeFlowRule.freeRangeStrategy == freeRangeStrategy.FreeWithinNextActivites) {
             $("#rblFreeWithinNextActivites").attr("Checked", "checked");
         }; //自由范围设置策略
     }
@@ -238,33 +238,33 @@ function initManualActivity(activity) {
     else {
         $(".MulWIValidConfigure").find("input").attr("disabled", "disabled");
     }
-    if (activity.MultiWorkItem && activity.MultiWorkItem.WorkItemNumStrategy) {
+    if (activity.multiWorkItem && activity.multiWorkItem.workItemNumStrategy) {
         var workItemNumStrategy = new WorkItemNumStrategy();
         var finishRule = new FinishRule();
-        if (activity.MultiWorkItem.WorkItemNumStrategy == workItemNumStrategy.ParticipantNumber) {
+        if (activity.multiWorkItem.workItemNumStrategy == workItemNumStrategy.ParticipantNumber) {
             $("#rblParticipantNumber").attr("checked", "checked");
         }
         else {
             $("#rblOperatorNumber").attr("checked", "checked");
         }
-        if (activity.MultiWorkItem.IsSequentialExecute)//顺序执行工作项
+        if (activity.multiWorkItem.isSequentialExecute)//顺序执行工作项
         {
             $("#rabYIsSequentialExecute").attr("checked", "checked");
         }
         else {
             $("#rabNIsSequentialExecute").attr("checked", "checked");
         }
-        if (activity.MultiWorkItem.FinishRule == finishRule.FinishAll)  //完成规则设定
+        if (activity.multiWorkItem.finishRule == finishRule.FinishAll)  //完成规则设定
         {
             $("#rblFinishAll").attr("checked", "checked");
         }
-        else if (activity.MultiWorkItem.FinishRule == finishRule.SpecifyNum) {
+        else if (activity.multiWorkItem.finishRule == finishRule.SpecifyNum) {
             $("#rblSpecifyNum").attr("checked", "checked");
         }
         else {
             $("#rblSpecifyPercent").attr("checked", "checked");
         }
-        if (activity.MultiWorkItem.IsAutoCancel)//顺序执行工作项
+        if (activity.multiWorkItem.isAutoCancel)//顺序执行工作项
         {
             $("#rabYIsAutoCancel").attr("checked", "checked");
         }
@@ -272,18 +272,18 @@ function initManualActivity(activity) {
             $("#rabNIsAutoCancel").attr("checked", "checked");
         }
     }
-    if (activity.TimeLimit.TimeLimitInfo) {
+    if (activity.timeLimit.timeLimitInfo) {
         var timeLimitStrategy = new TimeLimitStrategy();
-        if (activity.TimeLimit.TimeLimitInfo.TimeLimitStrategy == timeLimitStrategy.LimitTime) {
+        if (activity.timeLimit.timeLimitInfo.timeLimitStrategy == timeLimitStrategy.LimitTime) {
             $("#rabTimeLimitStrategy").attr("checked", "checked");
         }
         else {
             $("#rabRelevantLimitTime").attr("checked", "checked");
         }
     }
-    if (activity.TimeLimit.RemindInfo) {
+    if (activity.timeLimit.RemindInfo) {
         var remindStrategy = new RemindStrategy();
-        if (activity.TimeLimit.RemindInfo.RemindStrategy == remindStrategy.RemindLimtTime) {
+        if (activity.timeLimit.remindInfo.remindStrategy == remindStrategy.RemindLimtTime) {
             $("#rabRemindLimtTime").attr("checked", "checked");
         }
         else {
@@ -336,73 +336,73 @@ function initProcessActivity(activity) {
 }
 function ActivityDetailCtrl($scope) {
     $scope.processDefine = window.parent.$("#actionDialog").find("#bg_div_iframe")[0].contentWindow.processDefine;
-    $scope.Ativity = function () {
-        var Ativity = "";
-        var processDefID = $.query.get("processDefID");
+    $scope.activity = function () {
+        var currentActivity = "";
+        //var processDefID = $.query.get("processDefID");
         var activityID = $.query.get("activityID");
         angular.forEach($scope.processDefine.activities, function (activitie) {
             if (activitie.id == activityID) {//&&processDefID == $scope.processDefine.id) {
-                Ativity= Activitie;
+            	currentActivity= activitie;
                if (activitie.newID==null) {
             	   activitie.newID = activityID;
                 }
-                if (!activitie.SplitType) {
+                if (!activitie.splitType) {
                     var splitType = new SplitType();
-                    activitie.SplitType = splitType.XOR;
+                    activitie.splitType = splitType.XOR;
                 }
-                if (!activitie.JoinType) {
+                if (!activitie.joinType) {
                     var joinType = new JoinType();
-                    activitie.JoinType = joinType.AND;
+                    activitie.joinType = joinType.AND;
                 }
-                if (activitie.MultiWorkItem) {
-                    if (!activitie.MultiWorkItem.FinishRquiredNum) {
-                    	activitie.MultiWorkItem.FinishRquiredNum = 0;
+                if (activitie.multiWorkItem) {
+                    if (!activitie.multiWorkItem.finishRquiredNum) {
+                    	activitie.multiWorkItem.finishRquiredNum = 0;
                     }
-                    if (!activitie.MultiWorkItem.FinishRequiredPercent) {
-                    	activitie.MultiWorkItem.FinishRequiredPercent = 0;
+                    if (!activitie.multiWorkItem.finishRequiredPercent) {
+                    	activitie.multiWorkItem.finishRequiredPercent = 0;
                     }
                 }
-                    window.parent.$("#actionDialog").find("#bg_div_iframe")[0].contentWindow.editActivityName(activitie.id, activitie.Name);
+                    window.parent.$("#actionDialog").find("#bg_div_iframe")[0].contentWindow.editActivityName(activitie.id, activitie.name);
             }
         });
-        return Ativity;
+        return currentActivity;
     };
-    $scope.Participant = function () {
-        var Participant = new Object();
-        if ($scope.Ativity().Participant) {
-            Participant = $scope.Ativity().Participant;
+    $scope.participant = function () {
+        var participant = new Object();
+        if ($scope.activity().participant) {
+            participant = $scope.activity().participant;
         }
         else {
-            if ($scope.Ativity().ActivityType == "ManualActivity" || $scope.Ativity().ActivityType == 2) {
-                $scope.Ativity().Participant = Participant;
+            if ($scope.activity().activityType == "ManualActivity" || $scope.activity().activityType == 2) {
+                $scope.activity().participant = participant;
             }
         }
-        return Participant;
+        return participant;
     };
-    $scope.CustomURL = function () {
-        var CustomURL = new Object();
-        if ($scope.Ativity().CustomURL) {
-            CustomURL = $scope.Ativity().CustomURL;
+    $scope.customURL = function () {
+        var customURL = new Object();
+        if ($scope.activity().customURL) {
+        	customURL = $scope.activity().customURL;
         }
         else {
-            if ($scope.Ativity().ActivityType == "ManualActivity" || $scope.Ativity().ActivityType == 2) {
-                $scope.Ativity().CustomURL = CustomURL;
+            if ($scope.activity().activityType == "ManualActivity" || $scope.activity().activityType == 2) {
+                $scope.activity().customURL = customURL;
             }
         }
-        return CustomURL;
+        return customURL;
     }
-    $scope.businessSet = function (URL) {
-        if (URL == "rbCustomizeURL") {
+    $scope.businessSet = function (url) {
+        if (url == "rbCustomizeURL") {
             $("#rbCustomizeURL").attr("checked", "checked");
             $("#txtSpecifyURL").removeAttr("disabled");
             //  $("#rbDefaultURL").attr("disabled", "disabled");
-            $scope.CustomURL().URLType = "CustomURL";
+            $scope.customURL().urlType = "CustomURL";
             
         }
         else {
             $("#rbDefaultURL").attr("checked", "checked");
             $("#txtSpecifyURL").attr("disabled", "disabled");
-            $scope.CustomURL().URLType = "DefaultURL";
+            $scope.customURL().urlType = "DefaultURL";
         }
     }
     $scope.addParticipant = function () {
@@ -421,14 +421,14 @@ function ActivityDetailCtrl($scope) {
                     case "角色": participantors[i].type = participantorType.Role; break;
                     case "组织": participantors[i].type = participantorType.Org; break;
                 }
-                if (!$scope.Participant().Participantors) {
-                    var Participantors = new Array();
-                    Participantors.push({ ID: participantors[i].id, Name: participantors[i].name, SortOrder: count + index - i, ParticipantorType: participantors[i].type });
-                    $scope.Ativity().Participant = new Object();
-                    $scope.Ativity().Participant.Participantors = Participantors;
+                if (!$scope.participant().participantors) {
+                    var tmpParticipantors = new Array();
+                    tmpParticipantors.push({ id: participantors[i].id, name: participantors[i].name, sortOrder: count + index - i, participantorType: participantors[i].type });
+                    $scope.activity().participant = new Object();
+                    $scope.activity().participant.participantors = tmpParticipantors;
                 }
                 else {
-                    $scope.Ativity().Participant.Participantors.push({ ID: participantors[i].id, Name: participantors[i].name, SortOrder: count + index - i, ParticipantorType: participantors[i].type });
+                    $scope.activity().participant.participantors.push({ id: participantors[i].id, name: participantors[i].name, sortOrder: count + index - i, participantorType: participantors[i].type });
                 }
             }
         }
@@ -440,40 +440,40 @@ function ActivityDetailCtrl($scope) {
         var table = $("#gvOrgizationOrRole_container");
         var rad = table.find(":checked ").first();
         //alert($(rad).val());
-        angular.forEach($scope.Participant().Participantors, function (Participantor) {
-            if ($(rad).val() == Participantor.id) {
-                var position = $scope.Ativity().Participant.Participantors.indexOf(Participantor);
+        angular.forEach($scope.participant().participantors, function (participantor) {
+            if ($(rad).val() == participantor.id) {
+                var position = $scope.activity().participant.participantors.indexOf(participantor);
                 // alert("xuan");
-                $scope.Ativity().Participant.Participantors.splice(position, 1);
+                $scope.activity().participant.participantors.splice(position, 1);
             }
         });
 
     };
-    $scope.chooseParticipantorType = function (ParticipantorType) {
-        var Type = new ParticipantType();
-        if ("rblParticipantRule" == ParticipantorType) {
-            $("#txtParticipantRule").val($scope.Participant().ParticipantValue);
+    $scope.chooseParticipantorType = function (participantorType) {
+        var type = new ParticipantType();
+        if ("rblParticipantRule" == participantorType) {
+            $("#txtParticipantRule").val($scope.participant().participantValue);
             $("#txtspecialActivity").val("");
             $("#txtspecialActivity").attr("disabled", "disabled");
             $("#txtParticipantRule").removeAttr("disabled");
             $("#orgorrole").attr("disabled", "disabled");
-            $scope.Participant().ParticipantType = Type.CustomRegular;
+            $scope.participant().participantType = type.CustomRegular;
         }
-        else if ("rblSpecialActivity" == ParticipantorType) {
-            $("#txtspecialActivity").val($scope.Participant().ParticipantValue);
+        else if ("rblSpecialActivity" == participantorType) {
+            $("#txtspecialActivity").val($scope.participant().participantValue);
             $("#txtParticipantRule").val("");
             $("#txtParticipantRule").attr("disabled", "disabled");
             $("#txtspecialActivity").removeAttr("disabled");
             $("#orgorrole").attr("disabled", "disabled");
-            $scope.Participant().ParticipantType = Type.ProcessExecutor;
+            $scope.participant().participantType = type.ProcessExecutor;
         }
         else {
-            if ("rblProcessStarter" == ParticipantorType) {
+            if ("rblProcessStarter" == participantorType) {
 
-                $scope.Participant().ParticipantType = Type.ProcessExecutor;
+                $scope.participant().participantType = type.ProcessExecutor;
             }
             else {
-                $scope.Participant().ParticipantType = Type.Participantor;
+                $scope.participant().participantType = type.Participantor;
             }
             $("#txtParticipantRule").attr("disabled", "disabled");
             $("#txtspecialActivity").attr("disabled", "disabled");
@@ -481,21 +481,21 @@ function ActivityDetailCtrl($scope) {
             $("#txtspecialActivity").val("");
         }
     };
-    $scope.TimeLimit = function () {
-        var TimeLimit = new Object();
-        // alert($scope.Ativity().Participant);
-        if ($scope.Ativity().TimeLimit) {
-            TimeLimit = $scope.Ativity().TimeLimit;
+    $scope.timeLimit = function () {
+        var timeLimit = new Object();
+        // alert($scope.activity().Participant);
+        if ($scope.activity().timeLimit) {
+            timeLimit = $scope.activity().timeLimit;
         }
         else {
-            if ($scope.Ativity().ActivityType == "ManualActivity" || $scope.Ativity().ActivityType == 2) {
+            if ($scope.activity().activityType == "ManualActivity" || $scope.activity().activityType == 2) {
 
-                $scope.Ativity().TimeLimit = TimeLimit;
+                $scope.activity().timeLimit = timeLimit;
             }
         }
-        return TimeLimit;
+        return timeLimit;
     };
-    $scope.SetLimit = function () {
+    $scope.setLimit = function () {
         if ($("#chbIsTimeLimitSet").attr("Checked")) {
             $("#txtLimitTimeHour").removeAttr("disabled");
             $("#txtLimitTimeMinute").removeAttr("disabled");
@@ -532,20 +532,20 @@ function ActivityDetailCtrl($scope) {
             $("#txtRelevantData").attr("disabled", "disabled");
             $("#txtLimitTimeHour").removeAttr("disabled");
             $("#txtLimitTimeMinute").removeAttr("disabled");
-            if (!$scope.TimeLimit().TimeLimitInfo) {
-                $scope.TimeLimit().TimeLimitInfo = new Object();
+            if (!$scope.timeLimit().timeLimitInfo) {
+                $scope.timeLimit().timeLimitInfo = new Object();
             }
-            $scope.TimeLimit().TimeLimitInfo.TimeLimitStrategy = timeLimitStrategy.LimitTime;
+            $scope.timeLimit().timeLimitInfo.timeLimitStrategy = timeLimitStrategy.setLimit;
         }
         else {
             $("#txtLimitTimeHour").attr("disabled", "disabled");
             $("#txtLimitTimeMinute").attr("disabled", "disabled");
             //alert("1");
             $("#txtRelevantData").removeAttr("disabled");
-            if (!$scope.TimeLimit().TimeLimitInfo) {
-                $scope.TimeLimit().TimeLimitInfo = new Object();
+            if (!$scope.timeLimit().timeLimitInfo) {
+                $scope.timeLimit().timeLimitInfo = new Object();
             }
-            $scope.TimeLimit().TimeLimitInfo.TimeLimitStrategy = timeLimitStrategy.RelevantLimitTime;
+            $scope.timeLimit().timeLimitInfo.timeLimitStrategy = timeLimitStrategy.RelevantLimitTime;
         }
     };
     $scope.chooseRemind = function (id) {
@@ -554,33 +554,33 @@ function ActivityDetailCtrl($scope) {
             $("#txtRemindRelevantData").attr("disabled", "disabled");
             $("#txtRemindLimtTimeMinute").removeAttr("disabled");
             $("#txtRemindLimtTimeHour").removeAttr("disabled");
-            if (!$scope.TimeLimit().RemindInfo) {
-                $scope.TimeLimit().RemindInfo = new Object();
+            if (!$scope.timeLimit().remindInfo) {
+                $scope.timeLimit().remindInfo = new Object();
             }
-            $scope.TimeLimit().RemindInfo.RemindStrategy = remindStrategy.RemindLimtTime;
+            $scope.timeLimit().remindInfo.remindStrategy = remindStrategy.RemindLimtTime;
         }
         else {
             $("#txtRemindLimtTimeHour").attr("disabled", "disabled");
             $("#txtRemindLimtTimeMinute").attr("disabled", "disabled");
             $("#txtRemindRelevantData").removeAttr("disabled");
-            if (!$scope.TimeLimit().RemindInfo) {
-                $scope.TimeLimit().RemindInfo = new Object();
+            if (!$scope.timeLimit().remindInfo) {
+                $scope.timeLimit().remindInfo = new Object();
             }
-            $scope.TimeLimit().RemindInfo.RemindStrategy = remindStrategy.RemindRelevantLimitTime;
+            $scope.timeLimit().remindInfo.remindStrategy = remindStrategy.RemindRelevantLimitTime;
         }
     };
-    $scope.TriggerEvents = function () {
-        var TriggerEvents = $scope.Ativity().TriggerEvents;
-        return TriggerEvents;
+    $scope.triggerEvents = function () {
+        var triggerEvents = $scope.activity().triggerEvents;
+        return triggerEvents;
     };
     $scope.addTriggerEvent = function () {
         //var tbody = $("tbody", "#tblTriggerEvent");
-        if (!$scope.TriggerEvents()) {
-            $scope.Ativity().TriggerEvents = new Array();
+        if (!$scope.triggerEvents()) {
+            $scope.activity().triggerEvents = new Array();
         }
-        //alert($scope.TriggerEvents());
-        // $scope.TriggerEvents().push({ ID: new Date().getTime()});
-        $scope.TriggerEvents().push({ ID: new Date().getTime(), EventAction: "", InvokePattern: "Synchronous", TriggerEventType: "ActivityBeforeCreate" });
+        //alert($scope.triggerEvents());
+        // $scope.triggerEvents().push({ ID: new Date().getTime()});
+        $scope.triggerEvents().push({ id: new Date().getTime(), eventAction: "", invokePattern: "Synchronous", triggerEventType: "ActivityBeforeCreate" });
     };
     $scope.delTriggerEvent = function () {
         if (!confirm("是否确定删除记录？")) {
@@ -589,93 +589,93 @@ function ActivityDetailCtrl($scope) {
         var table = $("#tblTriggerEvent");
         var rad = table.find("input:checked ").first();
         // alert($(rad).val());
-        angular.forEach($scope.TriggerEvents(), function (TriggerEvent) {
-            if ($(rad).val() == TriggerEvent.id) {
-                var position = $scope.TriggerEvents().indexOf(TriggerEvent);
+        angular.forEach($scope.triggerEvents(), function (triggerEvent) {
+            if ($(rad).val() == triggerEvent.id) {
+                var position = $scope.triggerEvents().indexOf(triggerEvent);
                 // alert("xuan");
-                $scope.TriggerEvents().splice(position, 1);
+                $scope.triggerEvents().splice(position, 1);
             }
         });
     };
-    $scope.RollBack = function () {
-        var RollBack = new Object();
-        // alert($scope.Ativity().Participant);
-        if ($scope.Ativity().RollBack) {
-            RollBack = $scope.Ativity().RollBack;
+    $scope.rollBack = function () {
+        var rollBack = new Object();
+        // alert($scope.activity().Participant);
+        if ($scope.activity().rollBack) {
+            rollBack = $scope.activity().rollBack;
         }
         else {
-            if ($scope.Ativity().ActivityType == "ManualActivity" || $scope.Ativity().ActivityType == 2) {
+            if ($scope.activity().activityType == "ManualActivity" || $scope.activity().activityType == 2) {
 
-                $scope.Ativity().RollBack = RollBack;
+                $scope.activity().rollBack = rollBack;
             }
         }
-        return RollBack;
+        return rollBack;
     };
-    $scope.ActivateRule = function () {
-        var ActivateRule = new Object();
-        if ($scope.Ativity().ActivateRule) {
-            ActivateRule = $scope.Ativity().ActivateRule;
+    $scope.activateRule = function () {
+        var activateRule = new Object();
+        if ($scope.activity().activateRule) {
+            activateRule = $scope.activity().activateRule;
         }
         else {
-            if ($scope.Ativity().ActivityType == "ManualActivity" || $scope.Ativity().ActivityType == 2) {
-                $scope.Ativity().ActivateRule = ActivateRule;
+            if ($scope.activity().activityType == "ManualActivity" || $scope.activity().activityType == 2) {
+                $scope.activity().activateRule = activateRule;
             }
         }
-        return ActivateRule;
+        return activateRule;
     };
-    $scope.ActivateRuleType = function (id) {
+    $scope.activateRuleType = function (id) {
         var activateRuleType = new ActivateRuleType();
         if (id == "rblDirectRunning") {
-            $scope.ActivateRule().ActivateRuleType = activateRuleType.DirectRunning;
+            $scope.activateRule().activateRuleType = activateRuleType.DirectRunning;
         }
         else if (id == "rblDisenabled") {
-            $scope.ActivateRule().ActivateRuleType = activateRuleType.WaitActivate;
+            $scope.activateRule().activateRuleType = activateRuleType.WaitActivate;
         }
         else {
-            $scope.ActivateRule().ActivateRuleType = activateRuleType.AutoSkip;
+            $scope.activateRule().activateRuleType = activateRuleType.AutoSkip;
         }
     };
-    $scope.ResetParticipant = function (id) {
+    $scope.resetParticipant = function (id) {
         var resetParticipant = new ResetParticipant();
         if (id == "rbFirstParticipantor") {
-            $scope.Ativity().ResetParticipant = resetParticipant.FirstParticipantor;
+            $scope.activity().resetParticipant = resetParticipant.FirstParticipantor;
         } else {
-            $scope.Ativity().ResetParticipant = resetParticipant.LastParticipantor;
+            $scope.activity().resetParticipant = resetParticipant.LastParticipantor;
         }
     }
-    $scope.ResetURL = function () {
-        var ResetURL = new Object();
-        if ($scope.Ativity().ResetURL) {
-            ResetURL = $scope.Ativity().ResetURL;
+    $scope.resetURL = function () {
+        var resetURL = new Object();
+        if ($scope.activity().resetURL) {
+            resetURL = $scope.activity().resetURL;
         }
         else {
-            if ($scope.Ativity().ActivityType == "ManualActivity" || $scope.Ativity().ActivityType == 2) {
-                $scope.Ativity().ResetURL = ResetURL;
+            if ($scope.activity().activityType == "ManualActivity" || $scope.activity().activityType == 2) {
+                $scope.activity().resetURL = resetURL;
             }
         }
-        return ResetURL;
+        return resetURL;
     };
 
-    $scope.FreeFlowRule = function () {
-        var FreeFlowRule = new Object();
-        if ($scope.Ativity().FreeFlowRule) {
-            FreeFlowRule = $scope.Ativity().FreeFlowRule;
+    $scope.freeFlowRule = function () {
+        var freeFlowRule = new Object();
+        if ($scope.activity().freeFlowRule) {
+            freeFlowRule = $scope.activity().freeFlowRule;
         }
         else {
-            if ($scope.Ativity().ActivityType == "ManualActivity" || $scope.Ativity().ActivityType == 2) {
-                $scope.Ativity().FreeFlowRule = FreeFlowRule;
+            if ($scope.activity().activityType == "ManualActivity" || $scope.activity().activityType == 2) {
+                $scope.activity().freeFlowRule = freeFlowRule;
             }
         }
-        return FreeFlowRule;
+        return freeFlowRule;
     };
     $scope.addFreeRange = function () {
         //var tbody = $("tbody", "#tblTriggerEvent");
-        if (!$scope.FreeFlowRule().FreeRangeActivities) {
-            $scope.Ativity().FreeFlowRule.FreeRangeActivities = new Array();
+        if (!$scope.freeFlowRule().freeRangeActivities) {
+            $scope.activity().freeFlowRule.freeRangeActivities = new Array();
         }
-        //  alert($scope.FreeFlowRule().FreeRangeActivities);
-        // $scope.TriggerEvents().push({ ID: new Date().getTime()});
-        $scope.FreeFlowRule().FreeRangeActivities.push({ ID: new Date().getTime() });
+        //  alert($scope.freeFlowRule().freeRangeActivities);
+        // $scope.triggerEvents().push({ ID: new Date().getTime()});
+        $scope.freeFlowRule().freeRangeActivities.push({ id: new Date().getTime() });
     };
     $scope.delFreeRange = function () {
         if (!confirm("是否确定删除记录？")) {
@@ -683,11 +683,11 @@ function ActivityDetailCtrl($scope) {
         }
         var table = $("#tblFreeRange");
         var rad = table.find("input:checked ").first();
-        angular.forEach($scope.FreeFlowRule().FreeRangeActivities, function (FreeRangeActivity) {
-            if ($(rad).val() == FreeRangeActivity.id) {
-                var position = $scope.FreeFlowRule().FreeRangeActivities.indexOf(FreeRangeActivity);
+        angular.forEach($scope.freeFlowRule().freeRangeActivities, function (freeRangeActivity) {
+            if ($(rad).val() == freeRangeActivity.id) {
+                var position = $scope.freeFlowRule().freeRangeActivities.indexOf(freeRangeActivity);
                 // alert("xuan");
-                $scope.FreeFlowRule().FreeRangeActivities.splice(position, 1);
+                $scope.freeFlowRule().freeRangeActivities.splice(position, 1);
             }
         });
     };
@@ -706,67 +706,68 @@ function ActivityDetailCtrl($scope) {
     $scope.choosescopeFree = function (id) {
         var freeRangeStrategy = new FreeRangeStrategy();
         if (id == "rblFreeWithinProcess") {
-            $scope.FreeFlowRule().FreeRangeStrategy = freeRangeStrategy.FreeWithinProcess;
+            $scope.freeFlowRule().freeRangeStrategy = freeRangeStrategy.FreeWithinProcess;
         }
         else if (id == "rblFreeWithinActivities") {
-            $scope.FreeFlowRule().FreeRangeStrategy = freeRangeStrategy.FreeWithinActivities;
+            $scope.freeFlowRule().freeRangeStrategy = freeRangeStrategy.FreeWithinActivities;
         }
         else {
-            $scope.FreeFlowRule().FreeRangeStrategy = freeRangeStrategy.FreeWithinNextActivites;
+            $scope.freeFlowRule().freeRangeStrategy = freeRangeStrategy.FreeWithinNextActivites;
         }
     };
-    $scope.Form = function () {
-        var Form = new Object();
-        if ($scope.Ativity().Form) {
-            Form = $scope.Ativity().Form;
+    $scope.form = function () {
+        var form = new Object();
+        if ($scope.activity().form) {
+            form = $scope.activity().form;
         }
         else {
-            if ($scope.Ativity().ActivityType == "ManualActivity" || $scope.Ativity().ActivityType == 2) {
-                $scope.Ativity().Form = Form;
+            if ($scope.activity().activityType == "ManualActivity" || $scope.activity().activityType == 2) {
+                $scope.activity().form = form;
             }
         }
-        return Form;
+        return form;
     };
-    $scope.FormDesigner = function () {
+    $scope.formDesigner = function () {
        // var form = window.parent.parent.parent.showDialog("actionDialog3", "表单设计器", "/FormDesigner/Home/FormDesigner", 1250, 700);
-      // var form = openOperateDialog("表单设计器", "/FormDesigner/Home/FormDesigner?ActivityID=" + $scope.Ativity().id+"&&ProcessDefID=" + $.query.get("ProcessDefID"), 1250, 700, true, 1);
-        var form = openDialog2({ title: "表单设计器", url: "/FormDesigner/Home/FormDesigner?ActivityID=" + $scope.Ativity().id + "&&ProcessDefID=" + $.query.get("ProcessDefID"), dialogType: 1, showModal: true,height:screen.height-80,width:screen.width-10,windowStyle: { style: "dialogLeft:0;dialogTop:-100;edge: Raised; center: Yes; resizable: Yes; status: no;scrollbars=no;", auguments: window } });
+      // var form = openOperateDialog("表单设计器", "/FormDesigner/Home/FormDesigner?ActivityID=" + $scope.activity().id+"&&ProcessDefID=" + $.query.get("ProcessDefID"), 1250, 700, true, 1);
+        var form = openDialog2({ title: "表单设计器", url: "/FormDesigner/Home/FormDesigner?ActivityID=" + $scope.activity().id + "&&ProcessDefID=" + $.query.get("ProcessDefID"), dialogType: 1, showModal: true,height:screen.height-80,width:screen.width-10,windowStyle: { style: "dialogLeft:0;dialogTop:-100;edge: Raised; center: Yes; resizable: Yes; status: no;scrollbars=no;", auguments: window } });
         //alert(formResult);
        //alert(form);
-        if (!form || !form.Fields || form.Fields.length == 0) return;
-        $scope.Ativity().Form = form;
+        if (!form || !form.fields || form.fields.length == 0) return;
+        $scope.activity().form = form;
     };
     $scope.executeOperate = function (field) {
+    	var fieldName="";
         if (field.indexOf("up$#") > 0) {
-            FieldName = field.substring(0, field.indexOf("up$#"));
+            fieldName = field.substring(0, field.indexOf("up$#"));
         }
         else {
-            FieldName = field.substring(0, field.indexOf("down$#"));
+            fieldName = field.substring(0, field.indexOf("down$#"));
         }
-        angular.forEach($scope.Form().Fields, function (Field) {
+        angular.forEach($scope.form().fields, function (fieldItem) {
             var i = 0;
-            if (Field.Name == FieldName) {
-                var position = $scope.Form().Fields.indexOf(Field);
-                if (position > 0 && position < $scope.Form().Fields.length) {
-                    $scope.Form().Fields.splice(position, 1);
+            if (fieldItem.name == fieldName) {
+                var position = $scope.form().fields.indexOf(fieldItem);
+                if (position > 0 && position < $scope.form().fields.length) {
+                    $scope.form().fields.splice(position, 1);
                     if (field.indexOf("up$#") > 0) {
-                        $scope.Form().Fields.splice(position - 1, 0, Field);
+                        $scope.form().fields.splice(position - 1, 0, fieldItem);
                         i = 1;
                     }
                     else {
-                        $scope.Form().Fields.splice(position + 1, 0, Field);
+                        $scope.form().fields.splice(position + 1, 0, fieldItem);
                         i = 1;
                     }
                 }
                 else if (position == 0 && field.indexOf("down$#") > 0) {
-                    $scope.Form().Fields.splice(position, 1);
-                    $scope.Form().Fields.splice(position + 1, 0, Field);
+                    $scope.form().fields.splice(position, 1);
+                    $scope.form().fields.splice(position + 1, 0, fieldItem);
                     i = 1;
                 }
 
             }
             if (i == 1) {
-                FieldName = null;
+                fieldName = null;
             }
         });
 
@@ -774,18 +775,18 @@ function ActivityDetailCtrl($scope) {
     };
     $scope.chooseParameter = function () {
         var form = openOperateDialog("选择表单来源", "/Workflow/ActivityManager.aspx?Entry=ChooseActivity&ProcessDefID=" + $.query.get("ProcessDefID"), 550, 300, true, 1);
-        if (!form || !form.Fields || form.Fields.length == 0) return;
-        //for (var i = 0; i < form.Fields.length; i++) {
-        //    $scope.Form().Fields.push({X:form.Fields[i],Y:form.Field[i].Y,Width:form.Field[i].Width,Height:form.Field[i].Height, Name: form.Fields[i].Name, Required: form.Fields[i].Required, SortOrder: form.Fields[i].SortOrder, Text: form.Fields[i].Text, DefaultValue: form.Fields[i].DefaultValue, DataType: form.Fields[i].DataType, ControlType: form.Fields[i].ControlType, AccessPattern: form.Fields[i].AccessPattern });
+        if (!form || !form.fields || form.fields.length == 0) return;
+        //for (var i = 0; i < form.fields.length; i++) {
+        //    $scope.form().fields.push({X:form.fields[i],Y:form.Field[i].Y,Width:form.Field[i].Width,Height:form.Field[i].Height, Name: form.fields[i].name, Required: form.fields[i].Required, SortOrder: form.fields[i].SortOrder, Text: form.fields[i].Text, DefaultValue: form.fields[i].DefaultValue, DataType: form.fields[i].DataType, ControlType: form.fields[i].ControlType, AccessPattern: form.fields[i].AccessPattern });
         //}
-        $scope.Ativity().Form = form;
-        $scope.Form().DataSource = form.DataSource;
+        $scope.activity().form = form;
+        $scope.form().dataSource = form.dataSource;
     };
     $scope.addParameter = function () {
-        if (!$scope.Form().Fields) {
-            $scope.Ativity().Form.Fields = new Array();
+        if (!$scope.form().fields) {
+            $scope.activity().form.fields = new Array();
         }
-        $scope.Form().Fields.push({ Name: new Date().getTime(), DataType: "Integer", ControlType: "TextBox", AccessPattern: "Write" });
+        $scope.form().fields.push({ name: new Date().getTime(), dataType: "Integer", controlType: "TextBox", accessPattern: "Write" });
     };
     $scope.delParameter = function () {
         var table = $("#tblParameter");
@@ -797,44 +798,44 @@ function ActivityDetailCtrl($scope) {
         if (!confirm("是否确定删除记录？")) {
             return false;
         }
-        angular.forEach($scope.Form().Fields, function (Field) {
-            if ($(rad).val() == Field.Name) {
-                var position = $scope.Form().Fields.indexOf(Field);
-                $scope.Form().Fields.splice(position, 1);
+        angular.forEach($scope.form().fields, function (field) {
+            if ($(rad).val() == field.name) {
+                var position = $scope.form().fields.indexOf(field);
+                $scope.form().fields.splice(position, 1);
             }
         });
     };
-    $scope.configureField = function (Field) {
-        var controlType = $.trim(Field.ControlType);
+    $scope.configureField = function (field) {
+        var controlType = $.trim(field.controlType);
         if (controlType == "ChooseBox") {
-            var field = openOperateDialog("设置" + controlType + "属性", "/Workflow/FormControlConfigure.aspx?type=ChooseBox&url=" + Field.URL, 550, 300, true, 1);
-            Field.URL = field.url;
+            var fieldset = openOperateDialog("设置" + controlType + "属性", "/Workflow/FormControlConfigure.aspx?type=ChooseBox&url=" + field.url, 550, 300, true, 1);
+            field.url = fieldset.url;
         }
         else if (controlType == "TextBox") {
-            var rows = Field.Rows || 1;
-            var cols = Field.Cols || 1;
-            var field = openOperateDialog("设置" + controlType + "属性", "/Workflow/FormControlConfigure.aspx?type=TextBox&rows=" + rows + "&cols=" + cols, 550, 300, true, 1);
-            Field.Cols = field.cols;
-            Field.Rows = field.rows;
+            var rows = field.rows || 1;
+            var cols = field.cols || 1;
+            var fieldset = openOperateDialog("设置" + controlType + "属性", "/Workflow/FormControlConfigure.aspx?type=TextBox&rows=" + rows + "&cols=" + cols, 550, 300, true, 1);
+            field.cols = fieldset.cols;
+            field.rows = fieldset.rows;
         }
         else if (controlType == "SingleCombox" || controlType == "MultiCombox") {
             var datasource = openOperateDialog("设置" + controlType + "属性", "/Plugins/Administration/Pages/ChooseDict.aspx", 550, 300, true, 1);
             if (datasource)
-                Field.DataSource = datasource;
+                field.dataSource = datasource;
         }
     };
-    $scope.MultiWorkItem = function () {
-        var MultiWorkItem = new Object();
-        if ($scope.Ativity().MultiWorkItem) {
-            MultiWorkItem = $scope.Ativity().MultiWorkItem;
+    $scope.multiWorkItem = function () {
+        var multiWorkItem = new Object();
+        if ($scope.activity().multiWorkItem) {
+            multiWorkItem = $scope.activity().multiWorkItem;
         }
         else {
-            if ($scope.Ativity().ActivityType == "ManualActivity" || $scope.Ativity().ActivityType == 2) {
-                $scope.Ativity().MultiWorkItem = MultiWorkItem;
+            if ($scope.activity().activityType == "ManualActivity" || $scope.activity().activityType == 2) {
+                $scope.activity().multiWorkItem = multiWorkItem;
 
             }
         }
-        return MultiWorkItem;
+        return multiWorkItem;
     };
     $scope.enableMulwi = function () {
         if ($("#chbIsMulWIValid").attr("checked")) {
@@ -844,46 +845,46 @@ function ActivityDetailCtrl($scope) {
             $(".MulWIValidConfigure").find("input").attr("disabled", "disabled");
         }
     };
-    $scope.WorkItemNum = function (id) {
+    $scope.workItemNum = function (id) {
         var workItemNumStrategy = new WorkItemNumStrategy();
         if (id == "rblParticipantNumber") {
-            $scope.MultiWorkItem().WorkItemNumStrategy = workItemNumStrategy.ParticipantNumber;
+            $scope.multiWorkItem().workItemNumStrategy = workItemNumStrategy.ParticipantNumber;
         }
         else {
-            $scope.MultiWorkItem().WorkItemNumStrategy = workItemNumStrategy.OperatorNumber;
+            $scope.multiWorkItem().workItemNumStrategy = workItemNumStrategy.OperatorNumber;
         }
     };
-    $scope.FinishRuleType = function (id) {
+    $scope.finishRuleType = function (id) {
         var finishRule = new FinishRule();
         if (id == "rblSpecifyNum") {
-            $scope.MultiWorkItem().FinishRule = finishRule.SpecifyNum;
+            $scope.multiWorkItem().finishRule = finishRule.SpecifyNum;
             $("#txtFinishRquiredNum").removeAttr("disabled");
             $("#txtFinishRequiredPercent").attr("disabled", "disabled");
         }
         else if (id == "rblFinishAll") {
-            $scope.MultiWorkItem().FinishRule = finishRule.FinishAll;
+            $scope.multiWorkItem().finishRule = finishRule.FinishAll;
             $("#txtFinishRquiredNum").attr("disabled", "disabled");
             $("#txtFinishRequiredPercent").attr("disabled", "disabled");
         } else {
-            $scope.MultiWorkItem().FinishRule = finishRule.SpecifyPercent;
+            $scope.multiWorkItem().finishRule = finishRule.SpecifyPercent;
             $("#txtFinishRquiredNum").attr("disabled", "disabled");
             $("#txtFinishRequiredPercent").removeAttr("disabled");
         }
     };
-    $scope.SequentialExecute = function (id) {
+    $scope.sequentialExecute = function (id) {
         if (id == "rabYIsSequentialExecute") {
-            $scope.MultiWorkItem().IsSequentialExecute = true;
+            $scope.multiWorkItem().isSequentialExecute = true;
         }
         else {
-            $scope.MultiWorkItem().IsSequentialExecute = false;
+            $scope.multiWorkItem().isSequentialExecute = false;
         }
     };
-    $scope.AutoCancel = function (id) {
+    $scope.autoCancel = function (id) {
         if (id == "rabYIsAutoCancel") {
-            $scope.MultiWorkItem().IsAutoCancel = true;
+            $scope.multiWorkItem().isAutoCancel = true;
         }
         else {
-            $scope.MultiWorkItem().IsAutoCancel = false;
+            $scope.multiWorkItem().isAutoCancel = false;
         }
     };
 }

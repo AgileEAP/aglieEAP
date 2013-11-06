@@ -1,15 +1,15 @@
-function initConnection($scope) {
+function ConnectionCtrl($scope) {
     $scope.processDefine = window.parent.$("#actionDialog").find("#bg_div_iframe")[0].contentWindow.processDefine;
     $scope.transition = function () {
-        var transition = new Object();
-        var processDefID = $.query.get("ProcessDefID");
-        var transitionID = $.query.get("TransitionID");
-        angular.forEach($scope.processDefine.Transitions, function (Transition) {
-            if (processDefID == $scope.processDefine.ID && Transition.ID == transitionID) {
-                transition = Transition;
+        var currentTransition = new Object();
+        var processDefID = $.query.get("processDefID");
+        var transitionID = $.query.get("transitionID");
+        angular.forEach($scope.processDefine.transitions, function (transition) {
+            if (processDefID == $scope.processDefine.id && transition.id == transitionID) {
+            	currentTransition = transition;
             }
         });
-        window.parent.$("#actionDialog").find("#bg_div_iframe")[0].contentWindow.setConnectionLabel(transition.Name);
-        return transition;
+        window.parent.$("#actionDialog").find("#bg_div_iframe")[0].contentWindow.setConnectionLabel(currentTransition.name);
+        return currentTransition;
     };
 }

@@ -10,7 +10,7 @@
         AutoActivity :  "AutoActivity",
         EndActivity :  "EndActivity",
         ProcessActivity: "ProcessActivity"
-    }
+    };
     var connectionLabel = "";
     var startConnection = 0;
     var CurrentStatus =
@@ -44,7 +44,7 @@
         ],
         ConnectorZIndex: 50
     });
-    document.oncontextmenu = function (e) { return false };
+    document.oncontextmenu = function (e) { return false; };
     var containerment;
     var connectorPaintStyle = {
         lineWidth: 2,
@@ -140,11 +140,11 @@
                 processDefine.activities[j].style.height = $("#" + id).height();
                 processDefine.activities[j].style.zIndex = 0;
                 var newID = id + new Date().getTime();
-                for (var ActivitieElement in processDefine.activities[j]) {
+                for (var prop in processDefine.activities[j]) {
                     if (!selectactivity) {
                         selectactivity = new Object();
                     }
-                    selectactivity[ActivitieElement] = processDefine.activities[j][ActivitieElement];
+                    selectactivity[prop] = processDefine.activities[j][prop];
                 }
                 selectactivity.id = newID;
             }
@@ -195,7 +195,7 @@
     function initDocumentContextMunu() {
         $(document).bind("contextmenu", function () {
             var e = window.event ? window.event : arguments[0];
-            var x; var y;
+            var x,y;
             var o = { menu: "uldocument", inSpeed: 150, outSpeed: 75, position: document };
             var x = (e.clientX + $(document).scrollLeft()) || e.offsetX;
             var y = (e.clientY + $(document).scrollTop()) || e.offsetY;
@@ -221,7 +221,7 @@
                             var activityType = selectactivity.activityType;
                             var left = x; //selectactivity.style.left;
                             var top = y; //selectactivity.style.top;
-                            var img = "/Plugins/WorkflowDesigner/Content/Themes/Default/images/" + selectactivity.activityType + ".png";
+                            var img = "images/" + selectactivity.activityType + ".png";
                             var activityResource = "<div id=\"" + id + "\"  class=\"designeractivity\" name=\"" + name + "\" ActivityType=\"" + activityType + "\" style=\"left:" + left + "px;top:" + top + "px;width:40px;height:40px;position:absolute\"><img style=\"width:40px;height:40px;\" src=\"" + img + "\" /><label style=\"width:100px;position:absolute;Top:40px;left:-30px\">" + name + "</label></div>";
                             $("#" + containerment).append(activityResource);
                             $("#" + id).bind("mouseover", function () { jsPlumb.show(id, $("#" + id)); });
@@ -386,11 +386,11 @@
         $("#toolboxshow").click(function () {
             if ($("#toolbox_content").css("display") == "block") {
                 $("#toolbox_content").hide();
-                $("#toolboxshow").attr("src", "../../Plugins/WorkflowDesigner/Content/Themes/Default/images/hide.png");
+                $("#toolboxshow").attr("src", "../..images/hide.png");
             }
             else {
                 $("#toolbox_content").show();
-                $("#toolboxshow").attr("src", "../../Plugins/WorkflowDesigner/Content/Themes/Default/images/Show.jpg");
+                $("#toolboxshow").attr("src", "../..images/Show.jpg");
 
             }
 
@@ -427,8 +427,8 @@
                     var activityType = currentObject.activityType;
                     var left = currentObject.style.left;
                     var top = currentObject.style.top;
-                    var img = "/Plugins/WorkflowDesigner/Content/Themes/Default/images/" + currentObject.activityType + ".png";
-                    var activityResource = "<div id=\"" + id + "\"  class=\"designeractivity\" name=\"" + name + "\" ActivityType=\"" + activityType + "\" style=\"left:" + left + "px;top:" + top + "px;width:40px;height:40px;position:absolute\"><img style=\"width:40px;height:40px;\" src=\"" + img + "\" /><label style=\"width:100px;position:absolute;Top:40px;left:-30px\">" + name + "</label></div>"
+                    var img = "images/" + currentObject.activityType + ".png";
+                    var activityResource = "<div id=\"" + id + "\"  class=\"designeractivity\" name=\"" + name + "\" ActivityType=\"" + activityType + "\" style=\"left:" + left + "px;top:" + top + "px;width:40px;height:40px;position:absolute\"><img style=\"width:40px;height:40px;\" src=\"" + img + "\" /><label style=\"width:100px;position:absolute;Top:40px;left:-30px\">" + name + "</label></div>";
                     $("#" + containerment).append(activityResource);
                     $("#" + id).bind("mouseover", function () { jsPlumb.show(id, $("#" + id)); });
                     $("#" + id).bind("dblclick", function () { openTopDialog("actionDialog2", "workflow/designer/activity?processDefID=" + processDefine.id + "&activityID=" + id + "&activityType=" + activityType,'活动配置', 850, 580, true); });
@@ -623,7 +623,7 @@
                     var activityType = currentObject.activityType;
                     var left = currentObject.style.left;
                     var top = currentObject.style.top;
-                    var img = "/Plugins/WorkflowDesigner/Content/Themes/Default/images/" + currentObject.activityType + ".png";
+                    var img = "images/" + currentObject.activityType + ".png";
                     var activityResource = "<div id=\"" + id + "\"  class=\"designeractivity\" name=\"" + name + "\" ActivityType=\"" + activityType + "\" style=\"left:" + left + "px;top:" + top + "px;width:40px;height:40px;position:absolute\"><img style=\"width:40px;height:40px;\" src=\"" + img + "\" /><label style=\"width:100px;position:absolute;Top:40px;left:-30px\">" + name + "</label></div>"
                     $("#" + containerment).append(activityResource);
                     $("#" + id).bind("mouseover", function () { jsPlumb.show(id, $("#" + id)); });
@@ -1385,8 +1385,8 @@
 
     //初始化流程活动
     function drawActivityInst(activity, currentState, container) {
-        var imgPath = "/Plugins/WorkflowDesigner/Content/Themes/Default/images/";
-        var resource = "/Plugins/WorkflowDesigner/Content/Themes/Default/images/" + activity.activityType + ".png";
+        var imgPath = "images/";
+        var resource = "images/" + activity.activityType + ".png";
         switch (currentState) {
             case -1: resource = imgPath + activity.activityType + "4.png";
                 break;
@@ -1449,7 +1449,7 @@
                     $(".designeractivity").each(function () {
                         jsPlumb.hide(this.id, true);
                         jsPlumb.show(this.id);
-                        $(this).removeAttr("standardActivity")
+                        $(this).removeAttr("standardActivity");
                     });
                     jsPlumb.show(activity.id, $("#" + activity.id));
                     $(this).attr("standardActivity", "true");
@@ -1604,9 +1604,9 @@
         var status = 0;
         if (activityInstList != null && activityInstList.length > 0) {
             for (var i = 0; i < activityInstList.length; i++) {
-                if (transition.destActivity == activityInstList[i].ActivityDefID)//查找目标
+                if (transition.destActivity == activityInstList[i].activityDefID)//查找目标
                 {
-                    switch (activityInstList[i].CurrentState) {
+                    switch (activityInstList[i].currentState) {
                         case -1: currentStatus = -1; break;//未运行到
                         case 0: currentStatus = 0; break;//初始状态
                         case 1: currentStatus = 1; break;//将运行
@@ -1616,10 +1616,10 @@
                         case 5: currentStatus = 5; break;//回退
                     }
                     for (var j = 0; j < activityInstList.length; j++) {
-                        if (transition.srcActivity == activityInstList[j].ActivityDefID && activityInstList[i].CurrentState == 4) {
+                        if (transition.srcActivity == activityInstList[j].activityDefID && activityInstList[i].currentState == 4) {
                             for (var n = 0; n < transitionControlList.length; n++) {
-                                if (transitionControlList[n].DestActID == activityInstList[i].ActivityDefID && transitionControlList[n].SrcActID == transition.srcActivity) {
-                                    switch (activityInstList[j].CurrentState) {
+                                if (transitionControlList[n].destActID == activityInstList[i].activityDefID && transitionControlList[n].srcActID == transition.srcActivity) {
+                                    switch (activityInstList[j].currentState) {
                                         case -1: currentStatus = -1; break;
                                         case 0: currentStatus = -1; break;
                                         case 3: currentStatus = -1; break;
@@ -1635,13 +1635,13 @@
                             status = 1;
                         }
 
-                        if (transition.srcActivity == activityInstList[j].ActivityDefID && currentStatus != 4) {
+                        if (transition.srcActivity == activityInstList[j].activityDefID && currentStatus != 4) {
                             for (var m = 0; m < transitionControlList.length; m++) {
-                                if (transitionControlList[m].DestActID == activityInstList[i].ActivityDefID && transitionControlList[m].SrcActID == transition.srcActivity) {
+                                if (transitionControlList[m].destActID == activityInstList[i].activityDefID && transitionControlList[m].srcActID == transition.srcActivity) {
 
                                     if (currentStatus == 5) {
                                         for (var k = 0; k < transitionControlList.length; k++) {
-                                            if (transitionControlList[k].DestActID == transition.srcActivity && transitionControlList[k].SrcActID == activityInstList[i].ActivityDefID) {
+                                            if (transitionControlList[k].destActID == transition.srcActivity && transitionControlList[k].srcActID == activityInstList[i].activityDefID) {
                                                 currentStatus = 5;
                                                 break;
                                             }
@@ -1682,10 +1682,10 @@
                     }
 
                 }
-                if (transition.srcActivity == activityInstList[i].ActivityDefID) {
+                if (transition.srcActivity == activityInstList[i].activityDefID) {
                     for (var p = 0; p < activityInstList.length; p++) {
 
-                        if (currentStatus != 1 && currentStatus != 4 && activityInstList[i].CurrentState == 4 || activityInstList[p].CurrentState == -1) {
+                        if (currentStatus != 1 && currentStatus != 4 && activityInstList[i].currentState == 4 || activityInstList[p].currentState == -1) {
                             currentStatus = -1;
                         }
                     }
@@ -1871,15 +1871,15 @@
             if (designerDefine == 1) {
                 $.post(defineUrl, { processDefID: processDefID }, function (processDef) {
 	                if ($.query.get("action") == 'cloneProcess') {
-	                	processDef.CurrentState = 0;
+	                	processDef.currentState = 0;
 	                }
-	                if (processDef.CurrentState == 1)//1表示流程为发布状态，0为未发布状态，2为终止状态
+	                if (processDef.currentState == 1)//1表示流程为发布状态，0为未发布状态，2为终止状态
 	                {
 	                    alert("该流程为发布状态，无法修改保存");
 	                }
 	                $("#processName").val(processDef.name);
 	                $("#processText").val(processDef.text);
-	                $("#version").val(processDef.Version);
+	                $("#version").val(processDef.version);
 	                $("#description").val(processDef.description);
 	                $("#startor").val(processDef.startor);
 	                $("#isActive").val(processDef.isActive);
@@ -1895,7 +1895,7 @@
                 if (!retValue.processDefine.startURL) {
                 	retValue.processDefine.startURL = "workflow / eform";
                 }
-                $("#starturl").val(retValue.processDefine.StartURL);
+                $("#starturl").val(retValue.processDefine.startURL);
                 if (retValue.processInstID != null && retValue.processInstID != "" &&retValue.processInstID != "null") {
                     if (document.getElementById("leftcontent")) {
                         $("#leftcontent").show();
@@ -2079,7 +2079,8 @@
                             connectionLabel = conn;
                         }
                     }
-                    window.parent.parent.openDialog("actionDialog3", '连接线配置', "/WorkflowDesigner/Workflow/ConnectionDetail?ProcessDefID=" + processDefine.id + "&TransitionID=" + transitionID, 650, 380, true);
+                    openTopDialog("actionDialog3", "workflow/designer/connection?processDefID=" + processDefine.id + "&transitionID=" + transitionID,'迁移配置', 650, 380, true);
+                    //window.parent.parent.openDialog("actionDialog3", '连接线配置', "/WorkflowDesigner/Workflow/ConnectionDetail?ProcessDefID=" + processDefine.id + "&TransitionID=" + transitionID, 650, 380, true);
                     break;
             }
             return false;
@@ -2113,7 +2114,8 @@
                 connectionLabel = conn;
             }
         }
-        window.parent.parent.openDialog("actionDialog3", '连接线配置', "/WorkflowDesigner/Workflow/ConnectionDetail?ProcessDefID=" + processDefine.id + "&TransitionID=" + transitionID, 650, 380, true);
+        openTopDialog("actionDialog3", "workflow/designer/connection?processDefID=" + processDefine.id + "&transitionID=" + transitionID,'迁移配置', 650, 380, true);
+        //window.parent.parent.openDialog("actionDialog3", '连接线配置', "/WorkflowDesigner/Workflow/ConnectionDetail?ProcessDefID=" + processDefine.id + "&TransitionID=" + transitionID, 650, 380, true);
     });
     jsPlumb.bind("jsPlumbConnection", function (connection) {
         if (startConnection != 0) {//1.表示流程初始化结束，开始绘制流程线
@@ -2144,8 +2146,8 @@
     });
 
     //同步流程图的活动名称和流程线名称
-    function editActivityName(id, Name) {
-        $("#" + id).find("label").text(Name);
+    function editActivityName(id, name) {
+        $("#" + id).find("label").text(name);
     }
     function setConnectionLabel(text) {
         connectionLabel.getOverlay("label").setLabel(text);
