@@ -108,7 +108,7 @@ margin:0px;
 		}, function(result) {
 			processbar.complete();
 			alertMessage(result);
-			if (window.parent && result.indexOf("成功") > 0) {
+			if (window.parent && result&&result.indexOf("成功") > 0) {
 				window.parent.$("#actionDialog").data("kendoWindow").close();
 				window.parent.frames["ifrContent"].$("#btnSearch").click();
 			}

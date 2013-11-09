@@ -7,6 +7,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import org.eclipse.persistence.jaxb.JAXBContextFactory;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -81,13 +82,23 @@ public final class WFUtil {
 	public static ProcessDefine parseProcessDefine(String xml) {
 		JAXBContext jaxbContext;
 		try {
-			jaxbContext = JAXBContext
+/*			jaxbContext = JAXBContext
 					.newInstance(new Class[] { ProcessDefine.class,
 							StartActivity.class, ManualActivity.class,
 							AutoActivity.class,SubflowActivity.class,
-							RouterActivity.class,EndActivity.class});
-			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+							RouterActivity.class,EndActivity.class});*/
+			//jaxbUnmarshaller.setProperty("javax.xml.bind.context.factory", new org.eclipse.persistence.jaxb.JAXBContextFactory());
+			 jaxbContext = JAXBContextFactory.createContext(new Class[] { 
+					 ProcessDefine.class,
+					 StartActivity.class,
+					 ManualActivity.class,
+					 AutoActivity.class,
+					 SubflowActivity.class,
+					 RouterActivity.class,
+					 EndActivity.class}, null);
 
+			
+			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			return (ProcessDefine) jaxbUnmarshaller.unmarshal(new StringReader(
 					xml));
 		} catch (JAXBException e) {

@@ -221,7 +221,7 @@
                             var activityType = selectactivity.activityType;
                             var left = x; //selectactivity.style.left;
                             var top = y; //selectactivity.style.top;
-                            var img = "images/" + selectactivity.activityType + ".png";
+                            var img = "../themes/default/workflowDesigner/images/" + selectactivity.activityType + ".png";
                             var activityResource = "<div id=\"" + id + "\"  class=\"designeractivity\" name=\"" + name + "\" ActivityType=\"" + activityType + "\" style=\"left:" + left + "px;top:" + top + "px;width:40px;height:40px;position:absolute\"><img style=\"width:40px;height:40px;\" src=\"" + img + "\" /><label style=\"width:100px;position:absolute;Top:40px;left:-30px\">" + name + "</label></div>";
                             $("#" + containerment).append(activityResource);
                             $("#" + id).bind("mouseover", function () { jsPlumb.show(id, $("#" + id)); });
@@ -386,11 +386,11 @@
         $("#toolboxshow").click(function () {
             if ($("#toolbox_content").css("display") == "block") {
                 $("#toolbox_content").hide();
-                $("#toolboxshow").attr("src", "../..images/hide.png");
+                $("#toolboxshow").attr("src", "../themes/default/workflowDesigner/images/hide.png");
             }
             else {
                 $("#toolbox_content").show();
-                $("#toolboxshow").attr("src", "../..images/Show.jpg");
+                $("#toolboxshow").attr("src", "../themes/default/workflowDesigner/images/Show.jpg");
 
             }
 
@@ -427,7 +427,7 @@
                     var activityType = currentObject.activityType;
                     var left = currentObject.style.left;
                     var top = currentObject.style.top;
-                    var img = "images/" + currentObject.activityType + ".png";
+                    var img = "../themes/default/workflowDesigner/images/" + currentObject.activityType + ".png";
                     var activityResource = "<div id=\"" + id + "\"  class=\"designeractivity\" name=\"" + name + "\" ActivityType=\"" + activityType + "\" style=\"left:" + left + "px;top:" + top + "px;width:40px;height:40px;position:absolute\"><img style=\"width:40px;height:40px;\" src=\"" + img + "\" /><label style=\"width:100px;position:absolute;Top:40px;left:-30px\">" + name + "</label></div>";
                     $("#" + containerment).append(activityResource);
                     $("#" + id).bind("mouseover", function () { jsPlumb.show(id, $("#" + id)); });
@@ -623,7 +623,7 @@
                     var activityType = currentObject.activityType;
                     var left = currentObject.style.left;
                     var top = currentObject.style.top;
-                    var img = "images/" + currentObject.activityType + ".png";
+                    var img = "../themes/default/workflowDesigner/images/" + currentObject.activityType + ".png";
                     var activityResource = "<div id=\"" + id + "\"  class=\"designeractivity\" name=\"" + name + "\" ActivityType=\"" + activityType + "\" style=\"left:" + left + "px;top:" + top + "px;width:40px;height:40px;position:absolute\"><img style=\"width:40px;height:40px;\" src=\"" + img + "\" /><label style=\"width:100px;position:absolute;Top:40px;left:-30px\">" + name + "</label></div>"
                     $("#" + containerment).append(activityResource);
                     $("#" + id).bind("mouseover", function () { jsPlumb.show(id, $("#" + id)); });
@@ -1385,8 +1385,8 @@
 
     //初始化流程活动
     function drawActivityInst(activity, currentState, container) {
-        var imgPath = "images/";
-        var resource = "images/" + activity.activityType + ".png";
+        var imgPath = "../themes/default/workflowDesigner/images/";
+        var resource = imgPath+ activity.activityType + ".png";
         switch (currentState) {
             case -1: resource = imgPath + activity.activityType + "4.png";
                 break;

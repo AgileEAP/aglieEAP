@@ -62,14 +62,14 @@ public class WorkflowDesignerController
     	String message = "操作成功";
 		try
 		{
-			ProcessDefine processDefine =ProcessDefine.parseFromJson(processDefContent) ;
-			processDefContent = processDefine.toXml();
+/*			ProcessDefine processDefine =ProcessDefine.parseFromJson(processDefContent) ;
+			processDefContent = processDefine.toXml();*/
 			if (processDefContent!=null&&processDefContent.length()>0)
 			{
 				String id =processDefID!=null&&processDefID.length()>0?processDefID:Identities.uuid();
 				Map<String,Object> parameters=new HashMap<String,Object>();
-				parameters.put("name", processDefine.getID());
-				parameters.put("version", processDefine.getVersion());
+				parameters.put("name",name);// processDefine.getID());
+				parameters.put("version",version);// processDefine.getVersion());
 				parameters.put("_rawsql", "id!='"+processDefID+"'");
 				List<ProcessDef> proDefs =processDefService.search(parameters);
 				if (proDefs != null&&proDefs.size()>0)
@@ -121,7 +121,8 @@ public class WorkflowDesignerController
 		if (processDefID!=null&&processDefID.length()>0)
 		{
 			ProcessDef processDef =processDefService.get(processDefID);
-			ProcessDefine processDefine =WFUtil.parseProcessDefine(processDef.getContent());
+			//ProcessDefine processDefine =WFUtil.parseProcessDefine(processDef.getContent());
+			ProcessDefine processDefine =ProcessDefine.parseFromJson(processDef.getContent());
 			if (processInstID!=null&&processInstID.length()>0)
 			{
 				List<TransControl> transList;

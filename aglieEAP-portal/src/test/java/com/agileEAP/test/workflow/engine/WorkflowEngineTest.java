@@ -51,6 +51,14 @@ public class WorkflowEngineTest extends AbstractJUnit4SpringContextTests
 		m.setID(UUID.randomUUID().toString());
 		m.setName("manualActivity");
 		m.seteForm("eForm");
+		
+		ActionURL url=new ActionURL();
+		url.setIsSpecifyURL(true);
+		url.setURLType(URLType.CustomURL);
+		url.setSpecifyURL("workflow/apply/offer");
+		
+		m.setCustomURL(url);
+		
 		m.setActivityType(ActivityType.ManualActivity);
 		ActivateRule ar=new ActivateRule();
 		ar.setActionPattern(ActionPattern.Method);

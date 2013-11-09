@@ -107,6 +107,7 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
+
 	</repositories>
 
 	<!-- 设定插件仓库 如有Nexus私服, 取消注释并指向正确的服务器地�? <pluginRepositories> <pluginRepository> 
@@ -507,6 +508,13 @@
 						<artifactId>xml-apis</artifactId>
 					</exclusion>
 				</exclusions>
+			</dependency>
+
+			<dependency>
+			   <groupId>org.eclipse.persistence</groupId>
+			   <artifactId>org.eclipse.persistence.moxy</artifactId>
+			   <version>2.5.1</version>
+			   <scope>compile</scope>
 			</dependency>
 
 			<!-- 重新定义Java XPath Engine到最新版，避免旧版那些不必要的依�? -->

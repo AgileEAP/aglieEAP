@@ -112,20 +112,20 @@ function initManualActivity(activity) {
     if (activity.participant && activity.participant.participantType) {
         switch (activity.participant.participantType) {
             case "Participantor":
-                $("#rblOrganization").attr("checked", "checked");
+                $("#rblOrganization").prop('checked', true);
                 $("#txtParticipantRule").attr("disabled", "disabled");
                 $("#txtspecialActivity").attr("disabled", "disabled");
                 $("#txtParticipantRule").val("");
                 $("#txtspecialActivity").val("");
                 break;
             case "ProcessStarter":
-                $("#rblProcessStarter").attr("checked", "checked");
+                $("#rblProcessStarter").prop('checked', true);
                 $("#txtParticipantRule").attr("disabled", "disabled");
                 $("#txtspecialActivity").attr("disabled", "disabled");
                 $("#txtParticipantRule").val("");
                 $("#txtspecialActivity").val(""); break;
             case "ProcessExecutor":
-                $("#rblSpecialActivity").attr("checked", "checked");
+                $("#rblSpecialActivity").prop('checked', true);
                 $("#txtspecialActivity").val(activity.participant.participantValue);
                 $("#txtParticipantRule").val("");
                 $("#txtParticipantRule").attr("disabled", "disabled");
@@ -133,7 +133,7 @@ function initManualActivity(activity) {
                 $("#orgorrole").attr("disabled", "disabled");
                 break;
             case "CustomRegular":
-                $("#rblParticipantRule").attr("checked", "checked");
+                $("#rblParticipantRule").prop('checked', true);
                 $("#txtParticipantRule").val(activity.participant.participantValue);
                 $("#txtspecialActivity").val("");
                 $("#txtspecialActivity").attr("disabled", "disabled");
@@ -181,12 +181,12 @@ function initManualActivity(activity) {
     }
     if (activity.customURL) {
         if (activity.customURL.urlType == "CustomURL") {
-            $("#rbCustomizeURL").attr("checked", "checked");
+            $("#rbCustomizeURL").prop('checked', true);
             $("#txtSpecifyURL").removeAttr("disabled");
             activity.customURL.urlType = "CustomURL";
         }
         else {
-            $("#rbDefaultURL").attr("checked", "checked");
+            $("#rbDefaultURL").prop('checked', true);
             $("#txtSpecifyURL").attr("disabled", "disabled");
             activity.customURL.urlType = "DefaultURL";
         }
@@ -242,52 +242,52 @@ function initManualActivity(activity) {
         var workItemNumStrategy = new WorkItemNumStrategy();
         var finishRule = new FinishRule();
         if (activity.multiWorkItem.workItemNumStrategy == workItemNumStrategy.ParticipantNumber) {
-            $("#rblParticipantNumber").attr("checked", "checked");
+            $("#rblParticipantNumber").prop('checked', true);
         }
         else {
-            $("#rblOperatorNumber").attr("checked", "checked");
+            $("#rblOperatorNumber").prop('checked', true);
         }
         if (activity.multiWorkItem.isSequentialExecute)//顺序执行工作项
         {
-            $("#rabYIsSequentialExecute").attr("checked", "checked");
+            $("#rabYIsSequentialExecute").prop('checked', true);
         }
         else {
-            $("#rabNIsSequentialExecute").attr("checked", "checked");
+            $("#rabNIsSequentialExecute").prop('checked', true);
         }
         if (activity.multiWorkItem.finishRule == finishRule.FinishAll)  //完成规则设定
         {
-            $("#rblFinishAll").attr("checked", "checked");
+            $("#rblFinishAll").prop('checked', true);
         }
         else if (activity.multiWorkItem.finishRule == finishRule.SpecifyNum) {
-            $("#rblSpecifyNum").attr("checked", "checked");
+            $("#rblSpecifyNum").prop('checked', true);
         }
         else {
-            $("#rblSpecifyPercent").attr("checked", "checked");
+            $("#rblSpecifyPercent").prop('checked', true);
         }
         if (activity.multiWorkItem.isAutoCancel)//顺序执行工作项
         {
-            $("#rabYIsAutoCancel").attr("checked", "checked");
+            $("#rabYIsAutoCancel").prop('checked', true);
         }
         else {
-            $("#rabNIsAutoCancel").attr("checked", "checked");
+            $("#rabNIsAutoCancel").prop('checked', true);
         }
     }
     if (activity.timeLimit.timeLimitInfo) {
         var timeLimitStrategy = new TimeLimitStrategy();
         if (activity.timeLimit.timeLimitInfo.timeLimitStrategy == timeLimitStrategy.LimitTime) {
-            $("#rabTimeLimitStrategy").attr("checked", "checked");
+            $("#rabTimeLimitStrategy").prop('checked', true);
         }
         else {
-            $("#rabRelevantLimitTime").attr("checked", "checked");
+            $("#rabRelevantLimitTime").prop('checked', true);
         }
     }
     if (activity.timeLimit.RemindInfo) {
         var remindStrategy = new RemindStrategy();
         if (activity.timeLimit.remindInfo.remindStrategy == remindStrategy.RemindLimtTime) {
-            $("#rabRemindLimtTime").attr("checked", "checked");
+            $("#rabRemindLimtTime").prop('checked', true);
         }
         else {
-            $("#rabRemindRelevantLimitTime").attr("checked", "checked");
+            $("#rabRemindRelevantLimitTime").prop('checked', true);
         }
     }
 }
@@ -393,20 +393,21 @@ function ActivityDetailCtrl($scope) {
     }
     $scope.businessSet = function (url) {
         if (url == "rbCustomizeURL") {
-            $("#rbCustomizeURL").attr("checked", "checked");
+            $("#rbCustomizeURL").prop('checked', true);
             $("#txtSpecifyURL").removeAttr("disabled");
             //  $("#rbDefaultURL").attr("disabled", "disabled");
             $scope.customURL().urlType = "CustomURL";
             
         }
         else {
-            $("#rbDefaultURL").attr("checked", "checked");
+            $("#rbDefaultURL").prop('checked', true);
             $("#txtSpecifyURL").attr("disabled", "disabled");
             $scope.customURL().urlType = "DefaultURL";
         }
     }
     $scope.addParticipant = function () {
-        var participantors = openOperateDialog("添加参与者", "../../Workflow/ChooseParticipantor.aspx", 980, 700, true, 1);
+        //var participantors = openOperateDialog("添加参与者", "../../Workflow/ChooseParticipantor.aspx", 980, 700, true, 1);
+        var participantors = openTopDialog("actionDialog3", "workflow/participantor/choose", "添加参与者",980, 700, true);
         if (participantors == null) return;
         if (participantors.length != 0) {
             var tbody = $("tbody", "#gvOrgizationOrRole_container");
@@ -692,7 +693,7 @@ function ActivityDetailCtrl($scope) {
         });
     };
     $scope.chooseFree = function () {
-        if ($("#chbIsFreeActivity").attr("checked")) {
+        if ($("#chbIsFreeActivity").prop("checked")) {
             //$(".FreeActivity").find("input:radio").removeAttr("disabled");
             //$(".FreeActivity").find("input:checkbox").removeAttr("disabled");
             $(".FreeActivity").find("input").removeAttr("disabled");
@@ -838,7 +839,7 @@ function ActivityDetailCtrl($scope) {
         return multiWorkItem;
     };
     $scope.enableMulwi = function () {
-        if ($("#chbIsMulWIValid").attr("checked")) {
+        if ($("#chbIsMulWIValid").prop("checked")) {
             $(".MulWIValidConfigure").find("input").removeAttr("disabled");
         }
         else {

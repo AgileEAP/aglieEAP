@@ -3,6 +3,7 @@ package com.agileEAP.workflow.definition;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** 
  响应URL
@@ -30,7 +31,10 @@ public class ActionURL
 	 URL类型,LogicalProcess(逻辑处理),WebURL(web展现),Other(其他)
 	 
 	*/
+	
 	private URLType urlType=URLType.CustomURL;
+	
+	@JsonProperty("urlType")
 	public final URLType getURLType()
 	{
 		return urlType;

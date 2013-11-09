@@ -3,13 +3,30 @@ package com.agileEAP.workflow.definition;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-//import org.eclipse.persistence.oxm.annotations.XmlCustomizer;
+
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import org.eclipse.persistence.oxm.annotations.XmlCustomizer;
 
 /** 
  工作流活动基类
 */
+
+@JsonTypeInfo(  
+	    use = JsonTypeInfo.Id.NAME,  
+	    include = JsonTypeInfo.As.PROPERTY,  
+	    property = "activityType")  
+	@JsonSubTypes({  
+	    @Type(value = StartActivity.class, name = "StartActivity"),
+	    @Type(value = ManualActivity.class, name = "ManualActivity"),
+	    @Type(value = AutoActivity.class, name = "AutoActivity"),
+	    @Type(value = SubflowActivity.class, name = "SubflowActivity"),
+	    @Type(value = RouterActivity.class, name = "RouterActivity"),
+	    @Type(value = EndActivity.class, name = "EndActivity") }) 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
+@XmlCustomizer(ActivityCustomizer.class)
 public class Activity 
 {
 	/** 
