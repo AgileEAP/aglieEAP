@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Repository接口 -->
+<mapper namespace="com.agileEAP.security.repository.SpecialPrivilegeRepository">
+	<sql id="columns">
+		ID as id,
+		OperatorID as operatorID,
+		PrivilegeID as privilegeID,
+		AuthFlag as authFlag,
+		AppID as appID,
+		StartTime as startTime,
+		EndTime as endTime,
+		SortOrder as sortOrder,
+		Authorizer as authorizer,
+		AuthTime as authTime   
+	</sql>
+    
+    <sql id="whereParams">
+        <if test="id  != null">
+            and ID =#{id}
+        </if>
+        <if test="operatorID  != null">
+            and OperatorID =#{operatorID}
+        </if>
+        <if test="privilegeID  != null">
+            and PrivilegeID =#{privilegeID}
+        </if>
+        <if test="authFlag  != null">
+            and AuthFlag =#{authFlag}
+        </if>
+        <if test="appID  != null">
+            and AppID =#{appID}
+        </if>
+        <if test="beginStartTime!=null">
+            <![CDATA[ and StartTime>= to_date('${beginStartTime} 00:00:00','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+    	    <if test="endStartTime!=null">
+            <![CDATA[ and StartTime<= to_date('${endStartTime} 23:59:59','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+        <if test="beginEndTime!=null">
+            <![CDATA[ and EndTime>= to_date('${beginEndTime} 00:00:00','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+    	    <if test="endEndTime!=null">
+            <![CDATA[ and EndTime<= to_date('${endEndTime} 23:59:59','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+        <if test="beginSortOrder!=null">
+            <![CDATA[ and  SortOrder >=#{ beginSortOrder}]]>
+        </if>
+    	    <if test="endSortOrder!=null">
+            <![CDATA[ and  SortOrder <=#{ endSortOrder}]]>
+         </if>      
+        <if test="authorizer  != null">
+            and Authorizer like '${authorizer}%'
+        </if> 
+        <if test="beginAuthTime!=null">
+            <![CDATA[ and AuthTime>= to_date('${beginAuthTime} 00:00:00','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+    	    <if test="endAuthTime!=null">
+            <![CDATA[ and AuthTime<= to_date('${endAuthTime} 23:59:59','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+    </sql>
+    
+    <select id="get" parameterType="String" resultType="com.agileEAP.security.entity.SpecialPrivilege">
+    	select 		
+        <include refid="columns" />
+    	from AC_SpecialPrivilege
+    	where ID=#{id}
+    </select>
+
+    <insert id="save" parameterType="com.agileEAP.security.entity.SpecialPrivilege">
+    	insert into  AC_SpecialPrivilege (
+    	ID,OperatorID,PrivilegeID,AuthFlag,AppID,StartTime,EndTime,SortOrder,Authorizer,AuthTime)
+    	values (#{id},#{operatorID},#{privilegeID},#{authFlag},#{appID},#{startTime},#{endTime},#{sortOrder},#{authorizer},#{authTime})
+    </insert>
+
+    <insert id="update" parameterType="com.agileEAP.security.entity.SpecialPrivilege">
+    	update AC_SpecialPrivilege set
+    	OperatorID=#{operatorID},PrivilegeID=#{privilegeID},AuthFlag=#{authFlag},AppID=#{appID},StartTime=#{startTime},EndTime=#{endTime},SortOrder=#{sortOrder},Authorizer=#{authorizer},AuthTime=#{authTime}
+    	where ID=#{id}
+    </insert>
+
+    <delete id="delete" parameterType="String">
+         delete from  AC_SpecialPrivilege where ID=#{id}
+    </delete>   
+
+    <delete id="batchDelete" parameterType="list">
+    	<![CDATA[
+    		delete from AC_SpecialPrivilege where ID in
+    	]]>
+    	<foreach collection="list" item="id" open="(" separator="," close=")">
+    		#{id}
+    	</foreach>
+    </delete>
+    
+	<select id="search" parameterType="map" resultType="com.agileEAP.security.entity.SpecialPrivilege">
+		select
+        <include refid="columns" />
+		from AC_SpecialPrivilege where 1=1
+        <include refid="whereParams"/>
+	</select>
+    
+    <select id="count" parameterType="map" resultType="long">
+		select count(*)
+		from AC_SpecialPrivilege where 1=1
+		<include refid="whereParams"/>
+	</select>
+    
+    <select id="searchByPage" parameterType="map" resultType="com.agileEAP.security.entity.SpecialPrivilege">
+		select
+        <include refid="columns" />
+		from AC_SpecialPrivilege where 1=1
+        <include refid="whereParams"/>
+    </select>
+</mapper>

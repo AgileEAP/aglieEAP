@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Repository接口 -->
+<mapper namespace="com.agileEAP.security.repository.OperateRepository">
+	<sql id="columns">
+		ID as id,
+		Name as name,
+		Command as command,
+		Argument as argument,
+		IsVerify as isVerify,
+		SortOrder as sortOrder   
+	</sql>
+    
+    <sql id="whereParams">
+        <if test="id  != null">
+            and ID =#{id}
+        </if>
+        <if test="name  != null">
+            and Name like '${name}%'
+        </if> 
+        <if test="command  != null">
+            and Command like '${command}%'
+        </if> 
+        <if test="argument  != null">
+            and Argument like '${argument}%'
+        </if> 
+        <if test="isVerify  != null">
+            and IsVerify =#{isVerify}
+        </if>
+    </sql>
+    
+    <select id="get" parameterType="String" resultType="com.agileEAP.security.entity.Operate">
+    	select 		
+        <include refid="columns" />
+    	from AC_Operate
+    	where ID=#{id}
+    </select>
+
+    <insert id="save" parameterType="com.agileEAP.security.entity.Operate">
+    	insert into  AC_Operate (
+    	ID,Name,Command,Argument,IsVerify,SortOrder)
+    	values (#{id},#{name},#{command},#{argument},#{isVerify},#{sortOrder})
+    </insert>
+
+    <insert id="update" parameterType="com.agileEAP.security.entity.Operate">
+    	update AC_Operate set
+    	Name=#{name},Command=#{command},Argument=#{argument},IsVerify=#{isVerify},SortOrder=#{sortOrder}
+    	where ID=#{id}
+    </insert>
+
+    <delete id="delete" parameterType="String">
+         delete from  AC_Operate where ID=#{id}
+    </delete>   
+
+    <delete id="batchDelete" parameterType="list">
+    	<![CDATA[
+    		delete from AC_Operate where ID in
+    	]]>
+    	<foreach collection="list" item="id" open="(" separator="," close=")">
+    		#{id}
+    	</foreach>
+    </delete>   
+	
+	<select id="search" parameterType="map" resultType="com.agileEAP.security.entity.Operate">
+		select
+        <include refid="columns" />
+		from AC_Operate where 1=1
+        <include refid="whereParams"/>
+	</select>
+    
+    <select id="count" parameterType="map" resultType="long">
+		select count(*)
+		from AC_Operate where 1=1
+		<include refid="whereParams"/>
+	</select>
+    
+   <select id="searchByPage" parameterType="map" resultType="com.agileEAP.security.entity.Operate">
+		select
+        <include refid="columns" />
+		from AC_Operate where 1=1
+        <include refid="whereParams"/>
+	</select>
+</mapper>

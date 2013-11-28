@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Repository接口 -->
+<mapper namespace="com.agileEAP.infrastructure.repository.ActionLogRepository">
+	<sql id="columns">
+		ID as id,
+		UserName as userName,
+		LogType as logType,
+		ClientIP as clientIP,
+		Content as content,
+		AppModule as appModule,
+		Message as message,
+		Result as result,
+		UserID as userID,
+		CreateTime as createTime   
+	</sql>
+    
+    <sql id="whereParams">
+        <if test="id  != null">
+            and ID =#{id}
+        </if>
+        <if test="userName  != null">
+            and UserName like '${userName}%'
+        </if> 
+        <if test="logType  != null">
+            and LogType =#{logType}
+        </if>
+        <if test="clientIP  != null">
+            and ClientIP like '${clientIP}%'
+        </if> 
+        <if test="content  != null">
+            and Content like '${content}%'
+        </if> 
+        <if test="appModule  != null">
+            and AppModule like '${appModule}%'
+        </if> 
+        <if test="message  != null">
+            and Message like '${message}%'
+        </if> 
+        <if test="result  != null">
+            and Result =#{result}
+        </if>
+        <if test="userID  != null">
+            and UserID =#{userID}
+        </if>
+        <if test="beginCreateTime!=null">
+            <![CDATA[ and CreateTime>= to_date('${beginCreateTime} 00:00:00','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+    	    <if test="endCreateTime!=null">
+            <![CDATA[ and CreateTime<= to_date('${endCreateTime} 23:59:59','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+    </sql>
+    
+    <select id="get" parameterType="String" resultType="com.agileEAP.infrastructure.entity.ActionLog">
+    	select 		
+        <include refid="columns" />
+    	from AB_ActionLog
+    	where ID=#{id}
+    </select>
+
+    <insert id="save" parameterType="com.agileEAP.infrastructure.entity.ActionLog">
+    	insert into  AB_ActionLog (
+    	ID,UserName,LogType,ClientIP,Content,AppModule,Message,Result,UserID,CreateTime)
+    	values (#{id},#{userName},#{logType},#{clientIP},#{content},#{appModule},#{message},#{result},#{userID},#{createTime})
+    </insert>
+
+    <insert id="update" parameterType="com.agileEAP.infrastructure.entity.ActionLog">
+    	update AB_ActionLog set
+    	UserName=#{userName},LogType=#{logType},ClientIP=#{clientIP},Content=#{content},AppModule=#{appModule},Message=#{message},Result=#{result},UserID=#{userID},CreateTime=#{createTime}
+    	where ID=#{id}
+    </insert>
+
+    <delete id="delete" parameterType="String">
+         delete from  AB_ActionLog where ID=#{id}
+    </delete>   
+
+    <delete id="batchDelete" parameterType="list">
+    	<![CDATA[
+    		delete from AB_ActionLog where ID in
+    	]]>
+    	<foreach collection="list" item="id" open="(" separator="," close=")">
+    		#{id}
+    	</foreach>
+    </delete>
+    
+	<select id="search" parameterType="map" resultType="com.agileEAP.infrastructure.entity.ActionLog">
+		select
+        <include refid="columns" />
+		from AB_ActionLog where 1=1
+        <include refid="whereParams"/>
+	</select>
+    
+    <select id="count" parameterType="map" resultType="long">
+		select count(*)
+		from AB_ActionLog where 1=1
+		<include refid="whereParams"/>
+	</select>
+    
+    <select id="searchByPage" parameterType="map" resultType="com.agileEAP.infrastructure.entity.ActionLog">
+		select
+        <include refid="columns" />
+		from AB_ActionLog where 1=1
+        <include refid="whereParams"/>
+    </select>
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+						http://cxf.apache.org/jaxrs
+						http://cxf.apache.org/schemas/jaxrs.xsd">
+	<jaxrs:server id="serviceContainer" address="/jaxrs">
+		<jaxrs:serviceBeans>
+			<ref bean="PlantAPIService" />
+			<ref bean="BreedAPIService" />
+			<ref bean="SlaughterAPIService"/>
+			<ref bean="WholesaleAPIService"/>
+			<ref bean="RetailAPIService"/>
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider" />
+		</jaxrs:providers>
+	</jaxrs:server>
+	<bean id="PlantAPIService" class="com.agileEAP.plant.controller.PlantAPIService" />
+	<bean id="BreedAPIService" class="com.agileEAP.breed.controller.BreedAPIService" />
+	<bean id="SlaughterAPIService" class="com.agileEAP.slaughter.controller.SlaughterAPIService" />
+	<bean id="WholesaleAPIService" class="com.agileEAP.wholesale.controller.WholesaleAPIService" />
+	<bean id="RetailAPIService" class="com.agileEAP.retail.controller.RetailAPIService" />
+</beans>

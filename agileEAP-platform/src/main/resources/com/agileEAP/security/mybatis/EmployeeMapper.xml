@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Repository接口 -->
+<mapper namespace="com.agileEAP.security.repository.EmployeeRepository">
+	<sql id="columns">
+		ID as id,
+		Code as code,
+		LoginName as loginName,
+		Name as name,
+		OperatorID as operatorID,
+		Gender as gender,
+		Birthday as birthday,
+		Nation as nation,
+		Birthplace as birthplace,
+		Nativeplace as nativeplace,
+		PoliticsStatus as politicsStatus,
+		WorkFromDate as workFromDate,
+		HealthStatus as healthStatus,
+		IndustrialGrade as industrialGrade,
+		Speciality as speciality,
+		PositionName as positionName,
+		Position as position,
+		PostGrade as postGrade,
+		Status as status,
+		CardType as cardType,
+		CardNo as cardNo,
+		InDate as inDate,
+		OutDate as outDate,
+		ZipCode as zipCode,
+		Email as email,
+		Fax as fax,
+		Mobile as mobile,
+		MSN as msn,
+		OfficePhone as officePhone,
+		Address as address,
+		Director as director,
+		OrgID as orgID,
+		Photo as photo,
+		Creator as creator,
+		CreateTime as createTime,
+		CorpID as corpID,
+		SortOrder as sortOrder,
+		OrgPath as orgPath   
+	</sql>
+    
+    <sql id="whereParams">
+        <if test="id  != null">
+            and ID =#{id}
+        </if>
+        <if test="code  != null">
+            and Code =#{code}
+        </if>
+        <if test="loginName  != null">
+            and LoginName like '${loginName}%'
+        </if> 
+        <if test="name  != null">
+            and Name like '${name}%'
+        </if> 
+        <if test="operatorID  != null">
+            and OperatorID =#{operatorID}
+        </if>
+        <if test="gender  != null">
+            and Gender =#{gender}
+        </if>
+        <if test="beginBirthday!=null">
+            <![CDATA[ and Birthday>= to_date('${beginBirthday} 00:00:00','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+    	    <if test="endBirthday!=null">
+            <![CDATA[ and Birthday<= to_date('${endBirthday} 23:59:59','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+        <if test="nation  != null">
+            and Nation like '${nation}%'
+        </if> 
+        <if test="birthplace  != null">
+            and Birthplace like '${birthplace}%'
+        </if> 
+        <if test="nativeplace  != null">
+            and Nativeplace like '${nativeplace}%'
+        </if> 
+        <if test="politicsStatus  != null">
+            and PoliticsStatus like '${politicsStatus}%'
+        </if> 
+        <if test="beginWorkFromDate!=null">
+            <![CDATA[ and WorkFromDate>= to_date('${beginWorkFromDate} 00:00:00','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+    	    <if test="endWorkFromDate!=null">
+            <![CDATA[ and WorkFromDate<= to_date('${endWorkFromDate} 23:59:59','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+        <if test="healthStatus  != null">
+            and HealthStatus like '${healthStatus}%'
+        </if> 
+        <if test="industrialGrade  != null">
+            and IndustrialGrade like '${industrialGrade}%'
+        </if> 
+        <if test="speciality  != null">
+            and Speciality like '${speciality}%'
+        </if> 
+        <if test="positionName  != null">
+            and PositionName like '${positionName}%'
+        </if> 
+        <if test="position  != null">
+            and Position like '${position}%'
+        </if> 
+        <if test="postGrade  != null">
+            and PostGrade like '${postGrade}%'
+        </if> 
+        <if test="status  != null">
+            and Status =#{status}
+        </if>
+        <if test="cardType  != null">
+            and CardType =#{cardType}
+        </if>
+        <if test="cardNo  != null">
+            and CardNo like '${cardNo}%'
+        </if> 
+        <if test="beginInDate!=null">
+            <![CDATA[ and InDate>= to_date('${beginInDate} 00:00:00','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+    	    <if test="endInDate!=null">
+            <![CDATA[ and InDate<= to_date('${endInDate} 23:59:59','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+        <if test="beginOutDate!=null">
+            <![CDATA[ and OutDate>= to_date('${beginOutDate} 00:00:00','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+    	    <if test="endOutDate!=null">
+            <![CDATA[ and OutDate<= to_date('${endOutDate} 23:59:59','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+        <if test="zipCode  != null">
+            and ZipCode =#{zipCode}
+        </if>
+        <if test="email  != null">
+            and Email like '${email}%'
+        </if> 
+        <if test="fax  != null">
+            and Fax like '${fax}%'
+        </if> 
+        <if test="mobile  != null">
+            and Mobile like '${mobile}%'
+        </if> 
+        <if test="msn  != null">
+            and MSN like '${msn}%'
+        </if> 
+        <if test="officePhone  != null">
+            and OfficePhone like '${officePhone}%'
+        </if> 
+        <if test="address  != null">
+            and Address like '${address}%'
+        </if> 
+        <if test="director  != null">
+            and Director like '${director}%'
+        </if> 
+        <if test="orgID  != null">
+            and OrgID =#{orgID}
+        </if>
+        <if test="photo  != null">
+            and Photo like '${photo}%'
+        </if> 
+        <if test="creator  != null">
+            and Creator like '${creator}%'
+        </if> 
+        <if test="beginCreateTime!=null">
+            <![CDATA[ and CreateTime>= to_date('${beginCreateTime} 00:00:00','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+    	    <if test="endCreateTime!=null">
+            <![CDATA[ and CreateTime<= to_date('${endCreateTime} 23:59:59','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+        <if test="corpID  != null">
+            and CorpID =#{corpID}
+        </if>
+        <if test="beginSortOrder!=null">
+            <![CDATA[ and  SortOrder >=#{ beginSortOrder}]]>
+        </if>
+    	    <if test="endSortOrder!=null">
+            <![CDATA[ and  SortOrder <=#{ endSortOrder}]]>
+         </if>      
+        <if test="orgPath  != null">
+            and OrgPath like '${orgPath}%'
+        </if> 
+    </sql>
+    
+    <select id="get" parameterType="String" resultType="com.agileEAP.security.entity.Employee">
+    	select 		
+        <include refid="columns" />
+    	from OM_Employee
+    	where ID=#{id}
+    </select>
+
+    <insert id="save" parameterType="com.agileEAP.security.entity.Employee">
+    	insert into  OM_Employee (
+    	ID,Code,LoginName,Name,OperatorID,Gender,Birthday,Nation,Birthplace,Nativeplace,PoliticsStatus,WorkFromDate,HealthStatus,IndustrialGrade,Speciality,PositionName,Position,PostGrade,Status,CardType,CardNo,InDate,OutDate,ZipCode,Email,Fax,Mobile,MSN,OfficePhone,Address,Director,OrgID,Photo,Creator,CreateTime,CorpID,SortOrder,OrgPath)
+    	values (#{id},#{code},#{loginName},#{name},#{operatorID},#{gender},#{birthday},#{nation},#{birthplace},#{nativeplace},#{politicsStatus},#{workFromDate},#{healthStatus},#{industrialGrade},#{speciality},#{positionName},#{position},#{postGrade},#{status},#{cardType},#{cardNo},#{inDate},#{outDate},#{zipCode},#{email},#{fax},#{mobile},#{msn},#{officePhone},#{address},#{director},#{orgID},#{photo},#{creator},#{createTime},#{corpID},#{sortOrder},#{orgPath})
+    </insert>
+
+    <insert id="update" parameterType="com.agileEAP.security.entity.Employee">
+    	update OM_Employee set
+    	Code=#{code},LoginName=#{loginName},Name=#{name},OperatorID=#{operatorID},Gender=#{gender},Birthday=#{birthday},Nation=#{nation},Birthplace=#{birthplace},Nativeplace=#{nativeplace},PoliticsStatus=#{politicsStatus},WorkFromDate=#{workFromDate},HealthStatus=#{healthStatus},IndustrialGrade=#{industrialGrade},Speciality=#{speciality},PositionName=#{positionName},Position=#{position},PostGrade=#{postGrade},Status=#{status},CardType=#{cardType},CardNo=#{cardNo},InDate=#{inDate},OutDate=#{outDate},ZipCode=#{zipCode},Email=#{email},Fax=#{fax},Mobile=#{mobile},MSN=#{msn},OfficePhone=#{officePhone},Address=#{address},Director=#{director},OrgID=#{orgID},Photo=#{photo},Creator=#{creator},CreateTime=#{createTime},CorpID=#{corpID},SortOrder=#{sortOrder},OrgPath=#{orgPath}
+    	where ID=#{id}
+    </insert>
+
+    <delete id="delete" parameterType="String">
+         delete from  OM_Employee where ID=#{id}
+    </delete>   
+
+    <delete id="batchDelete" parameterType="list">
+    	<![CDATA[
+    		delete from OM_Employee where ID in
+    	]]>
+    	<foreach collection="list" item="id" open="(" separator="," close=")">
+    		#{id}
+    	</foreach>
+    </delete>
+    
+	<select id="search" parameterType="map" resultType="com.agileEAP.security.entity.Employee">
+		select
+        <include refid="columns" />
+		from OM_Employee where 1=1
+        <include refid="whereParams"/>
+	</select>
+    
+    <select id="count" parameterType="map" resultType="long">
+		select count(*)
+		from OM_Employee where 1=1
+		<include refid="whereParams"/>
+	</select>
+    
+    <select id="searchByPage" parameterType="map" resultType="com.agileEAP.security.entity.Employee">
+		select
+        <include refid="columns" />
+		from OM_Employee where 1=1
+        <include refid="whereParams"/>
+    </select>
+</mapper>

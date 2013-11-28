@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Repository接口 -->
+<mapper namespace="com.agileEAP.security.repository.RolePrivilegeRepository">
+	<sql id="columns">
+		ID as id,
+		RoleID as roleID,
+		PrivilegeID as privilegeID   
+	</sql>
+    
+    <sql id="whereParams">
+        <if test="id  != null">
+            and ID =#{id}
+        </if>
+        <if test="roleID  != null">
+            and RoleID =#{roleID}
+        </if>
+        <if test="privilegeID  != null">
+            and PrivilegeID =#{privilegeID}
+        </if>
+    </sql>
+    
+    <select id="get" parameterType="String" resultType="com.agileEAP.security.entity.RolePrivilege">
+    	select 		
+        <include refid="columns" />
+    	from AC_RolePrivilege
+    	where ID=#{id}
+    </select>
+
+    <insert id="save" parameterType="com.agileEAP.security.entity.RolePrivilege">
+    	insert into  AC_RolePrivilege (
+    	ID,RoleID,PrivilegeID)
+    	values (#{id},#{roleID},#{privilegeID})
+    </insert>
+
+    <insert id="update" parameterType="com.agileEAP.security.entity.RolePrivilege">
+    	update AC_RolePrivilege set
+    	RoleID=#{roleID},PrivilegeID=#{privilegeID}
+    	where ID=#{id}
+    </insert>
+
+    <delete id="delete" parameterType="String">
+         delete from  AC_RolePrivilege where ID=#{id}
+    </delete>   
+
+    <delete id="batchDelete" parameterType="list">
+    	<![CDATA[
+    		delete from AC_RolePrivilege where ID in
+    	]]>
+    	<foreach collection="list" item="id" open="(" separator="," close=")">
+    		#{id}
+    	</foreach>
+    </delete>
+    
+	<select id="search" parameterType="map" resultType="com.agileEAP.security.entity.RolePrivilege">
+		select
+        <include refid="columns" />
+		from AC_RolePrivilege where 1=1
+        <include refid="whereParams"/>
+	</select>
+    
+    <select id="count" parameterType="map" resultType="long">
+		select count(*)
+		from AC_RolePrivilege where 1=1
+		<include refid="whereParams"/>
+	</select>
+    
+    <select id="searchByPage" parameterType="map" resultType="com.agileEAP.security.entity.RolePrivilege">
+		select
+        <include refid="columns" />
+		from AC_RolePrivilege where 1=1
+        <include refid="whereParams"/>
+    </select>
+</mapper>

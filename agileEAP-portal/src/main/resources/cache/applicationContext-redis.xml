@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<beans xmlns='http://www.springframework.org/schema/beans'
+	xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:context='http://www.springframework.org/schema/context'
+	xmlns:c='http://www.springframework.org/schema/c' xmlns:p='http://www.springframework.org/schema/p'
+	xmlns:cache='http://www.springframework.org/schema/cache'
+	xsi:schemaLocation='http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd'>
+
+	<!-- context:property-placeholder will define an instance of the PropertySourcesPlaceholderConfigurer while you have declared a PropertyPlaceHolderConfigurer instance with the bean declaration.-->
+<!-- 	<context:property-placeholder 
+			ignore-resource-not-found="true"
+			location="classpath*:/properties/redis.properties" /> -->
+
+	<bean id="redisConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	    <property name="ignoreUnresolvablePlaceholders" value="true" />  
+	     <property name="order" value="2"/>
+	    <property name="location" value="classpath:/properties/redis.properties"/>
+	</bean>
+          			  
+	<!-- turn on declarative caching -->
+	<cache:annotation-driven cache-manager="cacheManager"
+		proxy-target-class="true" />
+
+	<bean id="jedisConnectionFactory"
+		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+		lazy-init="false" p:hostName="${redis.host}" p:port="${redis.port}"
+		p:database="${redis.database}" p:timeout="${redis.timeout}"
+		p:use-pool="${redis.use.pool}" p:poolConfig-ref="redisPoolConfig" />
+
+	<bean id="redisPoolConfig" class="redis.clients.jedis.JedisPoolConfig"
+		lazy-init="false" p:maxActive="${redis.maxActive}" p:maxIdle="${redis.maxIdle}"
+		p:minIdle="${redis.minIdle}" p:maxWait="${redis.maxWait}"
+		p:testOnBorrow="${redis.testOnBorrow}" p:testOnReturn="${redis.testOnReturn}"
+		p:testWhileIdle="${redis.testWhileIdle}" p:whenExhaustedAction="${redis.whenExhaustedAction}"
+		p:timeBetweenEvictionRunsMillis="${redis.timeBetweenEvictionRunsMillis}"
+		p:numTestsPerEvictionRun="${redis.numTestsPerEvictionRun}"
+		p:softMinEvictableIdleTimeMillis="${redis.softMinEvictableIdleTimeMillis}"
+		p:minEvictableIdleTimeMillis="${redis.minEvictableIdleTimeMillis}" />
+
+	<!-- redis template definition -->
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
+		p:connection-factory-ref="jedisConnectionFactory" lazy-init="false">
+		<property name="keySerializer" ref="stringRedisSerializer"></property>
+	</bean>
+
+	<bean id="stringRedisSerializer"
+		class="org.springframework.data.redis.serializer.StringRedisSerializer"></bean>
+
+
+	<!-- Redis Template -->
+	<!-- <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"> 
+		<property name="connectionFactory" ref="jedisConnectionFactory" /> <property 
+		name="valueSerializer"> <bean id="redisJsonSerializer" class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer"> 
+		<constructor-arg type="java.lang.Class" value="com.mtea.msdre.byspring.model.User" 
+		/> </bean> </property> </bean> -->
+
+	<!-- redis template definition -->
+	<bean id="cacheRedisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
+		p:connection-factory-ref="jedisConnectionFactory" lazy-init="false">
+	</bean>
+	
+	<!-- declare Redis Cache Manager -->
+	<bean id='cacheManager' class='org.springframework.data.redis.cache.RedisCacheManager'
+		c:template-ref='cacheRedisTemplate' p:defaultExpiration='${redis.expiration}' />
+
+
+	<!-- this is the Message Driven POJO (MDP) -->
+	<bean id="messageListener"
+		class="org.springframework.data.redis.listener.adapter.MessageListenerAdapter">
+		<constructor-arg>
+			<bean class="com.agileEAP.portal.cache.redis.RedisMessageListener" />
+		</constructor-arg>
+	</bean>
+
+	<!-- and this is the message listener container... -->
+	<bean id="redisContainer"
+		class="org.springframework.data.redis.listener.RedisMessageListenerContainer">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="messageListeners">
+			<!-- map of listeners and their associated topics (channels or/and patterns) -->
+			<map>
+				<entry key-ref="messageListener" value-ref="topic" />
+			</map>
+		</property>
+	</bean>
+
+	<bean id="topic" class="org.springframework.data.redis.listener.ChannelTopic">
+		<constructor-arg value="pubsub:queue" />
+	</bean>
+
+	<bean id="redisPublisher" class="com.agileEAP.portal.cache.redis.RedisPublisher">
+		<constructor-arg ref="redisTemplate" />
+		<constructor-arg ref="topic" />
+	</bean> 
+</beans>

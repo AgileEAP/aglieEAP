@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Repository接口 -->
+<mapper namespace="com.agileEAP.infrastructure.repository.DictRepository">
+	<sql id="columns">
+		ID as id,
+		Name as name,
+		Text as text,
+		ParentID as parentID,
+		SortOrder as sortOrder,
+		Description as description   
+	</sql>
+    
+    <sql id="whereParams">
+        <if test="id  != null">
+            and ID =#{id}
+        </if>
+        <if test="name  != null">
+            and Name like '${name}%'
+        </if> 
+        <if test="text  != null">
+            and Text like '${text}%'
+        </if> 
+        <if test="parentID  != null">
+            and ParentID =#{parentID}
+        </if>
+        <if test="beginSortOrder!=null">
+            <![CDATA[ and  SortOrder >=#{ beginSortOrder}]]>
+        </if>
+    	    <if test="endSortOrder!=null">
+            <![CDATA[ and  SortOrder <=#{ endSortOrder}]]>
+         </if>      
+        <if test="description  != null">
+            and Description like '${description}%'
+        </if> 
+    </sql>
+    
+    <select id="get" parameterType="String" resultType="com.agileEAP.infrastructure.entity.Dict">
+    	select 		
+        <include refid="columns" />
+    	from AB_Dict
+    	where ID=#{id}
+    </select>
+
+    <insert id="save" parameterType="com.agileEAP.infrastructure.entity.Dict">
+    	insert into  AB_Dict (
+    	ID,Name,Text,ParentID,SortOrder,Description)
+    	values (#{id},#{name},#{text},#{parentID},#{sortOrder},#{description})
+    </insert>
+
+    <insert id="update" parameterType="com.agileEAP.infrastructure.entity.Dict">
+    	update AB_Dict set
+    	Name=#{name},Text=#{text},ParentID=#{parentID},SortOrder=#{sortOrder},Description=#{description}
+    	where ID=#{id}
+    </insert>
+
+    <delete id="delete" parameterType="String">
+         delete from  AB_Dict where ID=#{id}
+    </delete>   
+
+    <delete id="batchDelete" parameterType="list">
+    	<![CDATA[
+    		delete from AB_Dict where ID in
+    	]]>
+    	<foreach collection="list" item="id" open="(" separator="," close=")">
+    		#{id}
+    	</foreach>
+    </delete>
+    
+	<select id="search" parameterType="map" resultType="com.agileEAP.infrastructure.entity.Dict">
+		select
+        <include refid="columns" />
+		from AB_Dict where 1=1
+        <include refid="whereParams"/>
+	</select>
+    
+    <select id="count" parameterType="map" resultType="long">
+		select count(*)
+		from AB_Dict where 1=1
+		<include refid="whereParams"/>
+	</select>
+    
+    <select id="searchByPage" parameterType="map" resultType="com.agileEAP.infrastructure.entity.Dict">
+		select
+        <include refid="columns" />
+		from AB_Dict where 1=1
+        <include refid="whereParams"/>
+    </select>
+</mapper>

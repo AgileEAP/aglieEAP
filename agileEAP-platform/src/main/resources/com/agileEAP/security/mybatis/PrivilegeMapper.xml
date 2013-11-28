@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Repository接口 -->
+<mapper namespace="com.agileEAP.security.repository.PrivilegeRepository">
+	<sql id="columns">
+		ID as id,
+		Name as name,
+		Type as type,
+		ResourceID as resourceID,
+		OperateID as operateID,
+		MetaDataID as metaDataID,
+		SortOrder as sortOrder   
+	</sql>
+    
+    <sql id="whereParams">
+        <if test="id  != null">
+            and ID =#{id}
+        </if>
+        <if test="name  != null">
+            and Name like '${name}%'
+        </if> 
+        <if test="type  != null">
+            and Type =#{type}
+        </if>
+        <if test="resourceID  != null">
+            and ResourceID =#{resourceID}
+        </if>
+        <if test="operateID  != null">
+            and OperateID =#{operateID}
+        </if>
+        <if test="metaDataID  != null">
+            and MetaDataID =#{metaDataID}
+        </if>
+        <if test="beginSortOrder!=null">
+            <![CDATA[ and  SortOrder >=#{ beginSortOrder}]]>
+        </if>
+    	    <if test="endSortOrder!=null">
+            <![CDATA[ and  SortOrder <=#{ endSortOrder}]]>
+         </if>      
+    </sql>
+    
+    <select id="get" parameterType="String" resultType="com.agileEAP.security.entity.Privilege">
+    	select 		
+        <include refid="columns" />
+    	from AC_Privilege
+    	where ID=#{id}
+    </select>
+
+    <insert id="save" parameterType="com.agileEAP.security.entity.Privilege">
+    	insert into  AC_Privilege (
+    	ID,Name,Type,ResourceID,OperateID,MetaDataID,SortOrder)
+    	values (#{id},#{name},#{type},#{resourceID},#{operateID},#{metaDataID},#{sortOrder})
+    </insert>
+
+    <insert id="update" parameterType="com.agileEAP.security.entity.Privilege">
+    	update AC_Privilege set
+    	Name=#{name},Type=#{type},ResourceID=#{resourceID},OperateID=#{operateID},MetaDataID=#{metaDataID},SortOrder=#{sortOrder}
+    	where ID=#{id}
+    </insert>
+
+    <delete id="delete" parameterType="String">
+         delete from  AC_Privilege where ID=#{id}
+    </delete>   
+
+    <delete id="batchDelete" parameterType="list">
+    	<![CDATA[
+    		delete from AC_Privilege where ID in
+    	]]>
+    	<foreach collection="list" item="id" open="(" separator="," close=")">
+    		#{id}
+    	</foreach>
+    </delete>
+    
+	<select id="search" parameterType="map" resultType="com.agileEAP.security.entity.Privilege">
+		select
+        <include refid="columns" />
+		from AC_Privilege where 1=1
+        <include refid="whereParams"/>
+	</select>
+    
+    <select id="count" parameterType="map" resultType="long">
+		select count(*)
+		from AC_Privilege where 1=1
+		<include refid="whereParams"/>
+	</select>
+    
+    <select id="searchByPage" parameterType="map" resultType="com.agileEAP.security.entity.Privilege">
+		select
+        <include refid="columns" />
+		from AC_Privilege where 1=1
+        <include refid="whereParams"/>
+    </select>
+</mapper>

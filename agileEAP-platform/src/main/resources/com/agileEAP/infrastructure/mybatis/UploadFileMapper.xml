@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Repository接口 -->
+<mapper namespace="com.agileEAP.infrastructure.repository.UploadFileRepository">
+	<sql id="columns">
+		ID as id,
+		FileName as fileName,
+		UniqueName as uniqueName,
+		FileType as fileType,
+		CatalogID as catalogID,
+		FilePath as filePath,
+		Description as description,
+		Creator as creator,
+		CreateTime as createTime   
+	</sql>
+    
+    <sql id="whereParams">
+        <if test="id  != null">
+            and ID =#{id}
+        </if>
+        <if test="fileName  != null">
+            and FileName like '${fileName}%'
+        </if> 
+        <if test="uniqueName  != null">
+            and UniqueName like '${uniqueName}%'
+        </if> 
+        <if test="fileType  != null">
+            and FileType =#{fileType}
+        </if>
+        <if test="catalogID  != null">
+            and CatalogID =#{catalogID}
+        </if>
+        <if test="filePath  != null">
+            and FilePath like '${filePath}%'
+        </if> 
+        <if test="description  != null">
+            and Description like '${description}%'
+        </if> 
+        <if test="creator  != null">
+            and Creator like '${creator}%'
+        </if> 
+        <if test="beginCreateTime!=null">
+            <![CDATA[ and CreateTime>= to_date('${beginCreateTime} 00:00:00','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+    	    <if test="endCreateTime!=null">
+            <![CDATA[ and CreateTime<= to_date('${endCreateTime} 23:59:59','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+    </sql>
+    
+    <select id="get" parameterType="String" resultType="com.agileEAP.infrastructure.entity.UploadFile">
+    	select 		
+        <include refid="columns" />
+    	from AB_UploadFile
+    	where ID=#{id}
+    </select>
+
+    <insert id="save" parameterType="com.agileEAP.infrastructure.entity.UploadFile">
+    	insert into  AB_UploadFile (
+    	ID,FileName,UniqueName,FileType,CatalogID,FilePath,Description,Creator,CreateTime)
+    	values (#{id},#{fileName},#{uniqueName},#{fileType},#{catalogID},#{filePath},#{description},#{creator},#{createTime})
+    </insert>
+
+    <insert id="update" parameterType="com.agileEAP.infrastructure.entity.UploadFile">
+    	update AB_UploadFile set
+    	FileName=#{fileName},UniqueName=#{uniqueName},FileType=#{fileType},CatalogID=#{catalogID},FilePath=#{filePath},Description=#{description},Creator=#{creator},CreateTime=#{createTime}
+    	where ID=#{id}
+    </insert>
+
+    <delete id="delete" parameterType="String">
+         delete from  AB_UploadFile where ID=#{id}
+    </delete>   
+
+    <delete id="batchDelete" parameterType="list">
+    	<![CDATA[
+    		delete from AB_UploadFile where ID in
+    	]]>
+    	<foreach collection="list" item="id" open="(" separator="," close=")">
+    		#{id}
+    	</foreach>
+    </delete>
+    
+	<select id="search" parameterType="map" resultType="com.agileEAP.infrastructure.entity.UploadFile">
+		select
+        <include refid="columns" />
+		from AB_UploadFile where 1=1
+        <include refid="whereParams"/>
+	</select>
+    
+    <select id="count" parameterType="map" resultType="long">
+		select count(*)
+		from AB_UploadFile where 1=1
+		<include refid="whereParams"/>
+	</select>
+    
+    <select id="searchByPage" parameterType="map" resultType="com.agileEAP.infrastructure.entity.UploadFile">
+		select
+        <include refid="columns" />
+		from AB_UploadFile where 1=1
+        <include refid="whereParams"/>
+    </select>
+</mapper>

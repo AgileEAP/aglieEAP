@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Repository接口 -->
+<mapper namespace="com.agileEAP.security.repository.PositionRepository">
+	<sql id="columns">
+		ID as id,
+		Code as code,
+		Name as name,
+		DutyID as dutyID,
+		AppID as appID,
+		Creator as creator,
+		CreateTime as createTime   
+	</sql>
+    
+    <sql id="whereParams">
+        <if test="id  != null">
+            and ID =#{id}
+        </if>
+        <if test="code  != null">
+            and Code =#{code}
+        </if>
+        <if test="name  != null">
+            and Name like '${name}%'
+        </if> 
+        <if test="dutyID  != null">
+            and DutyID =#{dutyID}
+        </if>
+        <if test="appID  != null">
+            and AppID =#{appID}
+        </if>
+        <if test="creator  != null">
+            and Creator like '${creator}%'
+        </if> 
+        <if test="beginCreateTime!=null">
+            <![CDATA[ and CreateTime>= to_date('${beginCreateTime} 00:00:00','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+    	    <if test="endCreateTime!=null">
+            <![CDATA[ and CreateTime<= to_date('${endCreateTime} 23:59:59','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+    </sql>
+    
+    <select id="get" parameterType="String" resultType="com.agileEAP.security.entity.Position">
+    	select 		
+        <include refid="columns" />
+    	from OM_Position
+    	where ID=#{id}
+    </select>
+
+    <insert id="save" parameterType="com.agileEAP.security.entity.Position">
+    	insert into  OM_Position (
+    	ID,Code,Name,DutyID,AppID,Creator,CreateTime)
+    	values (#{id},#{code},#{name},#{dutyID},#{appID},#{creator},#{createTime})
+    </insert>
+
+    <insert id="update" parameterType="com.agileEAP.security.entity.Position">
+    	update OM_Position set
+    	Code=#{code},Name=#{name},DutyID=#{dutyID},AppID=#{appID},Creator=#{creator},CreateTime=#{createTime}
+    	where ID=#{id}
+    </insert>
+
+    <delete id="delete" parameterType="String">
+         delete from  OM_Position where ID=#{id}
+    </delete>   
+
+    <delete id="batchDelete" parameterType="list">
+    	<![CDATA[
+    		delete from OM_Position where ID in
+    	]]>
+    	<foreach collection="list" item="id" open="(" separator="," close=")">
+    		#{id}
+    	</foreach>
+    </delete>
+    
+	<select id="search" parameterType="map" resultType="com.agileEAP.security.entity.Position">
+		select
+        <include refid="columns" />
+		from OM_Position where 1=1
+        <include refid="whereParams"/>
+	</select>
+    
+    <select id="count" parameterType="map" resultType="long">
+		select count(*)
+		from OM_Position where 1=1
+		<include refid="whereParams"/>
+	</select>
+    
+    <select id="searchByPage" parameterType="map" resultType="com.agileEAP.security.entity.Position">
+		select
+        <include refid="columns" />
+		from OM_Position where 1=1
+        <include refid="whereParams"/>
+    </select>
+</mapper>

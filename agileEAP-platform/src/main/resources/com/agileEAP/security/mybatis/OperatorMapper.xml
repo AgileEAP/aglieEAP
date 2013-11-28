@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Repository接口 -->
+<mapper namespace="com.agileEAP.security.repository.OperatorRepository">
+	<sql id="columns">
+		ID as id,
+		UserType as userType,
+		LoginName as loginName,
+		Name as name,
+		Password as password,
+		Salt as salt,
+		ExpireTime as expireTime,
+		Status as status,
+		Theme as theme,
+		Email as email,
+		Phone as phone,
+		OrgID as orgID,
+		CorpID as corpID,
+		CorpName as corpName,
+		OrgName as orgName,
+		Creator as creator,
+		CreateTime as createTime   
+	</sql>
+    
+    <sql id="whereParams">
+        <if test="id  != null">
+            and ID =#{id}
+        </if>
+        <if test="userType  != null">
+            and UserType =#{userType}
+        </if>
+        <if test="loginName  != null">
+            and LoginName like '${loginName}%'
+        </if> 
+        <if test="name  != null">
+            and Name like '${name}%'
+        </if> 
+        <if test="password  != null">
+            and Password like '${password}%'
+        </if> 
+        <if test="salt  != null">
+            and Salt like '${salt}%'
+        </if> 
+        <if test="beginExpireTime!=null">
+            <![CDATA[ and ExpireTime>= to_date('${beginExpireTime} 00:00:00','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+    	    <if test="endExpireTime!=null">
+            <![CDATA[ and ExpireTime<= to_date('${endExpireTime} 23:59:59','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+        <if test="status  != null">
+            and Status =#{status}
+        </if>
+        <if test="theme  != null">
+            and Theme like '${theme}%'
+        </if> 
+        <if test="email  != null">
+            and Email like '${email}%'
+        </if> 
+        <if test="phone  != null">
+            and Phone like '${phone}%'
+        </if> 
+        <if test="orgID  != null">
+             and orgID like '${orgID}%'
+        </if>
+        <if test="corpID  != null">
+            and CorpID =#{corpID}
+        </if>
+        <if test="corpName  != null">
+            and CorpName like '${corpName}%'
+        </if> 
+<!--         <if test="orgName  != null">
+            and orgName like '${orgName}%'
+        </if>  -->
+        <if test="creator  != null">
+            and Creator like '${creator}%'
+        </if> 
+        <if test="beginCreateTime!=null">
+            <![CDATA[ and CreateTime>= to_date('${beginCreateTime} 00:00:00','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+    	    <if test="endCreateTime!=null">
+            <![CDATA[ and CreateTime<= to_date('${endCreateTime} 23:59:59','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+        <if test="_rawsql!=null">
+            ${_rawsql}
+        </if>     
+    </sql>
+    
+    <select id="get" parameterType="String" resultType="com.agileEAP.security.entity.Operator">
+    	select 		
+        <include refid="columns" />
+    	from AC_Operator
+    	where ID=#{id}
+    </select>
+
+    <insert id="save" parameterType="com.agileEAP.security.entity.Operator">
+   	 insert into  AC_Operator (
+   	   ID,UserType,LoginName,Name,Password,Salt,ExpireTime,Status,Theme,Email,Phone,OrgID,CorpID,CorpName,
+   	   orgName,Creator,CreateTime)
+   	   values (#{id},#{userType},#{loginName},#{name},#{password},#{salt},#{expireTime},
+   	   #{status},#{theme},#{email},#{phone},#{orgID},#{corpID},#{corpName},#{orgName},
+   	   #{creator},#{createTime})
+<!--       <choose>
+          <when test="managercode ==null ">	
+          insert into  AC_Operator (
+    	   ID,UserType,LoginName,Name,Password,Salt,ExpireTime,Status,Theme,Email,Phone,OrgID,CorpID,CorpName,
+    	   orgName,Creator,CreateTime)
+    	   values (#{id},#{userType},#{loginName},#{name},#{password},#{salt},#{expireTime},
+    	   #{status},#{theme},#{email},#{phone},#{orgID},#{corpID},#{corpName},#{orgName},
+    	   #{creator},#{createTime})
+         </when>
+         
+           <when test="managercode !=null ">	
+        insert into  AC_Operator (
+    	ID,UserType,LoginName,Name,Password,Salt,ExpireTime,Status,Theme,Email,Phone,OrgID,CorpID,CorpName,
+    	orgName,Creator,CreateTime,MANAGERCODE)
+    	values (#{id},#{userType},#{loginName},#{name},#{password},#{salt},#{expireTime},
+    	#{status},#{theme},#{email},#{phone},#{orgID},#{corpID},#{corpName},#{orgName},
+    	#{creator},#{createTime},#{managercode})
+         
+         </when>
+      
+      </choose>
+     -->
+    </insert>
+
+    <insert id="update" parameterType="com.agileEAP.security.entity.Operator">
+    	update AC_Operator set
+    	UserType=#{userType},LoginName=#{loginName},Name=#{name},Password=#{password},Salt=#{salt},ExpireTime=#{expireTime},Status=#{status},Theme=#{theme},Email=#{email},Phone=#{phone},OrgID=#{orgID},CorpID=#{corpID},CorpName=#{corpName},orgName=#{orgName},Creator=#{creator},CreateTime=#{createTime}
+    	where ID=#{id}
+    </insert>
+  
+    <delete id="delete" parameterType="String">
+         delete from  AC_Operator where ID=#{id}
+    </delete>   
+
+    <delete id="batchDelete" parameterType="list">
+    	<![CDATA[
+    		delete from AC_Operator where ID in
+    	]]>
+    	<foreach collection="list" item="id" open="(" separator="," close=")">
+    		#{id}
+    	</foreach>
+    </delete>
+    
+	<select id="search" parameterType="map" resultType="com.agileEAP.security.entity.Operator">
+		select
+        <include refid="columns" />
+		from AC_Operator where 1=1
+        <include refid="whereParams"/>
+	</select>
+    
+    <select id="count" parameterType="map" resultType="long">
+		select count(*)
+		from AC_Operator where 1=1
+		<include refid="whereParams"/>
+	</select>
+    
+    <select id="searchByPage" parameterType="map" resultType="com.agileEAP.security.entity.Operator">
+		select
+        <include refid="columns" />
+		from AC_Operator where 1=1
+        <include refid="whereParams"/>
+    </select>
+    
+    <update id="updatePwd" parameterType="map">
+    	update AC_Operator set password = #{password},salt = #{salt} where id = #{id}
+    </update>
+</mapper>

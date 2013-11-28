@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="true" />
+		<setting name="useGeneratedKeys" value="false" />
+		<setting name="defaultExecutorType" value="REUSE" />
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+
+  <plugins>
+    	<plugin interceptor="com.agileEAP.data.mybatis.PaginationInterceptor">
+<!--     	   value="mssql58|mssql12|oracle|mysql|db2" -->
+            <property name="dialect" value="mysql" />
+            <property name="sqlPattern" value=".*ByPage"/>
+    	</plugin>
+    </plugins> 
+    
+	<mappers>
+
+		<!--com.agileEAP.infrastructure -->
+		<mapper resource="com/agileEAP/infrastructure/mybatis/ActionLogMapper.xml" />
+		<mapper resource="com/agileEAP/infrastructure/mybatis/CatalogMapper.xml" />
+		<mapper resource="com/agileEAP/infrastructure/mybatis/DictItemMapper.xml" />
+		<mapper resource="com/agileEAP/infrastructure/mybatis/DictMapper.xml" />
+		<mapper resource="com/agileEAP/infrastructure/mybatis/EFormMapper.xml" />
+		<mapper resource="com/agileEAP/infrastructure/mybatis/SysParamMapper.xml" />
+		<mapper resource="com/agileEAP/infrastructure/mybatis/UploadFileMapper.xml" />
+
+		<!--com.agileEAP.security -->
+		<mapper resource="com/agileEAP/security/mybatis/RoleMapper.xml" />
+		<mapper resource="com/agileEAP/security/mybatis/CustMenuMapper.xml" />
+		<mapper resource="com/agileEAP/security/mybatis/DutyMapper.xml" />
+		<mapper resource="com/agileEAP/security/mybatis/EmployeeMapper.xml" />
+		<mapper resource="com/agileEAP/security/mybatis/EmployeeOrgMapper.xml" />
+		<mapper resource="com/agileEAP/security/mybatis/EmployeePositionMapper.xml" />
+		<mapper resource="com/agileEAP/security/mybatis/MetaDataMapper.xml" />
+		<mapper resource="com/agileEAP/security/mybatis/ObjectRoleMapper.xml" />
+		<mapper resource="com/agileEAP/security/mybatis/OperateMapper.xml" />
+		<mapper resource="com/agileEAP/security/mybatis/OperatorMapper.xml" />
+		<mapper resource="com/agileEAP/security/mybatis/OrganizationMapper.xml" />
+		<mapper resource="com/agileEAP/security/mybatis/PositionMapper.xml" />
+		<mapper resource="com/agileEAP/security/mybatis/PrivilegeMapper.xml" />
+		<mapper resource="com/agileEAP/security/mybatis/ResourceMapper.xml" />
+		<mapper resource="com/agileEAP/security/mybatis/RolePrivilegeMapper.xml" />
+		<mapper resource="com/agileEAP/security/mybatis/ShortcutMapper.xml" />
+		<mapper resource="com/agileEAP/security/mybatis/SpecialPrivilegeMapper.xml" />	
+		
+		<!--com.agileEAP.workflow-->
+		 <mapper resource="com/agileEAP/workflow/mybatis/ActivityInstMapper.xml" />
+		 <mapper resource="com/agileEAP/workflow/mybatis/AgentCandidateMapper.xml" />
+		 <mapper resource="com/agileEAP/workflow/mybatis/AgentItemMapper.xml" />
+		 <mapper resource="com/agileEAP/workflow/mybatis/AgentMapper.xml" />
+		 <mapper resource="com/agileEAP/workflow/mybatis/ExtendAttrMapper.xml" />
+		 <mapper resource="com/agileEAP/workflow/mybatis/ParticipantMapper.xml" />
+		 <mapper resource="com/agileEAP/workflow/mybatis/ProcessDefMapper.xml" />
+		 <mapper resource="com/agileEAP/workflow/mybatis/ProcessFormMapper.xml" />
+		 <mapper resource="com/agileEAP/workflow/mybatis/ProcessInstMapper.xml" />
+		 <mapper resource="com/agileEAP/workflow/mybatis/TraceLogMapper.xml" />
+		 <mapper resource="com/agileEAP/workflow/mybatis/TransControlMapper.xml" />
+		 <mapper resource="com/agileEAP/workflow/mybatis/TransitionMapper.xml" />
+		 <mapper resource="com/agileEAP/workflow/mybatis/WorkItemMapper.xml" />
+				
+	</mappers>
+</configuration>

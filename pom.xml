@@ -3,23 +3,24 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.aglieEAP</groupId>
-	<artifactId>aglieEAP</artifactId>
+	<groupId>com.agileEAP</groupId>
+	<artifactId>agileEAP</artifactId>
 	<version>1.0.0</version>
 	<packaging>pom</packaging>
 
-	<name>aglieEAP</name>
-	<url>http://www.aglieEAP.com</url>
+	<name>agileEAP</name>
+	<url>http://www.agileEAP.com</url>
 	<modules>
-		<module>aglieEAP-core</module>
-		<module>aglieEAP-platform</module>
-		<module>aglieEAP-portal</module>
-		<module>aglieEAP-workflow</module>
+		<module>agileEAP-core</module>
+		<module>agileEAP-platform</module>
+		<module>agileEAP-portal</module>
+		<module>agileEAP-workflow</module>
+		<module>agileEAP-formdesigner</module>
 	</modules>
 
 	<properties>
 		<!-- 主要依赖库的版本定义 -->
-		<aglieEAP.version>1.0.0</aglieEAP.version>
+		<agileEAP.version>1.0.0</agileEAP.version>
 		<spring.version>3.2.4.RELEASE</spring.version>
 		<hibernate.version>4.2.5.Final</hibernate.version>
 		<mybatis.version>3.2.2</mybatis.version>

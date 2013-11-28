@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Repository接口 -->
+<mapper namespace="com.agileEAP.infrastructure.repository.EFormRepository">
+	<sql id="columns">
+		ID as id,
+		Name as name,
+		Content as content,
+		Description as description,
+		Creator as creator,
+		CreateTime as createTime   
+	</sql>
+    
+    <sql id="whereParams">
+        <if test="id  != null">
+            and ID =#{id}
+        </if>
+        <if test="name  != null">
+            and Name like '${name}%'
+        </if> 
+        <if test="content  != null">
+            and Content like '${content}%'
+        </if> 
+        <if test="description  != null">
+            and Description like '${description}%'
+        </if> 
+        <if test="creator  != null">
+            and Creator like '${creator}%'
+        </if> 
+        <if test="beginCreateTime!=null">
+            <![CDATA[ and CreateTime>= to_date('${beginCreateTime} 00:00:00','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+    	    <if test="endCreateTime!=null">
+            <![CDATA[ and CreateTime<= to_date('${endCreateTime} 23:59:59','yyyy-MM-dd hh24:mi:ss')]]>
+        </if>
+    </sql>
+    
+    <select id="get" parameterType="String" resultType="com.agileEAP.infrastructure.entity.EForm">
+    	select 		
+        <include refid="columns" />
+    	from AB_eForm
+    	where ID=#{id}
+    </select>
+
+    <insert id="save" parameterType="com.agileEAP.infrastructure.entity.EForm">
+    	insert into  AB_eForm (
+    	ID,Name,Content,Description,Creator,CreateTime)
+    	values (#{id},#{name},#{content},#{description},#{creator},#{createTime})
+    </insert>
+
+    <insert id="update" parameterType="com.agileEAP.infrastructure.entity.EForm">
+    	update AB_eForm set
+    	Name=#{name},Content=#{content},Description=#{description},Creator=#{creator},CreateTime=#{createTime}
+    	where ID=#{id}
+    </insert>
+
+    <delete id="delete" parameterType="String">
+         delete from  AB_eForm where ID=#{id}
+    </delete>   
+
+    <delete id="batchDelete" parameterType="list">
+    	<![CDATA[
+    		delete from AB_eForm where ID in
+    	]]>
+    	<foreach collection="list" item="id" open="(" separator="," close=")">
+    		#{id}
+    	</foreach>
+    </delete>
+    
+	<select id="search" parameterType="map" resultType="com.agileEAP.infrastructure.entity.EForm">
+		select
+        <include refid="columns" />
+		from AB_eForm where 1=1
+        <include refid="whereParams"/>
+	</select>
+    
+    <select id="count" parameterType="map" resultType="long">
+		select count(*)
+		from AB_eForm where 1=1
+		<include refid="whereParams"/>
+	</select>
+    
+    <select id="searchByPage" parameterType="map" resultType="com.agileEAP.infrastructure.entity.EForm">
+		select
+        <include refid="columns" />
+		from AB_eForm where 1=1
+        <include refid="whereParams"/>
+    </select>
+</mapper>

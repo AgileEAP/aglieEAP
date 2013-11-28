@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Repository接口 -->
+<mapper namespace="com.agileEAP.security.repository.ResourceRepository">
+	<sql id="columns">
+		ID as id,
+		Name as name,
+		Type as type,
+		SortOrder as sortOrder,
+		ParentID as parentID,
+		Entry as entry,
+		Url as url,
+		Icon as icon,
+		OpenMode as openMode,
+		ShowNavigation as showNavigation,
+		ShowToolBar as showToolBar   
+	</sql>
+    
+    <sql id="whereParams">
+        <if test="id  != null">
+            and ID =#{id}
+        </if>
+        <if test="name  != null">
+            and Name like '${name}'
+        </if> 
+        <if test="type  != null">
+            and Type =#{type}
+        </if>
+        <if test="beginSortOrder!=null">
+            <![CDATA[ and  SortOrder >=#{ beginSortOrder}]]>
+        </if>
+    	    <if test="endSortOrder!=null">
+            <![CDATA[ and  SortOrder <=#{ endSortOrder}]]>
+         </if>      
+        <if test="parentID  != null">
+            and ParentID =#{parentID}
+        </if>
+        <if test="entry  != null">
+            and Entry like '${entry}'
+        </if> 
+        <if test="url  != null">
+            and Url like '${url}'
+        </if> 
+        <if test="icon  != null">
+            and Icon like '${icon}'
+        </if> 
+        <if test="openMode  != null">
+            and OpenMode =#{openMode}
+        </if>
+        <if test="showNavigation  != null">
+            and ShowNavigation =#{showNavigation}
+        </if>
+        <if test="showToolBar  != null">
+            and ShowToolBar =#{showToolBar}
+        </if>
+    </sql>
+    
+    <select id="get" parameterType="String" resultType="com.agileEAP.security.entity.Resource">
+    	select 		
+        <include refid="columns" />
+    	from AC_Resource
+    	where ID=#{id}
+    </select>
+
+    <insert id="save" parameterType="com.agileEAP.security.entity.Resource">
+    	insert into  AC_Resource (
+    	ID,Name,Type,SortOrder,ParentID,Entry,Url,Icon,OpenMode,ShowNavigation,ShowToolBar)
+    	values (#{id},#{name},#{type},#{sortOrder},#{parentID},#{entry},#{url},#{icon},#{openMode},#{showNavigation},#{showToolBar})
+    </insert>
+
+    <insert id="update" parameterType="com.agileEAP.security.entity.Resource">
+    	update AC_Resource set
+    	Name=#{name},Type=#{type},SortOrder=#{sortOrder},ParentID=#{parentID},Entry=#{entry},Url=#{url},Icon=#{icon},OpenMode=#{openMode},ShowNavigation=#{showNavigation},ShowToolBar=#{showToolBar}
+    	where ID=#{id}
+    </insert>
+
+    <delete id="delete" parameterType="String">
+         delete from  AC_Resource where ID=#{id}
+    </delete>   
+
+    <delete id="batchDelete" parameterType="list">
+    	<![CDATA[
+    		delete from AC_Resource where ID in
+    	]]>
+    	<foreach collection="list" item="id" open="(" separator="," close=")">
+    		#{id}
+    	</foreach>
+    </delete>
+    
+	<select id="search" parameterType="map" resultType="com.agileEAP.security.entity.Resource">
+		select
+        <include refid="columns" />
+		from AC_Resource where 1=1
+        <include refid="whereParams"/>        
+        <if test="$orderby!=null">
+			ORDER BY ${$orderby}
+		</if>
+	</select>
+    
+    <select id="count" parameterType="map" resultType="long">
+		select count(*)
+		from AC_Resource where 1=1
+		<include refid="whereParams"/>
+	</select>
+    
+    <select id="searchByPage" parameterType="map" resultType="com.agileEAP.security.entity.Resource">
+		select
+        <include refid="columns" />
+		from AC_Resource where 1=1
+        <include refid="whereParams"/>        
+    </select>
+</mapper>

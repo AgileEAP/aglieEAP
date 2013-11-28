@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Repository接口 -->
+<mapper namespace="com.agileEAP.security.repository.EmployeeOrgRepository">
+	<sql id="columns">
+		ID as id,
+		OrgID as orgID,
+		EmployeeID as employeeID   
+	</sql>
+    
+    <sql id="whereParams">
+        <if test="id  != null">
+            and ID =#{id}
+        </if>
+        <if test="orgID  != null">
+            and OrgID =#{orgID}
+        </if>
+        <if test="employeeID  != null">
+            and EmployeeID =#{employeeID}
+        </if>
+    </sql>
+    
+    <select id="get" parameterType="String" resultType="com.agileEAP.security.entity.EmployeeOrg">
+    	select 		
+        <include refid="columns" />
+    	from OM_EmployeeOrg
+    	where ID=#{id}
+    </select>
+
+    <insert id="save" parameterType="com.agileEAP.security.entity.EmployeeOrg">
+    	insert into  OM_EmployeeOrg (
+    	ID,OrgID,EmployeeID)
+    	values (#{id},#{orgID},#{employeeID})
+    </insert>
+
+    <insert id="update" parameterType="com.agileEAP.security.entity.EmployeeOrg">
+    	update OM_EmployeeOrg set
+    	OrgID=#{orgID},EmployeeID=#{employeeID}
+    	where ID=#{id}
+    </insert>
+
+    <delete id="delete" parameterType="String">
+         delete from  OM_EmployeeOrg where ID=#{id}
+    </delete>   
+
+    <delete id="batchDelete" parameterType="list">
+    	<![CDATA[
+    		delete from OM_EmployeeOrg where ID in
+    	]]>
+    	<foreach collection="list" item="id" open="(" separator="," close=")">
+    		#{id}
+    	</foreach>
+    </delete>
+    
+	<select id="search" parameterType="map" resultType="com.agileEAP.security.entity.EmployeeOrg">
+		select
+        <include refid="columns" />
+		from OM_EmployeeOrg where 1=1
+        <include refid="whereParams"/>
+	</select>
+    
+    <select id="count" parameterType="map" resultType="long">
+		select count(*)
+		from OM_EmployeeOrg where 1=1
+		<include refid="whereParams"/>
+	</select>
+    
+    <select id="searchByPage" parameterType="map" resultType="com.agileEAP.security.entity.EmployeeOrg">
+		select
+        <include refid="columns" />
+		from OM_EmployeeOrg where 1=1
+        <include refid="whereParams"/>
+    </select>
+</mapper>

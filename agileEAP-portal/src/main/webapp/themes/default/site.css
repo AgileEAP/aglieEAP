@@ -1,0 +1,7 @@
+.k-grid-header th{background-color: #d1f0a8;}
+.k-window-titlebar{background-color: #d1f0a8;}
+.choosebox{cursor:pointer;background:#fff url(../../themes/default/images/chooseBox.png) no-repeat right;background-color:#fff;}
+
+#btnSubimt{background: url("../../themes/default/images/button/submit_init.png");width: 65px;height: 28px;border: 0px;}
+#btnCancel{background: url("../../themes/default/images/button/cancel_init.png");width: 65px;height: 28px;border: 0px;}
+#btnSearch{background: url("../../themes/default/images/button/submit_init.png");width: 65px;height: 28px;border: 0px;}
