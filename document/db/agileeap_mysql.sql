@@ -1,21 +1,23 @@
 -- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               5.5.25-MariaDB - mariadb.org binary distribution
--- Server OS:                    Win64
--- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2013-10-25 10:27:31
+-- 主机:                           127.0.0.1
+-- 服务器版本:                        5.5.33a-MariaDB - mariadb.org binary distribution
+-- 服务器操作系统:                      Win64
+-- HeidiSQL 版本:                  8.0.0.4396
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
-/*!40014 SET FOREIGN_KEY_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Dumping database structure for agileeap
+-- 导出 agileeap 的数据库结构
+DROP DATABASE IF EXISTS `agileeap`;
 CREATE DATABASE IF NOT EXISTS `agileeap` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `agileeap`;
 
 
--- Dumping structure for table agileeap.ab_actionlog
+-- 导出  表 agileeap.ab_actionlog 结构
+DROP TABLE IF EXISTS `ab_actionlog`;
 CREATE TABLE IF NOT EXISTS `ab_actionlog` (
   `ID` varchar(36) NOT NULL,
   `UserName` varchar(16) DEFAULT NULL,
@@ -30,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `ab_actionlog` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ab_actionlog: 1,091 rows
+-- 正在导出表  agileeap.ab_actionlog 的数据：1,098 rows
 /*!40000 ALTER TABLE `ab_actionlog` DISABLE KEYS */;
 INSERT INTO `ab_actionlog` (`ID`, `UserName`, `LogType`, `ClientIP`, `AppModule`, `Message`, `Content`, `Result`, `UserID`, `CreateTime`) VALUES
 	('980dc964-5ab7-4d49-b234-a13400c4242b', '', 1, '::1', 'AgileEAP.Infrastructure', '????????eClient!', NULL, 2, '', '2012-12-27 11:54:07'),
@@ -1123,11 +1125,19 @@ INSERT INTO `ab_actionlog` (`ID`, `UserName`, `LogType`, `ClientIP`, `AppModule`
 	('eff294b3-948d-4615-8e7e-25a89e13c9d5', '张强', 1, '', '', '保存资源成功', '{"id":"94156629-f2fb-4202-97eb-8616675e2b90","name":"用户管理","type":1,"sortOrder":1,"parentID":"c766b6e7-b7d0-4a43-9b80-36928d8dd459","entry":"","url":"security/organization/manager","icon":"","openMode":1,"showNavigation":0,"showToolBar":1,"parentName":"权限管理","authorized":false,"navigationTitle":null,"operates":[{"id":"e7efe79c-5543-4fae-8589-a0640103fba3","name":"新增","command":"add","argument":"","isVerify":0,"sortOrder":1},{"id":"8a1d21a6-cb63-4802-b73f-9ead00fbb284","name":"修改","command":"update","argument":"","isVerify":1,"sortOrder":2},{"id":"85917bfb-9e02-4a32-af23-9e3700e5622d","name":"删除","command":"delete","argument":"","isVerify":1,"sortOrder":3},{"id":"6b957ddd-792a-48db-9980-7730b7d19232","name":"查询","command":"search","argument":"","isVerify":0,"sortOrder":4},{"id":"85bf99fd-3179-4722-a0c6-4885e28a8e92","name":"配置用户角色","command":"configRole","argument":"","isVerify":0,"sortOrder":5}]}', 1, 'c9d597b9-112e-4a17-b802-41d8fb312790', '2013-09-28 18:31:39'),
 	('ad686ce2-ea12-4a7f-b31f-51199a1e38e1', '张强', 1, '', '', '保存资源成功', '{"id":"a39c7717-cf9e-4dce-939c-8e088f6237f2","name":"流程配置","type":1,"sortOrder":1,"parentID":"93d44726-cf70-4bd8-91d1-804b94825625","entry":"","url":"/workflow/process","icon":"workflow-workflow-config.png","openMode":1,"showNavigation":0,"showToolBar":0,"parentName":"工作流","authorized":false,"navigationTitle":null,"operates":[{"id":"e7efe79c-5543-4fae-8589-a0640103fba3","name":"新增","command":"add","argument":"","isVerify":0,"sortOrder":1},{"id":"8a1d21a6-cb63-4802-b73f-9ead00fbb284","name":"修改","command":"update","argument":"","isVerify":1,"sortOrder":2},{"id":"85917bfb-9e02-4a32-af23-9e3700e5622d","name":"删除","command":"delete","argument":"","isVerify":1,"sortOrder":3},{"id":"6b957ddd-792a-48db-9980-7730b7d19232","name":"查询","command":"search","argument":"","isVerify":0,"sortOrder":4}]}', 1, 'c9d597b9-112e-4a17-b802-41d8fb312790', '2013-10-24 16:54:45'),
 	('3e5b8590-987a-44eb-8829-aa239b84ac73', '张强', 1, '', '', '保存资源成功', '{"id":"a39c7717-cf9e-4dce-939c-8e088f6237f2","name":"流程配置","type":1,"sortOrder":1,"parentID":"93d44726-cf70-4bd8-91d1-804b94825625","entry":"","url":"workflow/process","icon":"workflow-workflow-config.png","openMode":1,"showNavigation":0,"showToolBar":0,"parentName":"工作流","authorized":false,"navigationTitle":null,"operates":[{"id":"e7efe79c-5543-4fae-8589-a0640103fba3","name":"新增","command":"add","argument":"","isVerify":0,"sortOrder":1},{"id":"8a1d21a6-cb63-4802-b73f-9ead00fbb284","name":"修改","command":"update","argument":"","isVerify":1,"sortOrder":2},{"id":"85917bfb-9e02-4a32-af23-9e3700e5622d","name":"删除","command":"delete","argument":"","isVerify":1,"sortOrder":3},{"id":"6b957ddd-792a-48db-9980-7730b7d19232","name":"查询","command":"search","argument":"","isVerify":0,"sortOrder":4}]}', 1, 'c9d597b9-112e-4a17-b802-41d8fb312790', '2013-10-24 16:56:25'),
-	('5698de84-af21-49f6-9517-f84470949a0b', '张强', 1, '', '', '更新角色id={0}', '{"id":"36b6eb02-24fa-4424-b04c-a06e0137772f","userType":0,"loginName":"admin","name":"云平台管理员","password":"fcdfaa192fe3c22c8e6cfa7ddbc313de9a8f55fb","salt":"617cd4f9e55e15ef","expireTime":1339430400000,"status":1,"theme":"default","email":"","phone":"","orgID":"001","orgName":"新太科技","corpID":"","corpName":"新太科技","creator":"admin","createTime":1339498440000,"roleList":null}', 1, 'c9d597b9-112e-4a17-b802-41d8fb312790', '2013-10-25 10:18:54');
+	('5698de84-af21-49f6-9517-f84470949a0b', '张强', 1, '', '', '更新角色id={0}', '{"id":"36b6eb02-24fa-4424-b04c-a06e0137772f","userType":0,"loginName":"admin","name":"云平台管理员","password":"fcdfaa192fe3c22c8e6cfa7ddbc313de9a8f55fb","salt":"617cd4f9e55e15ef","expireTime":1339430400000,"status":1,"theme":"default","email":"","phone":"","orgID":"001","orgName":"新太科技","corpID":"","corpName":"新太科技","creator":"admin","createTime":1339498440000,"roleList":null}', 1, 'c9d597b9-112e-4a17-b802-41d8fb312790', '2013-10-25 10:18:54'),
+	('98e47b32-3a73-4c00-8ef1-29ad9159e64a', '云平台管理员', 1, '', '', '新增操作成功', '{"id":"83c14448-e5c1-4469-8e0e-65cabac200af","name":"新建流程","command":"newProcess","argument":"","isVerify":0,"sortOrder":1}', 1, '36b6eb02-24fa-4424-b04c-a06e0137772f', '2013-11-28 23:57:58'),
+	('6cf77dd0-bd51-421c-bc76-b090e43fe6dd', '云平台管理员', 1, '', '', '新增操作成功', '{"id":"1f3a27e6-7cb6-4a20-ae73-fa94a44eb649","name":"配置流程","command":"designProcess","argument":"","isVerify":0,"sortOrder":2}', 1, '36b6eb02-24fa-4424-b04c-a06e0137772f', '2013-11-28 23:58:22'),
+	('9ba9da96-b1c1-40b6-b663-96ffb51c5e0b', '云平台管理员', 1, '', '', '新增操作成功', '{"id":"e81044f7-473c-45df-9866-2ac142cc0228","name":"克隆流程","command":"cloneProcess","argument":"","isVerify":0,"sortOrder":3}', 1, '36b6eb02-24fa-4424-b04c-a06e0137772f', '2013-11-28 23:58:48'),
+	('b4ba9498-b55e-45d4-af6e-d764a91ec181', '云平台管理员', 1, '', '', '保存资源成功', '{"id":"a39c7717-cf9e-4dce-939c-8e088f6237f2","name":"流程配置","type":1,"sortOrder":1,"parentID":"93d44726-cf70-4bd8-91d1-804b94825625","entry":"","url":"workflow/process","icon":"workflow-workflow-config.png","openMode":1,"showNavigation":0,"showToolBar":1,"parentName":"工作流","authorized":false,"navigationTitle":null,"operates":[{"id":"e7efe79c-5543-4fae-8589-a0640103fba3","name":"新增","command":"add","argument":"","isVerify":0,"sortOrder":1},{"id":"8a1d21a6-cb63-4802-b73f-9ead00fbb284","name":"修改","command":"update","argument":"","isVerify":1,"sortOrder":2},{"id":"85917bfb-9e02-4a32-af23-9e3700e5622d","name":"删除","command":"delete","argument":"","isVerify":1,"sortOrder":3},{"id":"6b957ddd-792a-48db-9980-7730b7d19232","name":"查询","command":"search","argument":"","isVerify":0,"sortOrder":4}]}', 1, '36b6eb02-24fa-4424-b04c-a06e0137772f', '2013-11-29 00:00:20'),
+	('d2a9371f-dced-42b6-988c-e07e7f9786e0', '云平台管理员', 1, '', '', '保存资源成功', '{"id":"47a1ced5-a8b4-4a09-864b-fe9bd5a99165","name":"流程监控","type":1,"sortOrder":2,"parentID":"93d44726-cf70-4bd8-91d1-804b94825625","entry":"","url":"","icon":"","openMode":1,"showNavigation":0,"showToolBar":1,"parentName":"工作流","authorized":false,"navigationTitle":null,"operates":[]}', 1, '36b6eb02-24fa-4424-b04c-a06e0137772f', '2013-11-29 00:00:26'),
+	('0cebac39-4897-40db-9f14-e75cf87b9779', '云平台管理员', 1, '', '', '保存资源成功', '{"id":"92cc12b9-2ed7-4b2b-9fd1-91f2dc4c76fb","name":"流程治理","type":1,"sortOrder":3,"parentID":"93d44726-cf70-4bd8-91d1-804b94825625","entry":"","url":"","icon":"","openMode":1,"showNavigation":0,"showToolBar":1,"parentName":"工作流","authorized":false,"navigationTitle":null,"operates":[]}', 1, '36b6eb02-24fa-4424-b04c-a06e0137772f', '2013-11-29 00:00:33'),
+	('843892bb-ad1b-45e0-8e28-280fc998a970', '云平台管理员', 1, '', '', '保存资源成功', '{"id":"a39c7717-cf9e-4dce-939c-8e088f6237f2","name":"流程配置","type":1,"sortOrder":1,"parentID":"93d44726-cf70-4bd8-91d1-804b94825625","entry":"","url":"workflow/process","icon":"workflow-workflow-config.png","openMode":1,"showNavigation":0,"showToolBar":1,"parentName":"工作流","authorized":false,"navigationTitle":null,"operates":[{"id":"83c14448-e5c1-4469-8e0e-65cabac200af","name":"新建流程","command":"newProcess","argument":"","isVerify":0,"sortOrder":1},{"id":"1f3a27e6-7cb6-4a20-ae73-fa94a44eb649","name":"配置流程","command":"designProcess","argument":"","isVerify":0,"sortOrder":2},{"id":"e81044f7-473c-45df-9866-2ac142cc0228","name":"克隆流程","command":"cloneProcess","argument":"","isVerify":0,"sortOrder":3},{"id":"85917bfb-9e02-4a32-af23-9e3700e5622d","name":"删除","command":"delete","argument":"","isVerify":1,"sortOrder":4}]}', 1, '36b6eb02-24fa-4424-b04c-a06e0137772f', '2013-11-29 00:02:12');
 /*!40000 ALTER TABLE `ab_actionlog` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ab_actionloghistory
+-- 导出  表 agileeap.ab_actionloghistory 结构
+DROP TABLE IF EXISTS `ab_actionloghistory`;
 CREATE TABLE IF NOT EXISTS `ab_actionloghistory` (
   `ID` varchar(36) NOT NULL,
   `UserName` varchar(16) DEFAULT NULL,
@@ -1143,12 +1153,13 @@ CREATE TABLE IF NOT EXISTS `ab_actionloghistory` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ab_actionloghistory: 0 rows
+-- 正在导出表  agileeap.ab_actionloghistory 的数据：0 rows
 /*!40000 ALTER TABLE `ab_actionloghistory` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ab_actionloghistory` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ab_app
+-- 导出  表 agileeap.ab_app 结构
+DROP TABLE IF EXISTS `ab_app`;
 CREATE TABLE IF NOT EXISTS `ab_app` (
   `ID` varchar(36) NOT NULL,
   `Name` varchar(64) NOT NULL,
@@ -1164,7 +1175,7 @@ CREATE TABLE IF NOT EXISTS `ab_app` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ab_app: 5 rows
+-- 正在导出表  agileeap.ab_app 的数据：5 rows
 /*!40000 ALTER TABLE `ab_app` DISABLE KEYS */;
 INSERT INTO `ab_app` (`ID`, `Name`, `Text`, `IsUse`, `UseTime`, `ManageRole`, `AppURL`, `SortOrder`, `Description`, `Creator`, `CreateTime`) VALUES
 	('097c75c7-779c-4a0d-ac5e-9edc011259f1', 'eManager', '云运维管理系统', 1, '2011-05-07 00:00:00', '', '113.108.237.147/SelfPortal/Login.aspx', 0, NULL, '', '2011-05-07 00:00:00'),
@@ -1175,7 +1186,8 @@ INSERT INTO `ab_app` (`ID`, `Name`, `Text`, `IsUse`, `UseTime`, `ManageRole`, `A
 /*!40000 ALTER TABLE `ab_app` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ab_cachedata
+-- 导出  表 agileeap.ab_cachedata 结构
+DROP TABLE IF EXISTS `ab_cachedata`;
 CREATE TABLE IF NOT EXISTS `ab_cachedata` (
   `ID` varchar(36) NOT NULL,
   `Name` varchar(64) NOT NULL,
@@ -1185,12 +1197,13 @@ CREATE TABLE IF NOT EXISTS `ab_cachedata` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ab_cachedata: 0 rows
+-- 正在导出表  agileeap.ab_cachedata 的数据：0 rows
 /*!40000 ALTER TABLE `ab_cachedata` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ab_cachedata` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ab_calendar
+-- 导出  表 agileeap.ab_calendar 结构
+DROP TABLE IF EXISTS `ab_calendar`;
 CREATE TABLE IF NOT EXISTS `ab_calendar` (
   `ID` varchar(36) NOT NULL,
   `Type` smallint(6) DEFAULT NULL,
@@ -1204,12 +1217,13 @@ CREATE TABLE IF NOT EXISTS `ab_calendar` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ab_calendar: 0 rows
+-- 正在导出表  agileeap.ab_calendar 的数据：0 rows
 /*!40000 ALTER TABLE `ab_calendar` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ab_calendar` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ab_catalog
+-- 导出  表 agileeap.ab_catalog 结构
+DROP TABLE IF EXISTS `ab_catalog`;
 CREATE TABLE IF NOT EXISTS `ab_catalog` (
   `ID` varchar(36) NOT NULL,
   `CatalogName` varchar(64) CHARACTER SET utf8 NOT NULL,
@@ -1224,12 +1238,13 @@ CREATE TABLE IF NOT EXISTS `ab_catalog` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ab_catalog: 0 rows
+-- 正在导出表  agileeap.ab_catalog 的数据：0 rows
 /*!40000 ALTER TABLE `ab_catalog` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ab_catalog` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ab_dict
+-- 导出  表 agileeap.ab_dict 结构
+DROP TABLE IF EXISTS `ab_dict`;
 CREATE TABLE IF NOT EXISTS `ab_dict` (
   `ID` varchar(36) NOT NULL,
   `Name` varchar(64) NOT NULL,
@@ -1242,7 +1257,7 @@ CREATE TABLE IF NOT EXISTS `ab_dict` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ab_dict: 38 rows
+-- 正在导出表  agileeap.ab_dict 的数据：38 rows
 /*!40000 ALTER TABLE `ab_dict` DISABLE KEYS */;
 INSERT INTO `ab_dict` (`ID`, `Name`, `Text`, `ParentID`, `SortOrder`, `Description`, `Creator`, `CreateTime`) VALUES
 	('01d5a7df-d1ba-4cbe-ab55-9e9800bdccdb', '769', '东莞', '579690a6-6713-4de0-a629-9e94014f2011', 3, 'DG', 'a980205f-f09a-4dad-b41e-9f0c00929008', '2011-07-25 17:10:36'),
@@ -1286,7 +1301,8 @@ INSERT INTO `ab_dict` (`ID`, `Name`, `Text`, `ParentID`, `SortOrder`, `Descripti
 /*!40000 ALTER TABLE `ab_dict` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ab_dictitem
+-- 导出  表 agileeap.ab_dictitem 结构
+DROP TABLE IF EXISTS `ab_dictitem`;
 CREATE TABLE IF NOT EXISTS `ab_dictitem` (
   `ID` varchar(36) NOT NULL,
   `DictID` varchar(36) NOT NULL,
@@ -1299,7 +1315,7 @@ CREATE TABLE IF NOT EXISTS `ab_dictitem` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ab_dictitem: 217 rows
+-- 正在导出表  agileeap.ab_dictitem 的数据：217 rows
 /*!40000 ALTER TABLE `ab_dictitem` DISABLE KEYS */;
 INSERT INTO `ab_dictitem` (`ID`, `DictID`, `Value`, `Text`, `SortOrder`, `Description`, `Creator`, `CreateTime`) VALUES
 	('008ebd3d-43e4-4a6b-a821-9ea60105deb1', '106d9428-9bde-4712-9a7b-9ea601054947', '2', '2x2.40 GHz Xeo', 2, '4CORE2.0GH', 'a980205f-f09a-4dad-b41e-9f0c00929008', '2011-07-08 15:09:02'),
@@ -1522,7 +1538,8 @@ INSERT INTO `ab_dictitem` (`ID`, `DictID`, `Value`, `Text`, `SortOrder`, `Descri
 /*!40000 ALTER TABLE `ab_dictitem` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ab_eform
+-- 导出  表 agileeap.ab_eform 结构
+DROP TABLE IF EXISTS `ab_eform`;
 CREATE TABLE IF NOT EXISTS `ab_eform` (
   `ID` varchar(36) NOT NULL,
   `Name` varchar(32) DEFAULT NULL,
@@ -1534,7 +1551,7 @@ CREATE TABLE IF NOT EXISTS `ab_eform` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ab_eform: 11 rows
+-- 正在导出表  agileeap.ab_eform 的数据：11 rows
 /*!40000 ALTER TABLE `ab_eform` DISABLE KEYS */;
 INSERT INTO `ab_eform` (`ID`, `Name`, `Content`, `AppID`, `Description`, `Creator`, `CreateTime`) VALUES
 	('011ebf99-9a0c-4759-b4cd-1893d1161593', 'testTable00', '{"DataSource":"test","Title":"1.0","Fields":[{"ID":"1358324927974","SortOrder":0,"DataSource":"select * from AB_eForm","Text":"控件名：","Required":"on","ControlType":"DataTable","DataType":"String","AccessPattern":"Write","DefaultValue":"","Rows":1,"Cols":1,"Width":240,"Height":132,"Url":null,"X":"272.9999694824219","Y":"67.68333435058594","Z":0,"Container":"","Name":"1358324927974","ListItems":[{"Value":"Name","Text":"显示名","$$hashKey":"004"}],"CustomStyle":"","URL":"","OldID":1358324927974}],"Script":"","Style":"","Name":"testTable"}', 'yes', 'litest', '云平台管理员', '2013-01-16 16:29:35'),
@@ -1551,7 +1568,8 @@ INSERT INTO `ab_eform` (`ID`, `Name`, `Content`, `AppID`, `Description`, `Creato
 /*!40000 ALTER TABLE `ab_eform` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ab_language
+-- 导出  表 agileeap.ab_language 结构
+DROP TABLE IF EXISTS `ab_language`;
 CREATE TABLE IF NOT EXISTS `ab_language` (
   `Id` int(11) NOT NULL,
   `Name` varchar(100) CHARACTER SET utf8 NOT NULL,
@@ -1564,12 +1582,13 @@ CREATE TABLE IF NOT EXISTS `ab_language` (
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ab_language: 0 rows
+-- 正在导出表  agileeap.ab_language 的数据：0 rows
 /*!40000 ALTER TABLE `ab_language` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ab_language` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ab_localestringresource
+-- 导出  表 agileeap.ab_localestringresource 结构
+DROP TABLE IF EXISTS `ab_localestringresource`;
 CREATE TABLE IF NOT EXISTS `ab_localestringresource` (
   `Id` int(11) NOT NULL,
   `LanguageId` int(11) NOT NULL,
@@ -1578,12 +1597,13 @@ CREATE TABLE IF NOT EXISTS `ab_localestringresource` (
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ab_localestringresource: 0 rows
+-- 正在导出表  agileeap.ab_localestringresource 的数据：0 rows
 /*!40000 ALTER TABLE `ab_localestringresource` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ab_localestringresource` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ab_localizedproperty
+-- 导出  表 agileeap.ab_localizedproperty 结构
+DROP TABLE IF EXISTS `ab_localizedproperty`;
 CREATE TABLE IF NOT EXISTS `ab_localizedproperty` (
   `Id` int(11) NOT NULL,
   `EntityId` int(11) NOT NULL,
@@ -1594,12 +1614,13 @@ CREATE TABLE IF NOT EXISTS `ab_localizedproperty` (
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ab_localizedproperty: 0 rows
+-- 正在导出表  agileeap.ab_localizedproperty 的数据：0 rows
 /*!40000 ALTER TABLE `ab_localizedproperty` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ab_localizedproperty` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ab_log
+-- 导出  表 agileeap.ab_log 结构
+DROP TABLE IF EXISTS `ab_log`;
 CREATE TABLE IF NOT EXISTS `ab_log` (
   `Id` int(11) NOT NULL,
   `LogLevelId` int(11) NOT NULL,
@@ -1613,12 +1634,13 @@ CREATE TABLE IF NOT EXISTS `ab_log` (
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ab_log: 0 rows
+-- 正在导出表  agileeap.ab_log 的数据：0 rows
 /*!40000 ALTER TABLE `ab_log` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ab_log` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ab_module
+-- 导出  表 agileeap.ab_module 结构
+DROP TABLE IF EXISTS `ab_module`;
 CREATE TABLE IF NOT EXISTS `ab_module` (
   `ID` varchar(36) NOT NULL,
   `Name` varchar(64) DEFAULT NULL,
@@ -1633,7 +1655,7 @@ CREATE TABLE IF NOT EXISTS `ab_module` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ab_module: 3 rows
+-- 正在导出表  agileeap.ab_module 的数据：3 rows
 /*!40000 ALTER TABLE `ab_module` DISABLE KEYS */;
 INSERT INTO `ab_module` (`ID`, `Name`, `AppID`, `Text`, `Assembly`, `Namesapce`, `IsValid`, `Description`, `Creator`, `CreateTime`) VALUES
 	('a1d215ce-4800-4a4d-ae21-9edc01116e07', 'PCI.eCloud.Domai', '云管理平台', '云资源管理', 'PCI.eCloud.Domai', 'PCI.eCloud.Domai', 1, NULL, '', '2011-05-07 00:00:00'),
@@ -1642,7 +1664,8 @@ INSERT INTO `ab_module` (`ID`, `Name`, `AppID`, `Text`, `Assembly`, `Namesapce`,
 /*!40000 ALTER TABLE `ab_module` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ab_personalparam
+-- 导出  表 agileeap.ab_personalparam 结构
+DROP TABLE IF EXISTS `ab_personalparam`;
 CREATE TABLE IF NOT EXISTS `ab_personalparam` (
   `ID` varchar(36) NOT NULL,
   `Name` varchar(64) NOT NULL,
@@ -1653,12 +1676,13 @@ CREATE TABLE IF NOT EXISTS `ab_personalparam` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ab_personalparam: 0 rows
+-- 正在导出表  agileeap.ab_personalparam 的数据：0 rows
 /*!40000 ALTER TABLE `ab_personalparam` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ab_personalparam` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ab_privatecalendar
+-- 导出  表 agileeap.ab_privatecalendar 结构
+DROP TABLE IF EXISTS `ab_privatecalendar`;
 CREATE TABLE IF NOT EXISTS `ab_privatecalendar` (
   `ID` varchar(36) NOT NULL,
   `Type` smallint(6) DEFAULT NULL,
@@ -1673,12 +1697,13 @@ CREATE TABLE IF NOT EXISTS `ab_privatecalendar` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ab_privatecalendar: 0 rows
+-- 正在导出表  agileeap.ab_privatecalendar 的数据：0 rows
 /*!40000 ALTER TABLE `ab_privatecalendar` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ab_privatecalendar` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ab_scheduletask
+-- 导出  表 agileeap.ab_scheduletask 结构
+DROP TABLE IF EXISTS `ab_scheduletask`;
 CREATE TABLE IF NOT EXISTS `ab_scheduletask` (
   `Id` int(11) NOT NULL,
   `Name` char(1) CHARACTER SET utf8 NOT NULL,
@@ -1689,12 +1714,13 @@ CREATE TABLE IF NOT EXISTS `ab_scheduletask` (
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ab_scheduletask: 0 rows
+-- 正在导出表  agileeap.ab_scheduletask 的数据：0 rows
 /*!40000 ALTER TABLE `ab_scheduletask` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ab_scheduletask` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ab_sysparam
+-- 导出  表 agileeap.ab_sysparam 结构
+DROP TABLE IF EXISTS `ab_sysparam`;
 CREATE TABLE IF NOT EXISTS `ab_sysparam` (
   `ID` varchar(36) NOT NULL,
   `Name` varchar(64) NOT NULL,
@@ -1703,7 +1729,7 @@ CREATE TABLE IF NOT EXISTS `ab_sysparam` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ab_sysparam: 25 rows
+-- 正在导出表  agileeap.ab_sysparam 的数据：25 rows
 /*!40000 ALTER TABLE `ab_sysparam` DISABLE KEYS */;
 INSERT INTO `ab_sysparam` (`ID`, `Name`, `Value`, `Description`) VALUES
 	('32b65cc1-1957-4b23-ba38-9edc011335e9', 'SysID', 'AgileEAP', 'IDC云服务管理系统'),
@@ -1734,7 +1760,8 @@ INSERT INTO `ab_sysparam` (`ID`, `Name`, `Value`, `Description`) VALUES
 /*!40000 ALTER TABLE `ab_sysparam` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ab_uploadfile
+-- 导出  表 agileeap.ab_uploadfile 结构
+DROP TABLE IF EXISTS `ab_uploadfile`;
 CREATE TABLE IF NOT EXISTS `ab_uploadfile` (
   `ID` varchar(36) NOT NULL,
   `FileName` varchar(64) CHARACTER SET utf8 NOT NULL,
@@ -1750,12 +1777,13 @@ CREATE TABLE IF NOT EXISTS `ab_uploadfile` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ab_uploadfile: 0 rows
+-- 正在导出表  agileeap.ab_uploadfile 的数据：0 rows
 /*!40000 ALTER TABLE `ab_uploadfile` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ab_uploadfile` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ab_uuid
+-- 导出  表 agileeap.ab_uuid 结构
+DROP TABLE IF EXISTS `ab_uuid`;
 CREATE TABLE IF NOT EXISTS `ab_uuid` (
   `ID` varchar(36) NOT NULL,
   `Code` varchar(32) DEFAULT NULL,
@@ -1767,14 +1795,15 @@ CREATE TABLE IF NOT EXISTS `ab_uuid` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ab_uuid: 1 rows
+-- 正在导出表  agileeap.ab_uuid 的数据：1 rows
 /*!40000 ALTER TABLE `ab_uuid` DISABLE KEYS */;
 INSERT INTO `ab_uuid` (`ID`, `Code`, `Length`, `Prefix`, `Suffix`, `CurrentValue`, `Step`) VALUES
 	('90449B61-85F0-45ED-A303-B635BF75FF07', 'vMachine_UUID', 4, NULL, NULL, 253, 1);
 /*!40000 ALTER TABLE `ab_uuid` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ab_widget
+-- 导出  表 agileeap.ab_widget 结构
+DROP TABLE IF EXISTS `ab_widget`;
 CREATE TABLE IF NOT EXISTS `ab_widget` (
   `Id` int(11) NOT NULL,
   `WidgetZoneId` int(11) NOT NULL,
@@ -1783,12 +1812,13 @@ CREATE TABLE IF NOT EXISTS `ab_widget` (
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ab_widget: 0 rows
+-- 正在导出表  agileeap.ab_widget 的数据：0 rows
 /*!40000 ALTER TABLE `ab_widget` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ab_widget` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ac_appconsumer
+-- 导出  表 agileeap.ac_appconsumer 结构
+DROP TABLE IF EXISTS `ac_appconsumer`;
 CREATE TABLE IF NOT EXISTS `ac_appconsumer` (
   `AppID` varchar(36) DEFAULT NULL,
   `ConsumerKey` varchar(36) NOT NULL,
@@ -1796,12 +1826,13 @@ CREATE TABLE IF NOT EXISTS `ac_appconsumer` (
   PRIMARY KEY (`ConsumerKey`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ac_appconsumer: 0 rows
+-- 正在导出表  agileeap.ac_appconsumer 的数据：0 rows
 /*!40000 ALTER TABLE `ac_appconsumer` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ac_appconsumer` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ac_custmenu
+-- 导出  表 agileeap.ac_custmenu 结构
+DROP TABLE IF EXISTS `ac_custmenu`;
 CREATE TABLE IF NOT EXISTS `ac_custmenu` (
   `ID` varchar(36) NOT NULL,
   `OperatorID` varchar(36) NOT NULL,
@@ -1816,12 +1847,13 @@ CREATE TABLE IF NOT EXISTS `ac_custmenu` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ac_custmenu: 0 rows
+-- 正在导出表  agileeap.ac_custmenu 的数据：0 rows
 /*!40000 ALTER TABLE `ac_custmenu` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ac_custmenu` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ac_metadata
+-- 导出  表 agileeap.ac_metadata 结构
+DROP TABLE IF EXISTS `ac_metadata`;
 CREATE TABLE IF NOT EXISTS `ac_metadata` (
   `ID` varchar(36) NOT NULL,
   `Name` varchar(32) CHARACTER SET utf8 NOT NULL,
@@ -1833,7 +1865,7 @@ CREATE TABLE IF NOT EXISTS `ac_metadata` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ac_metadata: 5 rows
+-- 正在导出表  agileeap.ac_metadata 的数据：5 rows
 /*!40000 ALTER TABLE `ac_metadata` DISABLE KEYS */;
 INSERT INTO `ac_metadata` (`ID`, `Name`, `Type`, `Value`, `OwnerOrg`, `Creator`, `CreateTime`) VALUES
 	('f5378193-9ca7-41e8-81a5-a14700bd9c4f', '新太科技', 0, '001', '001', '36b6eb02-24fa-4424-b04c-a06e0137772f', '2013-01-15 11:30:21'),
@@ -1844,7 +1876,8 @@ INSERT INTO `ac_metadata` (`ID`, `Name`, `Type`, `Value`, `OwnerOrg`, `Creator`,
 /*!40000 ALTER TABLE `ac_metadata` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ac_operate
+-- 导出  表 agileeap.ac_operate 结构
+DROP TABLE IF EXISTS `ac_operate`;
 CREATE TABLE IF NOT EXISTS `ac_operate` (
   `ID` varchar(36) NOT NULL,
   `Name` varchar(32) NOT NULL,
@@ -1855,7 +1888,7 @@ CREATE TABLE IF NOT EXISTS `ac_operate` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ac_operate: 8 rows
+-- 正在导出表  agileeap.ac_operate 的数据：11 rows
 /*!40000 ALTER TABLE `ac_operate` DISABLE KEYS */;
 INSERT INTO `ac_operate` (`ID`, `Name`, `Command`, `Argument`, `IsVerify`, `SortOrder`) VALUES
 	('800a7526-7162-4963-abea-9e5900bffd4b', '保存', 'save', '', 0, 1),
@@ -1865,11 +1898,15 @@ INSERT INTO `ac_operate` (`ID`, `Name`, `Command`, `Argument`, `IsVerify`, `Sort
 	('6b957ddd-792a-48db-9980-7730b7d19232', '查询', 'search', '', 0, 4),
 	('85bf99fd-3179-4722-a0c6-4885e28a8e92', '配置用户角色', 'configRole', '', 0, 1),
 	('bc55339b-2cbc-4a36-b94d-6aed66c103e0', '配置权限', 'configPrivilege', '', 0, 1),
-	('e7efe79c-5543-4fae-8589-a0640103fba3', '新增', 'add', '', 0, 1);
+	('e7efe79c-5543-4fae-8589-a0640103fba3', '新增', 'add', '', 0, 1),
+	('83c14448-e5c1-4469-8e0e-65cabac200af', '新建流程', 'newProcess', '', 0, 1),
+	('1f3a27e6-7cb6-4a20-ae73-fa94a44eb649', '配置流程', 'designProcess', '', 0, 2),
+	('e81044f7-473c-45df-9866-2ac142cc0228', '克隆流程', 'cloneProcess', '', 0, 3);
 /*!40000 ALTER TABLE `ac_operate` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ac_operator
+-- 导出  表 agileeap.ac_operator 结构
+DROP TABLE IF EXISTS `ac_operator`;
 CREATE TABLE IF NOT EXISTS `ac_operator` (
   `ID` varchar(36) CHARACTER SET gbk NOT NULL,
   `UserType` smallint(6) NOT NULL,
@@ -1891,7 +1928,7 @@ CREATE TABLE IF NOT EXISTS `ac_operator` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- Dumping data for table agileeap.ac_operator: 418 rows
+-- 正在导出表  agileeap.ac_operator 的数据：418 rows
 /*!40000 ALTER TABLE `ac_operator` DISABLE KEYS */;
 INSERT INTO `ac_operator` (`ID`, `UserType`, `LoginName`, `Name`, `Password`, `ExpireTime`, `Phone`, `Status`, `Email`, `Theme`, `CorpID`, `CorpName`, `OrgName`, `OrgID`, `Salt`, `Creator`, `CreateTime`) VALUES
 	('36b6eb02-24fa-4424-b04c-a06e0137772f', 0, 'admin', '云平台管理员', 'fcdfaa192fe3c22c8e6cfa7ddbc313de9a8f55fb', '2012-06-12 00:00:00', '', 1, '', 'default', '', '新太科技', '新太科技', '001', '617cd4f9e55e15ef', 'admin', '2012-06-12 18:54:00'),
@@ -2315,7 +2352,8 @@ INSERT INTO `ac_operator` (`ID`, `UserType`, `LoginName`, `Name`, `Password`, `E
 /*!40000 ALTER TABLE `ac_operator` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ac_privilege
+-- 导出  表 agileeap.ac_privilege 结构
+DROP TABLE IF EXISTS `ac_privilege`;
 CREATE TABLE IF NOT EXISTS `ac_privilege` (
   `ID` varchar(36) NOT NULL,
   `Name` varchar(32) NOT NULL,
@@ -2327,7 +2365,7 @@ CREATE TABLE IF NOT EXISTS `ac_privilege` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ac_privilege: 320 rows
+-- 正在导出表  agileeap.ac_privilege 的数据：320 rows
 /*!40000 ALTER TABLE `ac_privilege` DISABLE KEYS */;
 INSERT INTO `ac_privilege` (`ID`, `Name`, `Type`, `ResourceID`, `OperateID`, `MetaDataID`, `SortOrder`) VALUES
 	('016897b4-665f-4c3a-a616-9edf00b6f13d', '虚拟机', 1, '016897b4-665f-4c3a-a616-9edf00b6f13d', '', '', 3),
@@ -2646,14 +2684,15 @@ INSERT INTO `ac_privilege` (`ID`, `Name`, `Type`, `ResourceID`, `OperateID`, `Me
 	('4c2f7c9c-9eb3-4e2f-973a-852601068ae8', '流程治理', 1, '92cc12b9-2ed7-4b2b-9fd1-91f2dc4c76fb', '', '', 3),
 	('6e87f315-6468-4ebd-8319-415598a6bbb9', '选择父资源', 2, '94c443c9-48b1-43ca-9bcf-963b740f9285', '', '', 2),
 	('46890033-a432-4714-bc0c-e6a7225e2558', '选择', 3, '94c443c9-48b1-43ca-9bcf-963b740f9285', 'choose', '', 1),
-	('40b9ab36-ac5c-44c4-bc58-67fd2fa439ab', '新增', 3, 'a39c7717-cf9e-4dce-939c-8e088f6237f2', 'e7efe79c-5543-4fae-8589-a0640103fba3', '', 1),
-	('0d5c8c7b-9995-4a04-96f8-43ff8ca1f79d', '修改', 3, 'a39c7717-cf9e-4dce-939c-8e088f6237f2', '8a1d21a6-cb63-4802-b73f-9ead00fbb284', '', 2),
-	('8630c558-886d-4002-8dee-4f61090010bf', '删除', 3, 'a39c7717-cf9e-4dce-939c-8e088f6237f2', '85917bfb-9e02-4a32-af23-9e3700e5622d', '', 3),
-	('cb233068-5687-46d5-a556-8e0d70a9542d', '查询', 3, 'a39c7717-cf9e-4dce-939c-8e088f6237f2', '6b957ddd-792a-48db-9980-7730b7d19232', '', 4);
+	('12ec7272-2a53-4913-aa15-d87a09a3869d', '配置流程', 3, 'a39c7717-cf9e-4dce-939c-8e088f6237f2', '1f3a27e6-7cb6-4a20-ae73-fa94a44eb649', '', 2),
+	('1c588e9f-2919-4e9f-850e-8c7dd966b7e5', '克隆流程', 3, 'a39c7717-cf9e-4dce-939c-8e088f6237f2', 'e81044f7-473c-45df-9866-2ac142cc0228', '', 3),
+	('8630c558-886d-4002-8dee-4f61090010bf', '删除', 3, 'a39c7717-cf9e-4dce-939c-8e088f6237f2', '85917bfb-9e02-4a32-af23-9e3700e5622d', '', 4),
+	('cd267601-e77f-403c-a37b-70ceafaec1c3', '新建流程', 3, 'a39c7717-cf9e-4dce-939c-8e088f6237f2', '83c14448-e5c1-4469-8e0e-65cabac200af', '', 1);
 /*!40000 ALTER TABLE `ac_privilege` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ac_resource
+-- 导出  表 agileeap.ac_resource 结构
+DROP TABLE IF EXISTS `ac_resource`;
 CREATE TABLE IF NOT EXISTS `ac_resource` (
   `ID` varchar(36) NOT NULL,
   `Name` varchar(32) NOT NULL,
@@ -2669,7 +2708,7 @@ CREATE TABLE IF NOT EXISTS `ac_resource` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ac_resource: 19 rows
+-- 正在导出表  agileeap.ac_resource 的数据：19 rows
 /*!40000 ALTER TABLE `ac_resource` DISABLE KEYS */;
 INSERT INTO `ac_resource` (`ID`, `Name`, `Type`, `ParentID`, `Entry`, `URL`, `SortOrder`, `Icon`, `OpenMode`, `ShowNavigation`, `ShowToolBar`) VALUES
 	('26c028bc-e986-43da-b1c8-906243c2891d', '系统管理', 1, 'AgileEAP', NULL, '', 1, 'system/sys_configuration.png', 1, 0, 0),
@@ -2687,14 +2726,15 @@ INSERT INTO `ac_resource` (`ID`, `Name`, `Type`, `ParentID`, `Entry`, `URL`, `So
 	('3ab77d5f-2fd0-4122-8851-6ffb30b7517e', '角色管理', 1, 'c766b6e7-b7d0-4a43-9b80-36928d8dd459', '', 'security/role', 3, '', 1, 0, 1),
 	('f88c1c60-a66a-4dc1-9fe0-2f1ad1d44705', '配置权限', 2, '3ab77d5f-2fd0-4122-8851-6ffb30b7517e', '', 'security/role/privilege', 1, '', 1, 0, 1),
 	('93d44726-cf70-4bd8-91d1-804b94825625', '工作流', 1, '26c028bc-e986-43da-b1c8-906243c2891d', '', '', 2, 'workflow/workflow.gif', 1, 0, 0),
-	('a39c7717-cf9e-4dce-939c-8e088f6237f2', '流程配置', 1, '93d44726-cf70-4bd8-91d1-804b94825625', '', 'workflow/process', 1, 'workflow-workflow-config.png', 1, 0, 0),
-	('47a1ced5-a8b4-4a09-864b-fe9bd5a99165', '流程监控', 1, '93d44726-cf70-4bd8-91d1-804b94825625', '', '', 2, '', 1, 0, 0),
-	('92cc12b9-2ed7-4b2b-9fd1-91f2dc4c76fb', '流程治理', 1, '93d44726-cf70-4bd8-91d1-804b94825625', '', '', 3, '', 1, 0, 0),
+	('a39c7717-cf9e-4dce-939c-8e088f6237f2', '流程配置', 1, '93d44726-cf70-4bd8-91d1-804b94825625', '', 'workflow/process', 1, 'workflow-workflow-config.png', 1, 0, 1),
+	('47a1ced5-a8b4-4a09-864b-fe9bd5a99165', '流程监控', 1, '93d44726-cf70-4bd8-91d1-804b94825625', '', '', 2, '', 1, 0, 1),
+	('92cc12b9-2ed7-4b2b-9fd1-91f2dc4c76fb', '流程治理', 1, '93d44726-cf70-4bd8-91d1-804b94825625', '', '', 3, '', 1, 0, 1),
 	('94c443c9-48b1-43ca-9bcf-963b740f9285', '选择父资源', 2, '4651f12a-d9f8-4a0c-8f6b-bb0e1751b887', '', 'security/resource/tree', 2, '', 1, 0, 1);
 /*!40000 ALTER TABLE `ac_resource` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ac_role
+-- 导出  表 agileeap.ac_role 结构
+DROP TABLE IF EXISTS `ac_role`;
 CREATE TABLE IF NOT EXISTS `ac_role` (
   `ID` varchar(36) NOT NULL,
   `Name` varchar(32) CHARACTER SET utf8 DEFAULT NULL,
@@ -2705,7 +2745,7 @@ CREATE TABLE IF NOT EXISTS `ac_role` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ac_role: 6 rows
+-- 正在导出表  agileeap.ac_role 的数据：6 rows
 /*!40000 ALTER TABLE `ac_role` DISABLE KEYS */;
 INSERT INTO `ac_role` (`ID`, `Name`, `Description`, `OrgID`, `Creator`, `CreateTime`) VALUES
 	('0aed2c73-0bee-4976-987d-a03e0023a02c', '云平台测试角色', '', '', 'superAdmin', '2012-06-12 07:14:24'),
@@ -2717,7 +2757,8 @@ INSERT INTO `ac_role` (`ID`, `Name`, `Description`, `OrgID`, `Creator`, `CreateT
 /*!40000 ALTER TABLE `ac_role` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ac_roleprivilege
+-- 导出  表 agileeap.ac_roleprivilege 结构
+DROP TABLE IF EXISTS `ac_roleprivilege`;
 CREATE TABLE IF NOT EXISTS `ac_roleprivilege` (
   `ID` varchar(36) NOT NULL,
   `RoleID` varchar(36) NOT NULL,
@@ -2725,7 +2766,7 @@ CREATE TABLE IF NOT EXISTS `ac_roleprivilege` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ac_roleprivilege: 3,139 rows
+-- 正在导出表  agileeap.ac_roleprivilege 的数据：3,139 rows
 /*!40000 ALTER TABLE `ac_roleprivilege` DISABLE KEYS */;
 INSERT INTO `ac_roleprivilege` (`ID`, `RoleID`, `PrivilegeID`) VALUES
 	('001d85e1-6588-4c7c-b26a-9e5901362919', 'undefined', '0caad9af-be7b-4ce5-bbe1-9e4000960594'),
@@ -5870,7 +5911,8 @@ INSERT INTO `ac_roleprivilege` (`ID`, `RoleID`, `PrivilegeID`) VALUES
 /*!40000 ALTER TABLE `ac_roleprivilege` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ac_shortcut
+-- 导出  表 agileeap.ac_shortcut 结构
+DROP TABLE IF EXISTS `ac_shortcut`;
 CREATE TABLE IF NOT EXISTS `ac_shortcut` (
   `ID` varchar(36) NOT NULL,
   `OperatorID` varchar(36) NOT NULL,
@@ -5881,12 +5923,13 @@ CREATE TABLE IF NOT EXISTS `ac_shortcut` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ac_shortcut: 0 rows
+-- 正在导出表  agileeap.ac_shortcut 的数据：0 rows
 /*!40000 ALTER TABLE `ac_shortcut` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ac_shortcut` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.ac_specialprivilege
+-- 导出  表 agileeap.ac_specialprivilege 结构
+DROP TABLE IF EXISTS `ac_specialprivilege`;
 CREATE TABLE IF NOT EXISTS `ac_specialprivilege` (
   `ID` varchar(36) NOT NULL,
   `OperatorID` varchar(36) NOT NULL,
@@ -5902,7 +5945,7 @@ CREATE TABLE IF NOT EXISTS `ac_specialprivilege` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.ac_specialprivilege: 455 rows
+-- 正在导出表  agileeap.ac_specialprivilege 的数据：455 rows
 /*!40000 ALTER TABLE `ac_specialprivilege` DISABLE KEYS */;
 INSERT INTO `ac_specialprivilege` (`ID`, `OperatorID`, `PrivilegeID`, `AuthFlag`, `AppID`, `StartTime`, `EndTime`, `SortOrder`, `OwnerOrg`, `Authorizer`, `AuthTime`) VALUES
 	('00ab35d0-be04-42e2-a4e7-9e5900e2ee36', 'UR1100007922', 'e745baeb-d2ad-471e-80b8-9e3d00f5fb08', 2, '', '2010-12-27 13:46:13', '2010-12-27 13:46:13', 0, 'OR1000000001/OR1200000535/OR1200000502/OR1200000562', 'UR1500028529', '2010-12-27 13:46:13'),
@@ -6363,7 +6406,8 @@ INSERT INTO `ac_specialprivilege` (`ID`, `OperatorID`, `PrivilegeID`, `AuthFlag`
 /*!40000 ALTER TABLE `ac_specialprivilege` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.om_bizorg
+-- 导出  表 agileeap.om_bizorg 结构
+DROP TABLE IF EXISTS `om_bizorg`;
 CREATE TABLE IF NOT EXISTS `om_bizorg` (
   `ID` varchar(36) NOT NULL,
   `Name` varchar(32) CHARACTER SET utf8 DEFAULT NULL,
@@ -6378,12 +6422,13 @@ CREATE TABLE IF NOT EXISTS `om_bizorg` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.om_bizorg: 0 rows
+-- 正在导出表  agileeap.om_bizorg 的数据：0 rows
 /*!40000 ALTER TABLE `om_bizorg` DISABLE KEYS */;
 /*!40000 ALTER TABLE `om_bizorg` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.om_duty
+-- 导出  表 agileeap.om_duty 结构
+DROP TABLE IF EXISTS `om_duty`;
 CREATE TABLE IF NOT EXISTS `om_duty` (
   `ID` varchar(36) NOT NULL,
   `Code` varchar(32) DEFAULT NULL,
@@ -6396,12 +6441,13 @@ CREATE TABLE IF NOT EXISTS `om_duty` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.om_duty: 0 rows
+-- 正在导出表  agileeap.om_duty 的数据：0 rows
 /*!40000 ALTER TABLE `om_duty` DISABLE KEYS */;
 /*!40000 ALTER TABLE `om_duty` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.om_employee
+-- 导出  表 agileeap.om_employee 结构
+DROP TABLE IF EXISTS `om_employee`;
 CREATE TABLE IF NOT EXISTS `om_employee` (
   `ID` varchar(36) NOT NULL,
   `Code` varchar(16) DEFAULT NULL,
@@ -6444,7 +6490,7 @@ CREATE TABLE IF NOT EXISTS `om_employee` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.om_employee: 496 rows
+-- 正在导出表  agileeap.om_employee 的数据：496 rows
 /*!40000 ALTER TABLE `om_employee` DISABLE KEYS */;
 INSERT INTO `om_employee` (`ID`, `Code`, `LoginName`, `Name`, `OperatorID`, `Gender`, `Birthday`, `Nation`, `Birthplace`, `Nativeplace`, `PoliticsStatus`, `WorkFromDate`, `HealthStatus`, `IndustrialGrade`, `Speciality`, `PositionName`, `Position`, `PostGrade`, `Status`, `CardType`, `CardNo`, `InDate`, `OutDate`, `ZipCode`, `Email`, `Fax`, `Mobile`, `MSN`, `OfficePhone`, `Address`, `Director`, `MajorOrgID`, `Photo`, `Creator`, `CreateTime`, `CorpID`, `SortOrder`, `OwnerOrg`) VALUES
 	('36b6eb02-24fa-4424-b04c-a06e0137772f', 'admin', 'admin', '云平台管理员', '36b6eb02-24fa-4424-b04c-a06e0137772f', 0, '2012-06-12 00:00:00', NULL, NULL, NULL, NULL, '2012-06-12 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, '2012-06-12 00:00:00', '2012-06-12 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '13', NULL, 'superAdmin', '2012-06-12 18:54:00', '', NULL, '001'),
@@ -6946,7 +6992,8 @@ INSERT INTO `om_employee` (`ID`, `Code`, `LoginName`, `Name`, `OperatorID`, `Gen
 /*!40000 ALTER TABLE `om_employee` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.om_employeeorg
+-- 导出  表 agileeap.om_employeeorg 结构
+DROP TABLE IF EXISTS `om_employeeorg`;
 CREATE TABLE IF NOT EXISTS `om_employeeorg` (
   `ID` varchar(36) NOT NULL,
   `OrgID` varchar(36) NOT NULL,
@@ -6957,7 +7004,7 @@ CREATE TABLE IF NOT EXISTS `om_employeeorg` (
   KEY `EmployeeID` (`EmployeeID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.om_employeeorg: 905 rows
+-- 正在导出表  agileeap.om_employeeorg 的数据：905 rows
 /*!40000 ALTER TABLE `om_employeeorg` DISABLE KEYS */;
 INSERT INTO `om_employeeorg` (`ID`, `OrgID`, `EmployeeID`, `IsMajor`) VALUES
 	('346e315e-b39a-4553-9e3a-a06e0137773c', '13', '36b6eb02-24fa-4424-b04c-a06e0137772f', 1),
@@ -7868,7 +7915,8 @@ INSERT INTO `om_employeeorg` (`ID`, `OrgID`, `EmployeeID`, `IsMajor`) VALUES
 /*!40000 ALTER TABLE `om_employeeorg` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.om_employeeposition
+-- 导出  表 agileeap.om_employeeposition 结构
+DROP TABLE IF EXISTS `om_employeeposition`;
 CREATE TABLE IF NOT EXISTS `om_employeeposition` (
   `ID` varchar(36) NOT NULL,
   `PositionID` varchar(36) NOT NULL,
@@ -7877,7 +7925,7 @@ CREATE TABLE IF NOT EXISTS `om_employeeposition` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.om_employeeposition: 440 rows
+-- 正在导出表  agileeap.om_employeeposition 的数据：440 rows
 /*!40000 ALTER TABLE `om_employeeposition` DISABLE KEYS */;
 INSERT INTO `om_employeeposition` (`ID`, `PositionID`, `EmployeeID`, `IsMajor`) VALUES
 	('1000', '2', 'luoxl', 1),
@@ -8323,7 +8371,8 @@ INSERT INTO `om_employeeposition` (`ID`, `PositionID`, `EmployeeID`, `IsMajor`) 
 /*!40000 ALTER TABLE `om_employeeposition` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.om_objectrole
+-- 导出  表 agileeap.om_objectrole 结构
+DROP TABLE IF EXISTS `om_objectrole`;
 CREATE TABLE IF NOT EXISTS `om_objectrole` (
   `ID` varchar(36) NOT NULL,
   `RoleID` varchar(36) NOT NULL,
@@ -8334,7 +8383,7 @@ CREATE TABLE IF NOT EXISTS `om_objectrole` (
   KEY `RoleID` (`RoleID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.om_objectrole: 499 rows
+-- 正在导出表  agileeap.om_objectrole 的数据：499 rows
 /*!40000 ALTER TABLE `om_objectrole` DISABLE KEYS */;
 INSERT INTO `om_objectrole` (`ID`, `RoleID`, `ObjectType`, `ObjectID`) VALUES
 	('006A9C12-FD39-4FF6-92C2-7A31CD9E4C6D', '3f45c11f-d757-40c1-921c-a06d011cf068', 0, 'liangwz'),
@@ -8839,7 +8888,8 @@ INSERT INTO `om_objectrole` (`ID`, `RoleID`, `ObjectType`, `ObjectID`) VALUES
 /*!40000 ALTER TABLE `om_objectrole` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.om_organization
+-- 导出  表 agileeap.om_organization 结构
+DROP TABLE IF EXISTS `om_organization`;
 CREATE TABLE IF NOT EXISTS `om_organization` (
   `ID` varchar(36) NOT NULL,
   `Code` varchar(32) CHARACTER SET utf8 NOT NULL,
@@ -8852,7 +8902,7 @@ CREATE TABLE IF NOT EXISTS `om_organization` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.om_organization: 55 rows
+-- 正在导出表  agileeap.om_organization 的数据：55 rows
 /*!40000 ALTER TABLE `om_organization` DISABLE KEYS */;
 INSERT INTO `om_organization` (`ID`, `Code`, `ParentID`, `Name`, `Grade`, `SortOrder`, `Creator`, `CreateTime`) VALUES
 	('001007', '001007', '001', '广东新信通', 1, 1, 'superAdmi', '2012-06-11 17:41:47'),
@@ -8913,7 +8963,8 @@ INSERT INTO `om_organization` (`ID`, `Code`, `ParentID`, `Name`, `Grade`, `SortO
 /*!40000 ALTER TABLE `om_organization` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.om_position
+-- 导出  表 agileeap.om_position 结构
+DROP TABLE IF EXISTS `om_position`;
 CREATE TABLE IF NOT EXISTS `om_position` (
   `ID` varchar(36) NOT NULL,
   `Code` varchar(32) DEFAULT NULL,
@@ -8925,12 +8976,13 @@ CREATE TABLE IF NOT EXISTS `om_position` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.om_position: 0 rows
+-- 正在导出表  agileeap.om_position 的数据：0 rows
 /*!40000 ALTER TABLE `om_position` DISABLE KEYS */;
 /*!40000 ALTER TABLE `om_position` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.wf_activityinst
+-- 导出  表 agileeap.wf_activityinst 结构
+DROP TABLE IF EXISTS `wf_activityinst`;
 CREATE TABLE IF NOT EXISTS `wf_activityinst` (
   `ID` varchar(36) NOT NULL,
   `Name` varchar(32) DEFAULT NULL,
@@ -8947,7 +8999,7 @@ CREATE TABLE IF NOT EXISTS `wf_activityinst` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.wf_activityinst: 43 rows
+-- 正在导出表  agileeap.wf_activityinst 的数据：43 rows
 /*!40000 ALTER TABLE `wf_activityinst` DISABLE KEYS */;
 INSERT INTO `wf_activityinst` (`ID`, `Name`, `Type`, `CurrentState`, `StartTime`, `EndTime`, `SubProcessInstID`, `ActivityDefID`, `ProcessInstID`, `RollbackFlag`, `Description`, `CreateTime`) VALUES
 	('01c25b1f-3517-4795-ad9b-a148009ae7fa', '申请资源', 2, 1, '2013-01-16 09:23:58', '2099-01-01 00:00:00', '', 'applyResource', 'a4829b76-bfdf-4ca0-a303-a148009ae7ed', 0, NULL, '2013-01-16 09:23:58'),
@@ -8996,7 +9048,8 @@ INSERT INTO `wf_activityinst` (`ID`, `Name`, `Type`, `CurrentState`, `StartTime`
 /*!40000 ALTER TABLE `wf_activityinst` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.wf_agent
+-- 导出  表 agileeap.wf_agent 结构
+DROP TABLE IF EXISTS `wf_agent`;
 CREATE TABLE IF NOT EXISTS `wf_agent` (
   `ID` varchar(36) NOT NULL,
   `AgentFrom` varchar(36) NOT NULL,
@@ -9011,12 +9064,13 @@ CREATE TABLE IF NOT EXISTS `wf_agent` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.wf_agent: 0 rows
+-- 正在导出表  agileeap.wf_agent 的数据：0 rows
 /*!40000 ALTER TABLE `wf_agent` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wf_agent` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.wf_agentcandidate
+-- 导出  表 agileeap.wf_agentcandidate 结构
+DROP TABLE IF EXISTS `wf_agentcandidate`;
 CREATE TABLE IF NOT EXISTS `wf_agentcandidate` (
   `ID` varchar(36) NOT NULL,
   `AgentToID` varchar(36) NOT NULL,
@@ -9026,12 +9080,13 @@ CREATE TABLE IF NOT EXISTS `wf_agentcandidate` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.wf_agentcandidate: 0 rows
+-- 正在导出表  agileeap.wf_agentcandidate 的数据：0 rows
 /*!40000 ALTER TABLE `wf_agentcandidate` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wf_agentcandidate` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.wf_agentitem
+-- 导出  表 agileeap.wf_agentitem 结构
+DROP TABLE IF EXISTS `wf_agentitem`;
 CREATE TABLE IF NOT EXISTS `wf_agentitem` (
   `ID` varchar(36) NOT NULL,
   `Type` smallint(6) DEFAULT NULL,
@@ -9042,12 +9097,13 @@ CREATE TABLE IF NOT EXISTS `wf_agentitem` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.wf_agentitem: 0 rows
+-- 正在导出表  agileeap.wf_agentitem 的数据：0 rows
 /*!40000 ALTER TABLE `wf_agentitem` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wf_agentitem` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.wf_extendattr
+-- 导出  表 agileeap.wf_extendattr 结构
+DROP TABLE IF EXISTS `wf_extendattr`;
 CREATE TABLE IF NOT EXISTS `wf_extendattr` (
   `ID` varchar(36) NOT NULL,
   `Entity` varchar(32) DEFAULT NULL,
@@ -9057,12 +9113,13 @@ CREATE TABLE IF NOT EXISTS `wf_extendattr` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.wf_extendattr: 0 rows
+-- 正在导出表  agileeap.wf_extendattr 的数据：0 rows
 /*!40000 ALTER TABLE `wf_extendattr` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wf_extendattr` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.wf_participant
+-- 导出  表 agileeap.wf_participant 结构
+DROP TABLE IF EXISTS `wf_participant`;
 CREATE TABLE IF NOT EXISTS `wf_participant` (
   `ID` varchar(36) NOT NULL,
   `Name` varchar(32) DEFAULT NULL,
@@ -9078,7 +9135,7 @@ CREATE TABLE IF NOT EXISTS `wf_participant` (
   KEY `ParticipantID` (`ParticipantID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.wf_participant: 1,132 rows
+-- 正在导出表  agileeap.wf_participant 的数据：1,132 rows
 /*!40000 ALTER TABLE `wf_participant` DISABLE KEYS */;
 INSERT INTO `wf_participant` (`ID`, `Name`, `ParticipantType`, `ParticipantID`, `WorkItemID`, `WorkItemState`, `PartiInType`, `DelegateType`, `ParticipantIndex`, `CreateTime`) VALUES
 	('0029ab00-0a32-49a9-9912-a11c00ac7170', '云平台管理员', 1, '36b6eb02-24fa-4424-b04c-a06e0137772f', '97ed3d1d-d52a-4069-8d4c-a11c00ac7170', 1, 2, 0, 1, '2012-12-03 10:27:49'),
@@ -10216,7 +10273,8 @@ INSERT INTO `wf_participant` (`ID`, `Name`, `ParticipantType`, `ParticipantID`, 
 /*!40000 ALTER TABLE `wf_participant` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.wf_processdef
+-- 导出  表 agileeap.wf_processdef 结构
+DROP TABLE IF EXISTS `wf_processdef`;
 CREATE TABLE IF NOT EXISTS `wf_processdef` (
   `ID` varchar(36) NOT NULL,
   `Name` varchar(32) DEFAULT NULL,
@@ -10236,7 +10294,7 @@ CREATE TABLE IF NOT EXISTS `wf_processdef` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.wf_processdef: 17 rows
+-- 正在导出表  agileeap.wf_processdef 的数据：18 rows
 /*!40000 ALTER TABLE `wf_processdef` DISABLE KEYS */;
 INSERT INTO `wf_processdef` (`ID`, `Name`, `Text`, `Content`, `CategoryID`, `CurrentState`, `CurrentFlag`, `Startor`, `IsActive`, `Version`, `Description`, `CreateTime`, `Creator`, `ModifyTime`, `Modifier`) VALUES
 	('02e2fd86-39f3-446b-9a9e-a06700bde8a4', 'ApplyVirtualMachine', '佳都新太虚拟机申请流程', '<workflowDefine version="2.0" author="AgileEAP">\r\n  <basic>\r\n    <name>佳都新太虚拟机申请流程</name>\r\n    <id>ApplyVirtualMachine</id>\r\n    <startURL>/eClient/Order/Template</startURL>\r\n    <timeLimit>\r\n      <calendar />\r\n      <timeLimitInfo />\r\n      <remindInfo />\r\n    </timeLimit>\r\n    <triggerEvents />\r\n    <initiator>\r\n      <starterType />\r\n    </initiator>\r\n  </basic>\r\n  <transitions>\r\n    <transition>\r\n      <id>aa001d23-e4b0-44f8-bbb0-8ab33d496c4f</id>\r\n      <name></name>\r\n      <skin />\r\n      <isDefault>false</isDefault>\r\n      <zIndex>0</zIndex>\r\n      <expression />\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <source>\r\n        <orientation>Bottom</orientation>\r\n        <x>287</x>\r\n        <y>28.7</y>\r\n        <activityID>Start</activityID>\r\n      </source>\r\n      <sink>\r\n        <orientation>Top</orientation>\r\n        <x>287</x>\r\n        <y>76.5264175415039</y>\r\n        <activityID>ApplyVirtualMachine</activityID>\r\n      </sink>\r\n      <bendPoints />\r\n    </transition>\r\n    <transition>\r\n      <id>9c83e854-5d6c-4077-bfeb-2c4acf948adf</id>\r\n      <name>不是主管申请</name>\r\n      <skin />\r\n      <isDefault>true</isDefault>\r\n      <zIndex>0</zIndex>\r\n      <expression>:IsManager==false</expression>\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <source>\r\n        <orientation>Right</orientation>\r\n        <x>299.66629840731622</x>\r\n        <y>93.214569255709648</y>\r\n        <activityID>ApplyVirtualMachine</activityID>\r\n      </source>\r\n      <sink>\r\n        <orientation>Top</orientation>\r\n        <x>353.71053264737128</x>\r\n        <y>110.6186445504427</y>\r\n        <activityID>ManagerApprove</activityID>\r\n      </sink>\r\n      <bendPoints />\r\n    </transition>\r\n    <transition>\r\n      <id>52b46994-05cb-47c3-b5d8-5975ab87db65</id>\r\n      <name></name>\r\n      <skin />\r\n      <isDefault>false</isDefault>\r\n      <zIndex>0</zIndex>\r\n      <expression />\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <source>\r\n        <orientation>Bottom</orientation>\r\n        <x>286.98408776856957</x>\r\n        <y>258.68648037910464</y>\r\n        <activityID>CreateVirtualMachine</activityID>\r\n      </source>\r\n      <sink>\r\n        <orientation>Top</orientation>\r\n        <x>286.10056799314918</x>\r\n        <y>297.57371249198911</y>\r\n        <activityID>End</activityID>\r\n      </sink>\r\n      <bendPoints />\r\n    </transition>\r\n    <transition>\r\n      <id>5df7805d-8334-4b09-80b2-1e86dcf79614</id>\r\n      <name>是主管申请</name>\r\n      <skin />\r\n      <isDefault>false</isDefault>\r\n      <zIndex>0</zIndex>\r\n      <expression>:IsManager==true</expression>\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <source>\r\n        <orientation>Bottom</orientation>\r\n        <x>287</x>\r\n        <y>105.7</y>\r\n        <activityID>ApplyVirtualMachine</activityID>\r\n      </source>\r\n      <sink>\r\n        <orientation>Top</orientation>\r\n        <x>287</x>\r\n        <y>159.4901092529297</y>\r\n        <activityID>AdminApprove</activityID>\r\n      </sink>\r\n      <bendPoints />\r\n    </transition>\r\n    <transition>\r\n      <id>1b209dcc-dc38-4885-966d-8afd7d2b6616</id>\r\n      <name></name>\r\n      <skin />\r\n      <isDefault>false</isDefault>\r\n      <zIndex>0</zIndex>\r\n      <expression />\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <source>\r\n        <orientation>Bottom</orientation>\r\n        <x>287</x>\r\n        <y>188.68666381835936</y>\r\n        <activityID>AdminApprove</activityID>\r\n      </source>\r\n      <sink>\r\n        <orientation>Top</orientation>\r\n        <x>287</x>\r\n        <y>229.54754333496095</y>\r\n        <activityID>CreateVirtualMachine</activityID>\r\n      </sink>\r\n      <bendPoints />\r\n    </transition>\r\n    <transition>\r\n      <id>df613c4f-517e-45b2-8384-ea35a5cfffff</id>\r\n      <name></name>\r\n      <skin />\r\n      <isDefault>false</isDefault>\r\n      <zIndex>0</zIndex>\r\n      <expression />\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <source>\r\n        <orientation>Bottom</orientation>\r\n        <x>357.42055538892748</x>\r\n        <y>136.39271593689918</y>\r\n        <activityID>ManagerApprove</activityID>\r\n      </source>\r\n      <sink>\r\n        <orientation>Right</orientation>\r\n        <x>302.75125857591627</x>\r\n        <y>173.4442896783352</y>\r\n        <activityID>AdminApprove</activityID>\r\n      </sink>\r\n      <bendPoints />\r\n    </transition>\r\n  </transitions>\r\n  <activities>\r\n    <activity>\r\n      <activityType>StartActivity</activityType>\r\n      <id>Start</id>\r\n      <name>开始</name>\r\n      <splitType>XOR</splitType>\r\n      <joinType>AND</joinType>\r\n      <isSplitTransaction>false</isSplitTransaction>\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <parameters />\r\n      <style>\r\n        <skin />\r\n        <height>40</height>\r\n        <width>40</width>\r\n        <left>261</left>\r\n        <top>0</top>\r\n        <zIndex>0</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n      <startActivity>\r\n        <form name="开始" />\r\n      </startActivity>\r\n    </activity>\r\n    <activity>\r\n      <activityType>ManualActivity</activityType>\r\n      <allowAgent>false</allowAgent>\r\n      <resetParticipant>FirstParticipantor</resetParticipant>\r\n      <id>ApplyVirtualMachine</id>\r\n      <name>申请虚拟机</name>\r\n      <splitType>XOR</splitType>\r\n      <joinType>AND</joinType>\r\n      <isSplitTransaction>false</isSplitTransaction>\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <activateRule>\r\n        <activateRuleType>DirectRunning</activateRuleType>\r\n        <customAction>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri></applicationUri>\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <activateRuleApp></activateRuleApp>\r\n          <parameters />\r\n        </customAction>\r\n      </activateRule>\r\n      <parameters />\r\n      <style>\r\n        <skin />\r\n        <height>40</height>\r\n        <width>40</width>\r\n        <left>261</left>\r\n        <top>77</top>\r\n        <zIndex>0</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n      <manualActivity>\r\n        <customURL>\r\n          <isSpecifyURL>false</isSpecifyURL>\r\n          <urlType>CustomURL</urlType>\r\n          <specifyURL>eClient/ApplyVirtualMachine/Approve</specifyURL>\r\n          <manualProcess>\r\n            <actionPattern>Method</actionPattern>\r\n            <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n            <applicationUri />\r\n            <transactionType>Join</transactionType>\r\n            <exceptionStrategy>Rollback</exceptionStrategy>\r\n            <invokePattern>Synchronous</invokePattern>\r\n            <parameters />\r\n          </manualProcess>\r\n        </customURL>\r\n        <resetURL>\r\n          <isSpecifyURL>false</isSpecifyURL>\r\n          <urlType>CustomURL</urlType>\r\n          <specifyURL>eClient/Order/Index</specifyURL>\r\n          <manualProcess>\r\n            <actionPattern>Method</actionPattern>\r\n            <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n            <applicationUri />\r\n            <transactionType>Join</transactionType>\r\n            <exceptionStrategy>Rollback</exceptionStrategy>\r\n            <invokePattern>Synchronous</invokePattern>\r\n            <parameters />\r\n          </manualProcess>\r\n        </resetURL>\r\n        <participant>\r\n          <participantType>RelevantData</participantType>\r\n          <allowAppointParticipants>false</allowAppointParticipants>\r\n          <participantValue />\r\n          <specialActivityID />\r\n          <specialPath />\r\n          <participantors />\r\n        </participant>\r\n        <form />\r\n        <timeLimit>\r\n          <isTimeLimitSet>false</isTimeLimitSet>\r\n          <calendar>\r\n            <init />\r\n            <type>CDefault</type>\r\n            <id />\r\n            <name />\r\n          </calendar>\r\n          <timeLimitInfo>\r\n            <timeLimitStrategy>LimitTime</timeLimitStrategy>\r\n            <limitTimeDay>0</limitTimeDay>\r\n            <limitTimeHour>0</limitTimeHour>\r\n            <limitTimeMinute>0</limitTimeMinute>\r\n            <relevantData />\r\n            <isSendMessageForOvertime>false</isSendMessageForOvertime>\r\n          </timeLimitInfo>\r\n          <remindInfo>\r\n            <remindType>Email</remindType>\r\n            <remindStrategy>RemindLimtTime</remindStrategy>\r\n            <remindLimtTimeDay>0</remindLimtTimeDay>\r\n            <remindLimtTimeHour>0</remindLimtTimeHour>\r\n            <remindLimtTimeMinute>0</remindLimtTimeMinute>\r\n            <remindRelevantData />\r\n            <isSendMessageForRemind>false</isSendMessageForRemind>\r\n          </remindInfo>\r\n        </timeLimit>\r\n        <multiWorkItem>\r\n          <isMulWIValid>false</isMulWIValid>\r\n          <workItemNumStrategy>OperatorNumber</workItemNumStrategy>\r\n          <finishRule>FinishAll</finishRule>\r\n          <finishRquiredNum>0</finishRquiredNum>\r\n          <finishRequiredPercent>0</finishRequiredPercent>\r\n          <isAutoCancel>false</isAutoCancel>\r\n          <isSequentialExecute>false</isSequentialExecute>\r\n        </multiWorkItem>\r\n        <triggerEvents />\r\n        <rollBack>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri />\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <parameters />\r\n        </rollBack>\r\n        <freeFlowRule>\r\n          <isFreeActivity>false</isFreeActivity>\r\n          <freeRangeStrategy>FreeWithinNextActivites</freeRangeStrategy>\r\n          <isOnlyLimitedManualActivity>false</isOnlyLimitedManualActivity>\r\n        </freeFlowRule>\r\n      </manualActivity>\r\n    </activity>\r\n    <activity>\r\n      <activityType>ManualActivity</activityType>\r\n      <allowAgent>false</allowAgent>\r\n      <resetParticipant>FirstParticipantor</resetParticipant>\r\n      <id>ManagerApprove</id>\r\n      <name>主管审批</name>\r\n      <splitType>XOR</splitType>\r\n      <joinType>AND</joinType>\r\n      <isSplitTransaction>false</isSplitTransaction>\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <activateRule>\r\n        <activateRuleType>DirectRunning</activateRuleType>\r\n        <customAction>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri></applicationUri>\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <activateRuleApp></activateRuleApp>\r\n          <parameters />\r\n        </customAction>\r\n      </activateRule>\r\n      <parameters />\r\n      <style>\r\n        <skin />\r\n        <height>40</height>\r\n        <width>40</width>\r\n        <left>332</left>\r\n        <top>108</top>\r\n        <zIndex>0</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n      <manualActivity>\r\n        <customURL>\r\n          <isSpecifyURL>false</isSpecifyURL>\r\n          <urlType>CustomURL</urlType>\r\n          <specifyURL>eClient/ApplyVirtualMachine/Approve</specifyURL>\r\n          <manualProcess>\r\n            <actionPattern>Method</actionPattern>\r\n            <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n            <applicationUri />\r\n            <transactionType>Join</transactionType>\r\n            <exceptionStrategy>Rollback</exceptionStrategy>\r\n            <invokePattern>Synchronous</invokePattern>\r\n            <parameters />\r\n          </manualProcess>\r\n        </customURL>\r\n        <resetURL>\r\n          <isSpecifyURL>false</isSpecifyURL>\r\n          <urlType>CustomURL</urlType>\r\n          <specifyURL>eClient/Workflow/ManagerApprove</specifyURL>\r\n          <manualProcess>\r\n            <actionPattern>Method</actionPattern>\r\n            <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n            <applicationUri />\r\n            <transactionType>Join</transactionType>\r\n            <exceptionStrategy>Rollback</exceptionStrategy>\r\n            <invokePattern>Synchronous</invokePattern>\r\n            <parameters />\r\n          </manualProcess>\r\n        </resetURL>\r\n        <participant>\r\n          <participantType>RelevantData</participantType>\r\n          <allowAppointParticipants>false</allowAppointParticipants>\r\n          <participantValue />\r\n          <specialActivityID />\r\n          <specialPath />\r\n          <participantors />\r\n        </participant>\r\n        <form />\r\n        <timeLimit>\r\n          <isTimeLimitSet>false</isTimeLimitSet>\r\n          <calendar>\r\n            <init />\r\n            <type>CDefault</type>\r\n            <id />\r\n            <name />\r\n          </calendar>\r\n          <timeLimitInfo>\r\n            <timeLimitStrategy>LimitTime</timeLimitStrategy>\r\n            <limitTimeDay>0</limitTimeDay>\r\n            <limitTimeHour>0</limitTimeHour>\r\n            <limitTimeMinute>0</limitTimeMinute>\r\n            <relevantData />\r\n            <isSendMessageForOvertime>false</isSendMessageForOvertime>\r\n          </timeLimitInfo>\r\n          <remindInfo>\r\n            <remindType>Email</remindType>\r\n            <remindStrategy>RemindLimtTime</remindStrategy>\r\n            <remindLimtTimeDay>0</remindLimtTimeDay>\r\n            <remindLimtTimeHour>0</remindLimtTimeHour>\r\n            <remindLimtTimeMinute>0</remindLimtTimeMinute>\r\n            <remindRelevantData />\r\n            <isSendMessageForRemind>false</isSendMessageForRemind>\r\n          </remindInfo>\r\n        </timeLimit>\r\n        <multiWorkItem>\r\n          <isMulWIValid>false</isMulWIValid>\r\n          <workItemNumStrategy>OperatorNumber</workItemNumStrategy>\r\n          <finishRule>FinishAll</finishRule>\r\n          <finishRquiredNum>0</finishRquiredNum>\r\n          <finishRequiredPercent>0</finishRequiredPercent>\r\n          <isAutoCancel>false</isAutoCancel>\r\n          <isSequentialExecute>false</isSequentialExecute>\r\n        </multiWorkItem>\r\n        <triggerEvents />\r\n        <rollBack>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri />\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <parameters />\r\n        </rollBack>\r\n        <freeFlowRule>\r\n          <isFreeActivity>false</isFreeActivity>\r\n          <freeRangeStrategy>FreeWithinNextActivites</freeRangeStrategy>\r\n          <isOnlyLimitedManualActivity>false</isOnlyLimitedManualActivity>\r\n        </freeFlowRule>\r\n      </manualActivity>\r\n    </activity>\r\n    <activity>\r\n      <activityType>ManualActivity</activityType>\r\n      <allowAgent>false</allowAgent>\r\n      <resetParticipant>FirstParticipantor</resetParticipant>\r\n      <id>AdminApprove</id>\r\n      <name>管理员审批</name>\r\n      <splitType>XOR</splitType>\r\n      <joinType>AND</joinType>\r\n      <isSplitTransaction>false</isSplitTransaction>\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <activateRule>\r\n        <activateRuleType>DirectRunning</activateRuleType>\r\n        <customAction>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri></applicationUri>\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <activateRuleApp></activateRuleApp>\r\n          <parameters />\r\n        </customAction>\r\n      </activateRule>\r\n      <parameters />\r\n      <style>\r\n        <skin />\r\n        <height>40</height>\r\n        <width>40</width>\r\n        <left>261</left>\r\n        <top>159</top>\r\n        <zIndex>0</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n      <manualActivity>\r\n        <customURL>\r\n          <isSpecifyURL>false</isSpecifyURL>\r\n          <urlType>CustomURL</urlType>\r\n          <specifyURL>eClient/ApplyVirtualMachine/Approve</specifyURL>\r\n          <manualProcess>\r\n            <actionPattern>Method</actionPattern>\r\n            <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n            <applicationUri />\r\n            <transactionType>Join</transactionType>\r\n            <exceptionStrategy>Rollback</exceptionStrategy>\r\n            <invokePattern>Synchronous</invokePattern>\r\n            <parameters />\r\n          </manualProcess>\r\n        </customURL>\r\n        <resetURL>\r\n          <isSpecifyURL>false</isSpecifyURL>\r\n          <urlType>CustomURL</urlType>\r\n          <specifyURL>eClient/Workflow/AdminApprove</specifyURL>\r\n          <manualProcess>\r\n            <actionPattern>Method</actionPattern>\r\n            <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n            <applicationUri />\r\n            <transactionType>Join</transactionType>\r\n            <exceptionStrategy>Rollback</exceptionStrategy>\r\n            <invokePattern>Synchronous</invokePattern>\r\n            <parameters />\r\n          </manualProcess>\r\n        </resetURL>\r\n        <participant>\r\n          <participantType>Participantor</participantType>\r\n          <allowAppointParticipants>false</allowAppointParticipants>\r\n          <participantValue />\r\n          <specialActivityID />\r\n          <specialPath />\r\n          <participantors>\r\n            <participantor>\r\n              <id>ee892886-d278-4f50-b7a9-a05b0060fb4f</id>\r\n              <name>云业务支撑系统管理员</name>\r\n              <participantorType>Role</participantorType>\r\n              <sortOrder>1</sortOrder>\r\n            </participantor>\r\n          </participantors>\r\n        </participant>\r\n        <form />\r\n        <timeLimit>\r\n          <isTimeLimitSet>false</isTimeLimitSet>\r\n          <calendar>\r\n            <init />\r\n            <type>CDefault</type>\r\n            <id />\r\n            <name />\r\n          </calendar>\r\n          <timeLimitInfo>\r\n            <timeLimitStrategy>LimitTime</timeLimitStrategy>\r\n            <limitTimeDay>0</limitTimeDay>\r\n            <limitTimeHour>0</limitTimeHour>\r\n            <limitTimeMinute>0</limitTimeMinute>\r\n            <relevantData />\r\n            <isSendMessageForOvertime>false</isSendMessageForOvertime>\r\n          </timeLimitInfo>\r\n          <remindInfo>\r\n            <remindType>Email</remindType>\r\n            <remindStrategy>RemindLimtTime</remindStrategy>\r\n            <remindLimtTimeDay>0</remindLimtTimeDay>\r\n            <remindLimtTimeHour>0</remindLimtTimeHour>\r\n            <remindLimtTimeMinute>0</remindLimtTimeMinute>\r\n            <remindRelevantData />\r\n            <isSendMessageForRemind>false</isSendMessageForRemind>\r\n          </remindInfo>\r\n        </timeLimit>\r\n        <multiWorkItem>\r\n          <isMulWIValid>false</isMulWIValid>\r\n          <workItemNumStrategy>OperatorNumber</workItemNumStrategy>\r\n          <finishRule>FinishAll</finishRule>\r\n          <finishRquiredNum>0</finishRquiredNum>\r\n          <finishRequiredPercent>0</finishRequiredPercent>\r\n          <isAutoCancel>false</isAutoCancel>\r\n          <isSequentialExecute>false</isSequentialExecute>\r\n        </multiWorkItem>\r\n        <triggerEvents />\r\n        <rollBack>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri />\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <parameters />\r\n        </rollBack>\r\n        <freeFlowRule>\r\n          <isFreeActivity>false</isFreeActivity>\r\n          <freeRangeStrategy>FreeWithinNextActivites</freeRangeStrategy>\r\n          <isOnlyLimitedManualActivity>false</isOnlyLimitedManualActivity>\r\n        </freeFlowRule>\r\n      </manualActivity>\r\n    </activity>\r\n    <activity>\r\n      <activityType>AutoActivity</activityType>\r\n      <executeAction />\r\n      <id>CreateVirtualMachine</id>\r\n      <name>创建虚拟机</name>\r\n      <splitType>XOR</splitType>\r\n      <joinType>AND</joinType>\r\n      <isSplitTransaction>false</isSplitTransaction>\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <activateRule>\r\n        <activateRuleType>DirectRunning</activateRuleType>\r\n        <customAction>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri></applicationUri>\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <activateRuleApp></activateRuleApp>\r\n          <parameters />\r\n        </customAction>\r\n      </activateRule>\r\n      <parameters />\r\n      <style>\r\n        <skin />\r\n        <height>40</height>\r\n        <width>40</width>\r\n        <left>261</left>\r\n        <top>229</top>\r\n        <zIndex>0</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n      <autoActivity>\r\n        <timeLimit>\r\n          <isTimeLimitSet>false</isTimeLimitSet>\r\n          <calendar>\r\n            <init />\r\n            <type>CDefault</type>\r\n            <id>CreateVirtualMachine</id>\r\n            <name>创建虚拟机</name>\r\n          </calendar>\r\n          <timeLimitInfo>\r\n            <timeLimitStrategy>LimitTime</timeLimitStrategy>\r\n            <limitTimeDay>0</limitTimeDay>\r\n            <limitTimeHour>0</limitTimeHour>\r\n            <limitTimeMinute>0</limitTimeMinute>\r\n            <relevantData />\r\n            <isSendMessageForOvertime>false</isSendMessageForOvertime>\r\n          </timeLimitInfo>\r\n          <remindInfo>\r\n            <remindType>Email</remindType>\r\n            <remindStrategy>RemindLimtTime</remindStrategy>\r\n            <remindLimtTimeDay>0</remindLimtTimeDay>\r\n            <remindLimtTimeHour>0</remindLimtTimeHour>\r\n            <remindLimtTimeMinute>0</remindLimtTimeMinute>\r\n            <remindRelevantData />\r\n            <isSendMessageForRemind>false</isSendMessageForRemind>\r\n          </remindInfo>\r\n        </timeLimit>\r\n        <triggerEvents />\r\n        <rollBack>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri />\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <parameters />\r\n        </rollBack>\r\n      </autoActivity>\r\n    </activity>\r\n    <activity>\r\n      <activityType>EndActivity</activityType>\r\n      <id>End</id>\r\n      <name>结束</name>\r\n      <splitType>XOR</splitType>\r\n      <joinType>AND</joinType>\r\n      <isSplitTransaction>false</isSplitTransaction>\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <activateRule>\r\n        <activateRuleType>DirectRunning</activateRuleType>\r\n        <customAction>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri></applicationUri>\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <activateRuleApp></activateRuleApp>\r\n          <parameters />\r\n        </customAction>\r\n      </activateRule>\r\n      <style>\r\n        <skin />\r\n        <height>40</height>\r\n        <width>40</width>\r\n        <left>260</left>\r\n        <top>298</top>\r\n        <zIndex>0</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n    </activity>\r\n  </activities>\r\n  <resource>\r\n    <bizVariables />\r\n    <notes />\r\n  </resource>\r\n</workflowDefine>', 'eClient', 1, 1, 'admi', 1, '2.0', NULL, '2012-11-16 16:40:30', '', '2012-11-16 16:40:30', '36b6eb02-24fa-4424-b04c-a06e0137772f'),
@@ -10255,11 +10313,13 @@ INSERT INTO `wf_processdef` (`ID`, `Name`, `Text`, `Content`, `CategoryID`, `Cur
 	('b9f58e84-2ca5-4e90-8fa2-0cd89289c38b', 'ModifyQuotaVirtualMachine', '电子政务云虚拟机修改流程', '<workflowDefine version="1.0" author="">\r\n  <basic>\r\n    <name>电子政务云虚拟机修改流程</name>\r\n    <id>ModifyQuotaVirtualMachine</id>\r\n    <startURL>/iClient/Order/Modify</startURL>\r\n    <timeLimit>\r\n      <calendar />\r\n      <timeLimitInfo />\r\n      <remindInfo />\r\n    </timeLimit>\r\n    <triggerEvents />\r\n    <initiator>\r\n      <starterType />\r\n    </initiator>\r\n  </basic>\r\n  <transitions>\r\n    <transition>\r\n      <id>con_56</id>\r\n      <name></name>\r\n      <skin />\r\n      <isDefault>false</isDefault>\r\n      <zIndex>0</zIndex>\r\n      <expression />\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <source>\r\n        <orientation>BottomCenter</orientation>\r\n        <x>293</x>\r\n        <y>42</y>\r\n        <activityID>Start</activityID>\r\n      </source>\r\n      <sink>\r\n        <orientation>TopCenter</orientation>\r\n        <x>292</x>\r\n        <y>130</y>\r\n        <activityID>ModifyVM</activityID>\r\n      </sink>\r\n      <bendPoints />\r\n    </transition>\r\n    <transition>\r\n      <id>con_110</id>\r\n      <name></name>\r\n      <skin />\r\n      <isDefault>false</isDefault>\r\n      <zIndex>0</zIndex>\r\n      <expression />\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <source>\r\n        <orientation>BottomCenter</orientation>\r\n        <x>293</x>\r\n        <y>131</y>\r\n        <activityID>ModifyVM</activityID>\r\n      </source>\r\n      <sink>\r\n        <orientation>TopCenter</orientation>\r\n        <x>291</x>\r\n        <y>233</y>\r\n        <activityID>AutoModifyVirtualMachine</activityID>\r\n      </sink>\r\n      <bendPoints />\r\n    </transition>\r\n    <transition>\r\n      <id>con_115</id>\r\n      <name></name>\r\n      <skin />\r\n      <isDefault>false</isDefault>\r\n      <zIndex>0</zIndex>\r\n      <expression />\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <source>\r\n        <orientation>BottomCenter</orientation>\r\n        <x>291</x>\r\n        <y>233</y>\r\n        <activityID>AutoModifyVirtualMachine</activityID>\r\n      </source>\r\n      <sink>\r\n        <orientation>TopCenter</orientation>\r\n        <x>292</x>\r\n        <y>311</y>\r\n        <activityID>End</activityID>\r\n      </sink>\r\n      <bendPoints />\r\n    </transition>\r\n  </transitions>\r\n  <activities>\r\n    <activity>\r\n      <activityType>StartActivity</activityType>\r\n      <id>Start</id>\r\n      <name>开始活动</name>\r\n      <splitType>XOR</splitType>\r\n      <joinType>AND</joinType>\r\n      <isSplitTransaction>false</isSplitTransaction>\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <parameters />\r\n      <style>\r\n        <skin />\r\n        <height>40</height>\r\n        <width>40</width>\r\n        <left>293</left>\r\n        <top>42</top>\r\n        <zIndex>0</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n      <startActivity>\r\n        <form />\r\n      </startActivity>\r\n    </activity>\r\n    <activity>\r\n      <activityType>ManualActivity</activityType>\r\n      <allowAgent>false</allowAgent>\r\n      <resetParticipant>FirstParticipantor</resetParticipant>\r\n      <id>ModifyVM</id>\r\n      <name>申请修改虚拟机</name>\r\n      <splitType>XOR</splitType>\r\n      <joinType>AND</joinType>\r\n      <isSplitTransaction>false</isSplitTransaction>\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <activateRule>\r\n        <activateRuleType>DirectRunning</activateRuleType>\r\n        <customAction>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri></applicationUri>\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <activateRuleApp></activateRuleApp>\r\n          <parameters />\r\n        </customAction>\r\n      </activateRule>\r\n      <parameters />\r\n      <style>\r\n        <skin />\r\n        <height>40</height>\r\n        <width>40</width>\r\n        <left>293</left>\r\n        <top>131</top>\r\n        <zIndex>0</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n      <manualActivity>\r\n        <customURL>\r\n          <isSpecifyURL>false</isSpecifyURL>\r\n          <urlType>CustomURL</urlType>\r\n          <specifyURL>iClient/ModifyQuotaVirtualMachine/Approve</specifyURL>\r\n          <manualProcess>\r\n            <actionPattern>Method</actionPattern>\r\n            <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n            <applicationUri />\r\n            <transactionType>Join</transactionType>\r\n            <exceptionStrategy>Rollback</exceptionStrategy>\r\n            <invokePattern>Synchronous</invokePattern>\r\n            <parameters />\r\n          </manualProcess>\r\n        </customURL>\r\n        <resetURL>\r\n          <isSpecifyURL>false</isSpecifyURL>\r\n          <urlType>CustomURL</urlType>\r\n          <specifyURL />\r\n          <manualProcess>\r\n            <actionPattern>Method</actionPattern>\r\n            <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n            <applicationUri />\r\n            <transactionType>Join</transactionType>\r\n            <exceptionStrategy>Rollback</exceptionStrategy>\r\n            <invokePattern>Synchronous</invokePattern>\r\n            <parameters />\r\n          </manualProcess>\r\n        </resetURL>\r\n        <participant>\r\n          <participantType>Participantor</participantType>\r\n          <allowAppointParticipants>false</allowAppointParticipants>\r\n          <participantValue />\r\n          <specialActivityID />\r\n          <specialPath />\r\n          <participantors />\r\n        </participant>\r\n        <form />\r\n        <timeLimit>\r\n          <isTimeLimitSet>false</isTimeLimitSet>\r\n          <calendar>\r\n            <init />\r\n            <type>CDefault</type>\r\n            <id />\r\n            <name />\r\n          </calendar>\r\n          <timeLimitInfo>\r\n            <timeLimitStrategy>LimitTime</timeLimitStrategy>\r\n            <limitTimeDay>0</limitTimeDay>\r\n            <limitTimeHour>0</limitTimeHour>\r\n            <limitTimeMinute>0</limitTimeMinute>\r\n            <relevantData />\r\n            <isSendMessageForOvertime>false</isSendMessageForOvertime>\r\n          </timeLimitInfo>\r\n          <remindInfo>\r\n            <remindType>Email</remindType>\r\n            <remindStrategy>RemindLimtTime</remindStrategy>\r\n            <remindLimtTimeDay>0</remindLimtTimeDay>\r\n            <remindLimtTimeHour>0</remindLimtTimeHour>\r\n            <remindLimtTimeMinute>0</remindLimtTimeMinute>\r\n            <remindRelevantData />\r\n            <isSendMessageForRemind>false</isSendMessageForRemind>\r\n          </remindInfo>\r\n        </timeLimit>\r\n        <multiWorkItem>\r\n          <isMulWIValid>false</isMulWIValid>\r\n          <workItemNumStrategy>ParticipantNumber</workItemNumStrategy>\r\n          <finishRule>FinishAll</finishRule>\r\n          <finishRquiredNum>0</finishRquiredNum>\r\n          <finishRequiredPercent>0</finishRequiredPercent>\r\n          <isAutoCancel>false</isAutoCancel>\r\n          <isSequentialExecute>false</isSequentialExecute>\r\n        </multiWorkItem>\r\n        <triggerEvents />\r\n        <rollBack>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri />\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <parameters />\r\n        </rollBack>\r\n        <freeFlowRule>\r\n          <isFreeActivity>false</isFreeActivity>\r\n          <freeRangeStrategy>FreeWithinNextActivites</freeRangeStrategy>\r\n          <isOnlyLimitedManualActivity>false</isOnlyLimitedManualActivity>\r\n        </freeFlowRule>\r\n      </manualActivity>\r\n    </activity>\r\n    <activity>\r\n      <activityType>EndActivity</activityType>\r\n      <id>End</id>\r\n      <name>结束活动</name>\r\n      <splitType>XOR</splitType>\r\n      <joinType>AND</joinType>\r\n      <isSplitTransaction>false</isSplitTransaction>\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <activateRule>\r\n        <activateRuleType>DirectRunning</activateRuleType>\r\n        <customAction>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri></applicationUri>\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <activateRuleApp></activateRuleApp>\r\n          <parameters />\r\n        </customAction>\r\n      </activateRule>\r\n      <style>\r\n        <skin />\r\n        <height>40</height>\r\n        <width>40</width>\r\n        <left>293</left>\r\n        <top>300</top>\r\n        <zIndex>0</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n    </activity>\r\n    <activity>\r\n      <activityType>AutoActivity</activityType>\r\n      <executeAction />\r\n      <id>AutoModifyVirtualMachine</id>\r\n      <name>自动配置虚拟机</name>\r\n      <splitType>XOR</splitType>\r\n      <joinType>AND</joinType>\r\n      <isSplitTransaction>false</isSplitTransaction>\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <activateRule>\r\n        <activateRuleType>DirectRunning</activateRuleType>\r\n        <customAction>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri></applicationUri>\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <activateRuleApp></activateRuleApp>\r\n          <parameters />\r\n        </customAction>\r\n      </activateRule>\r\n      <parameters />\r\n      <style>\r\n        <skin />\r\n        <height>40</height>\r\n        <width>40</width>\r\n        <left>293</left>\r\n        <top>216</top>\r\n        <zIndex>0</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n      <autoActivity>\r\n        <timeLimit>\r\n          <isTimeLimitSet>false</isTimeLimitSet>\r\n          <calendar>\r\n            <init />\r\n            <type>CDefault</type>\r\n            <id />\r\n            <name />\r\n          </calendar>\r\n          <timeLimitInfo>\r\n            <timeLimitStrategy>LimitTime</timeLimitStrategy>\r\n            <limitTimeDay>0</limitTimeDay>\r\n            <limitTimeHour>0</limitTimeHour>\r\n            <limitTimeMinute>0</limitTimeMinute>\r\n            <relevantData />\r\n            <isSendMessageForOvertime>false</isSendMessageForOvertime>\r\n          </timeLimitInfo>\r\n          <remindInfo>\r\n            <remindType>Email</remindType>\r\n            <remindStrategy>RemindLimtTime</remindStrategy>\r\n            <remindLimtTimeDay>0</remindLimtTimeDay>\r\n            <remindLimtTimeHour>0</remindLimtTimeHour>\r\n            <remindLimtTimeMinute>0</remindLimtTimeMinute>\r\n            <remindRelevantData />\r\n            <isSendMessageForRemind>false</isSendMessageForRemind>\r\n          </remindInfo>\r\n        </timeLimit>\r\n        <triggerEvents />\r\n        <rollBack>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri />\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <parameters />\r\n        </rollBack>\r\n      </autoActivity>\r\n    </activity>\r\n  </activities>\r\n  <resource>\r\n    <bizVariables />\r\n    <notes />\r\n  </resource>\r\n</workflowDefine>', '电子政务云', 1, 1, '', 1, '1.0', '电子政务云虚拟机修改流程', '2012-12-05 16:56:17', 'admi', '2012-12-05 16:56:17', NULL),
 	('bf18f55c-0945-40a4-b48b-a09300e6db9c', 'ModifyVirtualMachine', '佳都新太虚拟机修改流程', '<workflowDefine author="trh" version="1.0">\r\n  <basic>\r\n    <description>佳都新太虚拟机修改流程</description>\r\n    <id>ModifyVirtualMachine</id>\r\n    <name>ModifyVirtualMachine</name>\r\n    <timeLimit>\r\n      <calendar></calendar>\r\n      <timeLimitInfo></timeLimitInfo>\r\n      <remindInfo></remindInfo>\r\n    </timeLimit>\r\n    <triggerEvents />\r\n    <initiator>\r\n      <starterType></starterType>\r\n    </initiator>\r\n  </basic>\r\n  <transitions>\r\n    <transition>\r\n      <zIndex>0</zIndex>\r\n      <source>\r\n        <orientation>Bottom</orientation>\r\n        <x>287</x>\r\n        <y>28.7</y>\r\n        <activityID>Start</activityID>\r\n      </source>\r\n      <sink>\r\n        <orientation>Top</orientation>\r\n        <x>287</x>\r\n        <y>76.5264175415039</y>\r\n        <activityID>ModifyVirtualMachine</activityID>\r\n      </sink>\r\n      <bendPoints />\r\n    </transition>\r\n    <transition>\r\n      <zIndex>0</zIndex>\r\n      <isDefault>true</isDefault>\r\n      <name>不是主管申请</name>\r\n      <expression>:IsManager==false</expression>\r\n      <source>\r\n        <orientation>Right</orientation>\r\n        <x>299.66629840731622</x>\r\n        <y>93.214569255709648</y>\r\n        <activityID>ModifyVirtualMachine</activityID>\r\n      </source>\r\n      <sink>\r\n        <orientation>Top</orientation>\r\n        <x>353.71053264737128</x>\r\n        <y>110.6186445504427</y>\r\n        <activityID>ManagerApprove</activityID>\r\n      </sink>\r\n      <bendPoints />\r\n    </transition>\r\n    <transition>\r\n      <zIndex>0</zIndex>\r\n      <source>\r\n        <orientation>Bottom</orientation>\r\n        <x>219.61482632756233</x>\r\n        <y>246.32132166028023</y>\r\n        <activityID>AutoModifyVirtualMachine</activityID>\r\n      </source>\r\n      <sink>\r\n        <orientation>Top</orientation>\r\n        <x>283.00805270075796</x>\r\n        <y>280.82713109850886</y>\r\n        <activityID>End</activityID>\r\n      </sink>\r\n      <bendPoints />\r\n    </transition>\r\n    <transition>\r\n      <zIndex>0</zIndex>\r\n      <isDefault>false</isDefault>\r\n      <name>是主管申请</name>\r\n      <expression>:IsManager==true</expression>\r\n      <source>\r\n        <orientation>Bottom</orientation>\r\n        <x>287</x>\r\n        <y>105.7</y>\r\n        <activityID>ModifyVirtualMachine</activityID>\r\n      </source>\r\n      <sink>\r\n        <orientation>Top</orientation>\r\n        <x>287</x>\r\n        <y>159.4901092529297</y>\r\n        <activityID>AdminApprove</activityID>\r\n      </sink>\r\n      <bendPoints />\r\n    </transition>\r\n    <transition>\r\n      <zIndex>0</zIndex>\r\n      <isDefault>false</isDefault>\r\n      <expression>:IsAutoModify==true</expression>\r\n      <source>\r\n        <orientation>Bottom</orientation>\r\n        <x>286.37390645742414</x>\r\n        <y>188.29971043467521</y>\r\n        <activityID>AdminApprove</activityID>\r\n      </source>\r\n      <sink>\r\n        <orientation>Top</orientation>\r\n        <x>223.06263223886489</x>\r\n        <y>219.95535548329355</y>\r\n        <activityID>AutoModifyVirtualMachine</activityID>\r\n      </sink>\r\n      <bendPoints />\r\n    </transition>\r\n    <transition>\r\n      <zIndex>0</zIndex>\r\n      <source>\r\n        <orientation>Bottom</orientation>\r\n        <x>357.42055538892748</x>\r\n        <y>136.39271593689918</y>\r\n        <activityID>ManagerApprove</activityID>\r\n      </source>\r\n      <sink>\r\n        <orientation>Right</orientation>\r\n        <x>302.75125857591627</x>\r\n        <y>173.4442896783352</y>\r\n        <activityID>AdminApprove</activityID>\r\n      </sink>\r\n      <bendPoints />\r\n    </transition>\r\n    <transition>\r\n      <zIndex>0</zIndex>\r\n      <isDefault>true</isDefault>\r\n      <expression>:IsAutoModify==false</expression>\r\n      <source>\r\n        <orientation>Bottom</orientation>\r\n        <x>287</x>\r\n        <y>188.68666381835936</y>\r\n        <activityID>AdminApprove</activityID>\r\n      </source>\r\n      <sink>\r\n        <orientation>Top</orientation>\r\n        <x>287</x>\r\n        <y>278.42631225585939</y>\r\n        <activityID>End</activityID>\r\n      </sink>\r\n      <bendPoints />\r\n    </transition>\r\n  </transitions>\r\n  <activities>\r\n    <activity>\r\n      <activityType>StartActivity</activityType>\r\n      <name>开始</name>\r\n      <id>Start</id>\r\n      <splitType>XOR</splitType>\r\n      <parameters />\r\n      <style>\r\n        <left>261</left>\r\n        <top>0</top>\r\n        <width>50</width>\r\n        <height>50</height>\r\n        <zIndex>0</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n      <startActivity>\r\n        <form name="开始" />\r\n      </startActivity>\r\n    </activity>\r\n    <activity>\r\n      <id>ModifyVirtualMachine</id>\r\n      <name>虚拟机修改申请</name>\r\n      <joinType>AND</joinType>\r\n      <splitType>XOR</splitType>\r\n      <resetParticipant>FirstParticipantor</resetParticipant>\r\n      <activityType>ManualActivity</activityType>\r\n      <activateRule>\r\n        <activateRuleType>DirectRunning</activateRuleType>\r\n        <customAction>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri></applicationUri>\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <activateRuleApp></activateRuleApp>\r\n          <parameters />\r\n        </customAction>\r\n      </activateRule>\r\n      <parameters />\r\n      <style>\r\n        <left>261</left>\r\n        <top>76.999999999999986</top>\r\n        <width>50</width>\r\n        <height>50</height>\r\n        <zIndex>1</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n      <manualActivity>\r\n        <customURL>\r\n          <specifyURL>eClient/ModifyVirtualMachine/Approve</specifyURL>\r\n          <urlType>CustomURL</urlType>\r\n          <manualProcess>\r\n            <actionPattern>Method</actionPattern>\r\n            <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n            <applicationUri />\r\n            <transactionType>Join</transactionType>\r\n            <exceptionStrategy>Rollback</exceptionStrategy>\r\n            <invokePattern>Synchronous</invokePattern>\r\n            <parameters />\r\n          </manualProcess>\r\n        </customURL>\r\n        <resetURL>\r\n          <urlType>CustomURL</urlType>\r\n          <specifyURL>eClient/Order/Index</specifyURL>\r\n          <manualProcess>\r\n            <actionPattern>Method</actionPattern>\r\n            <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n            <applicationUri />\r\n            <transactionType>Join</transactionType>\r\n            <exceptionStrategy>Rollback</exceptionStrategy>\r\n            <invokePattern>Synchronous</invokePattern>\r\n            <parameters />\r\n          </manualProcess>\r\n        </resetURL>\r\n        <participant>\r\n          <participantType>RelevantData</participantType>\r\n          <participantors />\r\n        </participant>\r\n        <form />\r\n        <timeLimit>\r\n          <calendar></calendar>\r\n          <timeLimitInfo>\r\n            <limitTimeHour>0</limitTimeHour>\r\n            <limitTimeMinute>0</limitTimeMinute>\r\n            <timeLimitStrategy>LimitTime</timeLimitStrategy>\r\n          </timeLimitInfo>\r\n          <remindInfo>\r\n            <remindLimtTimeHour>0</remindLimtTimeHour>\r\n            <remindLimtTimeMinute>0</remindLimtTimeMinute>\r\n            <remindStrategy>RemindLimtTime</remindStrategy>\r\n          </remindInfo>\r\n        </timeLimit>\r\n        <multiWorkItem>\r\n          <workItemNumStrategy>OperatorNumber</workItemNumStrategy>\r\n          <finishRule>FinishAll</finishRule>\r\n        </multiWorkItem>\r\n        <triggerEvents />\r\n        <rollBack>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri />\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <parameters />\r\n        </rollBack>\r\n        <freeFlowRule>\r\n          <freeRangeStrategy>FreeWithinNextActivites</freeRangeStrategy>\r\n        </freeFlowRule>\r\n      </manualActivity>\r\n    </activity>\r\n    <activity>\r\n      <id>ManagerApprove</id>\r\n      <name>主管审批</name>\r\n      <joinType>AND</joinType>\r\n      <splitType>XOR</splitType>\r\n      <resetParticipant>FirstParticipantor</resetParticipant>\r\n      <activityType>ManualActivity</activityType>\r\n      <activateRule>\r\n        <activateRuleType>DirectRunning</activateRuleType>\r\n        <customAction>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri></applicationUri>\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <activateRuleApp></activateRuleApp>\r\n          <parameters />\r\n        </customAction>\r\n      </activateRule>\r\n      <parameters />\r\n      <style>\r\n        <left>332</left>\r\n        <top>107.99999999999993</top>\r\n        <width>50</width>\r\n        <height>50</height>\r\n        <zIndex>2</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n      <manualActivity>\r\n        <customURL>\r\n          <specifyURL>eClient/ModifyVirtualMachine/Approve</specifyURL>\r\n          <urlType>CustomURL</urlType>\r\n          <manualProcess>\r\n            <actionPattern>Method</actionPattern>\r\n            <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n            <applicationUri />\r\n            <transactionType>Join</transactionType>\r\n            <exceptionStrategy>Rollback</exceptionStrategy>\r\n            <invokePattern>Synchronous</invokePattern>\r\n            <parameters />\r\n          </manualProcess>\r\n        </customURL>\r\n        <resetURL>\r\n          <urlType>CustomURL</urlType>\r\n          <specifyURL>eClient/Workflow/ManagerApprove</specifyURL>\r\n          <manualProcess>\r\n            <actionPattern>Method</actionPattern>\r\n            <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n            <applicationUri />\r\n            <transactionType>Join</transactionType>\r\n            <exceptionStrategy>Rollback</exceptionStrategy>\r\n            <invokePattern>Synchronous</invokePattern>\r\n            <parameters />\r\n          </manualProcess>\r\n        </resetURL>\r\n        <participant>\r\n          <participantType>RelevantData</participantType>\r\n          <participantors />\r\n        </participant>\r\n        <form />\r\n        <timeLimit>\r\n          <calendar></calendar>\r\n          <timeLimitInfo>\r\n            <limitTimeHour>0</limitTimeHour>\r\n            <limitTimeMinute>0</limitTimeMinute>\r\n            <timeLimitStrategy>LimitTime</timeLimitStrategy>\r\n          </timeLimitInfo>\r\n          <remindInfo>\r\n            <remindLimtTimeHour>0</remindLimtTimeHour>\r\n            <remindLimtTimeMinute>0</remindLimtTimeMinute>\r\n            <remindStrategy>RemindLimtTime</remindStrategy>\r\n          </remindInfo>\r\n        </timeLimit>\r\n        <multiWorkItem>\r\n          <workItemNumStrategy>OperatorNumber</workItemNumStrategy>\r\n          <finishRule>FinishAll</finishRule>\r\n        </multiWorkItem>\r\n        <triggerEvents />\r\n        <rollBack>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri />\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <parameters />\r\n        </rollBack>\r\n        <freeFlowRule>\r\n          <freeRangeStrategy>FreeWithinNextActivites</freeRangeStrategy>\r\n        </freeFlowRule>\r\n      </manualActivity>\r\n    </activity>\r\n    <activity>\r\n      <id>AdminApprove</id>\r\n      <name>管理员审批</name>\r\n      <joinType>AND</joinType>\r\n      <splitType>XOR</splitType>\r\n      <description></description>\r\n      <resetParticipant>FirstParticipantor</resetParticipant>\r\n      <activityType>ManualActivity</activityType>\r\n      <activateRule>\r\n        <activateRuleType>DirectRunning</activateRuleType>\r\n        <customAction>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri />\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <activateRuleApp></activateRuleApp>\r\n          <parameters />\r\n        </customAction>\r\n      </activateRule>\r\n      <parameters />\r\n      <style>\r\n        <left>261</left>\r\n        <top>159.98666666666668</top>\r\n        <width>50</width>\r\n        <height>50</height>\r\n        <zIndex>10</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n      <manualActivity>\r\n        <customURL>\r\n          <specifyURL>eClient/ModifyVirtualMachine/Approve</specifyURL>\r\n          <urlType>CustomURL</urlType>\r\n          <customAction>\r\n            <actionPattern>Method</actionPattern>\r\n            <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n            <applicationUri />\r\n            <transactionType>Join</transactionType>\r\n            <exceptionStrategy>Rollback</exceptionStrategy>\r\n            <invokePattern>Synchronous</invokePattern>\r\n            <parameters />\r\n          </customAction>\r\n        </customURL>\r\n        <resetURL>\r\n          <urlType>CustomURL</urlType>\r\n          <specifyURL>eClient/Workflow/AdminApprove</specifyURL>\r\n        </resetURL>\r\n        <participant>\r\n          <participantType>Participantor</participantType>\r\n          <participantors>\r\n            <participantor>\r\n              <sortOrder>1</sortOrder>\r\n              <id>d60b47bf-1fea-479c-9252-9fcf0139f7db</id>\r\n              <name>云平台管理员</name>\r\n              <participantorType>Role</participantorType>\r\n            </participantor>\r\n            <participantor>\r\n              <sortOrder>2</sortOrder>\r\n              <id>ee892886-d278-4f50-b7a9-a05b0060fb4f</id>\r\n              <name>云业务支撑系统管理员</name>\r\n              <participantorType>Role</participantorType>\r\n            </participantor>\r\n          </participantors>\r\n        </participant>\r\n        <form dataSource="" title="" />\r\n        <timeLimit>\r\n          <calendar />\r\n          <timeLimitInfo>\r\n            <limitTimeHour>0</limitTimeHour>\r\n            <limitTimeMinute>0</limitTimeMinute>\r\n            <timeLimitStrategy>LimitTime</timeLimitStrategy>\r\n          </timeLimitInfo>\r\n          <remindInfo>\r\n            <remindLimtTimeHour>0</remindLimtTimeHour>\r\n            <remindLimtTimeMinute>0</remindLimtTimeMinute>\r\n            <remindStrategy>RemindLimtTime</remindStrategy>\r\n          </remindInfo>\r\n        </timeLimit>\r\n        <multiWorkItem>\r\n          <workItemNumStrategy>OperatorNumber</workItemNumStrategy>\r\n          <finishRule>FinishAll</finishRule>\r\n        </multiWorkItem>\r\n        <triggerEvents />\r\n        <customAction>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri></applicationUri>\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <parameters />\r\n        </customAction>\r\n        <freeFlowRule>\r\n          <freeRangeStrategy>FreeWithinNextActivites</freeRangeStrategy>\r\n        </freeFlowRule>\r\n      </manualActivity>\r\n    </activity>\r\n    <activity>\r\n      <activityType>AutoActivity</activityType>\r\n      <name>自动修改虚拟机</name>\r\n      <id>AutoModifyVirtualMachine</id>\r\n      <splitType>XOR</splitType>\r\n      <joinType>AND</joinType>\r\n      <priority>Middle</priority>\r\n      <activateRule>\r\n        <activateRuleType>DirectRunning</activateRuleType>\r\n        <customAction>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri></applicationUri>\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <activateRuleApp></activateRuleApp>\r\n          <parameters />\r\n        </customAction>\r\n      </activateRule>\r\n      <parameters />\r\n      <style>\r\n        <left>193</left>\r\n        <top>217.98666666666668</top>\r\n        <width>50</width>\r\n        <height>50</height>\r\n        <zIndex>10</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n      <autoActivity>\r\n        <timeLimit>\r\n          <calendar>\r\n            <id>CreateVirtualMachine</id>\r\n            <name>创建虚拟机</name>\r\n          </calendar>\r\n          <timeLimitInfo></timeLimitInfo>\r\n          <remindInfo></remindInfo>\r\n        </timeLimit>\r\n        <triggerEvents />\r\n        <rollBack>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri />\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <parameters />\r\n        </rollBack>\r\n      </autoActivity>\r\n    </activity>\r\n    <activity>\r\n      <activityType>EndActivity</activityType>\r\n      <name>结束</name>\r\n      <id>End</id>\r\n      <joinType>AND</joinType>\r\n      <activateRule>\r\n        <activateRuleType>DirectRunning</activateRuleType>\r\n        <customAction>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri></applicationUri>\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <activateRuleApp></activateRuleApp>\r\n          <parameters />\r\n        </customAction>\r\n      </activateRule>\r\n      <style>\r\n        <left>261</left>\r\n        <top>279</top>\r\n        <width>50</width>\r\n        <height>50</height>\r\n        <zIndex>9</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n    </activity>\r\n  </activities>\r\n  <resource>\r\n    <bizVariables />\r\n    <notes />\r\n  </resource>\r\n</workflowDefine>', 'eClient', 1, 1, 'admi', 1, '1.0', NULL, '2012-07-19 14:02:21', '', '2012-07-19 14:02:21', '36b6eb02-24fa-4424-b04c-a06e0137772f'),
 	('ProcessDefine1346142933646', 'DelayVirtualMachine', '佳都新太虚拟机延期流程', '<workflowDefine version="1.0" author="yy">\r\n  <basic>\r\n    <name>ProcessDefine</name>\r\n    <id>ProcessDefine1346142933646</id>\r\n    <timeLimit>\r\n      <calendar />\r\n      <timeLimitInfo />\r\n      <remindInfo />\r\n    </timeLimit>\r\n    <triggerEvents />\r\n    <initiator>\r\n      <starterType />\r\n    </initiator>\r\n  </basic>\r\n  <transitions>\r\n    <transition>\r\n      <zIndex>0</zIndex>\r\n      <source>\r\n        <orientation>BottomCenter</orientation>\r\n        <x>276</x>\r\n        <y>14</y>\r\n        <activityID>StartActivity1346142639239</activityID>\r\n      </source>\r\n      <sink>\r\n        <orientation>TopCenter</orientation>\r\n        <x>276</x>\r\n        <y>115</y>\r\n        <activityID>ManualActivity1346142642088</activityID>\r\n      </sink>\r\n      <bendPoints />\r\n    </transition>\r\n    <transition>\r\n      <zIndex>0</zIndex>\r\n      <source>\r\n        <orientation>BottomCenter</orientation>\r\n        <x>276</x>\r\n        <y>115</y>\r\n        <activityID>ManualActivity1346142642088</activityID>\r\n      </source>\r\n      <sink>\r\n        <orientation>TopCenter</orientation>\r\n        <x>277</x>\r\n        <y>208</y>\r\n        <activityID>ManualActivity1346142673141</activityID>\r\n      </sink>\r\n      <bendPoints />\r\n    </transition>\r\n    <transition>\r\n      <zIndex>0</zIndex>\r\n      <source>\r\n        <orientation>BottomCenter</orientation>\r\n        <x>277</x>\r\n        <y>208</y>\r\n        <activityID>ManualActivity1346142673141</activityID>\r\n      </source>\r\n      <sink>\r\n        <orientation>TopCenter</orientation>\r\n        <x>279</x>\r\n        <y>311</y>\r\n        <activityID>EndActivity1346142661725</activityID>\r\n      </sink>\r\n      <bendPoints />\r\n    </transition>\r\n  </transitions>\r\n  <activities>\r\n    <activity>\r\n      <name>开始活动</name>\r\n      <id>StartActivity1346142639239</id>\r\n      <activityType>StartActivity</activityType>\r\n      <parameters />\r\n      <style>\r\n        <left>276</left>\r\n        <top>14</top>\r\n        <width>40</width>\r\n        <height>40</height>\r\n        <zIndex>0</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n    </activity>\r\n    <activity>\r\n      <name>人工活动</name>\r\n      <id>ManualActivity1346142642088</id>\r\n      <activityType>ManualActivity</activityType>\r\n      <parameters />\r\n      <style>\r\n        <left>276</left>\r\n        <top>115</top>\r\n        <width>40</width>\r\n        <height>40</height>\r\n        <zIndex>0</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n    </activity>\r\n    <activity>\r\n      <name>结束活动</name>\r\n      <id>EndActivity1346142661725</id>\r\n      <activityType>EndActivity</activityType>\r\n      <parameters />\r\n      <style>\r\n        <left>279</left>\r\n        <top>311</top>\r\n        <width>40</width>\r\n        <height>40</height>\r\n        <zIndex>0</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n    </activity>\r\n    <activity>\r\n      <name>人工活动</name>\r\n      <id>ManualActivity1346142673141</id>\r\n      <activityType>ManualActivity</activityType>\r\n      <parameters />\r\n      <style>\r\n        <left>277</left>\r\n        <top>208</top>\r\n        <width>40</width>\r\n        <height>40</height>\r\n        <zIndex>0</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n    </activity>\r\n  </activities>\r\n  <resource>\r\n    <bizVariables />\r\n    <notes />\r\n  </resource>\r\n</workflowDefine>', '', 0, 0, '', 0, '1.0', NULL, '2012-08-28 16:35:33', 'admi', '2012-08-28 16:35:33', NULL),
-	('ProcessDefine1348488332831', '请假流程', '请假流程', '<workflowDefine version="1.0" author="qlj">\r\n  <basic>\r\n    <name>请假流程</name>\r\n    <id>请假流程</id>\r\n    <startURL>/workflow/eform</startURL>\r\n    <timeLimit>\r\n      <calendar />\r\n      <timeLimitInfo />\r\n      <remindInfo />\r\n    </timeLimit>\r\n    <triggerEvents />\r\n    <initiator>\r\n      <starterType />\r\n    </initiator>\r\n  </basic>\r\n  <transitions>\r\n    <transition>\r\n      <id>con_67</id>\r\n      <name></name>\r\n      <skin />\r\n      <isDefault>false</isDefault>\r\n      <zIndex>0</zIndex>\r\n      <expression />\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <source>\r\n        <orientation>BottomCenter</orientation>\r\n        <x>211</x>\r\n        <y>9</y>\r\n        <activityID>start</activityID>\r\n      </source>\r\n      <sink>\r\n        <orientation>TopCenter</orientation>\r\n        <x>213</x>\r\n        <y>94</y>\r\n        <activityID>apply</activityID>\r\n      </sink>\r\n      <bendPoints />\r\n    </transition>\r\n    <transition>\r\n      <id>con_113</id>\r\n      <name></name>\r\n      <skin />\r\n      <isDefault>false</isDefault>\r\n      <zIndex>0</zIndex>\r\n      <expression />\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <source>\r\n        <orientation>BottomCenter</orientation>\r\n        <x>209</x>\r\n        <y>115</y>\r\n        <activityID>apply</activityID>\r\n      </source>\r\n      <sink>\r\n        <orientation>TopCenter</orientation>\r\n        <x>201</x>\r\n        <y>202</y>\r\n        <activityID>approve</activityID>\r\n      </sink>\r\n      <bendPoints />\r\n    </transition>\r\n    <transition>\r\n      <id>con_136</id>\r\n      <name></name>\r\n      <skin />\r\n      <isDefault>false</isDefault>\r\n      <zIndex>0</zIndex>\r\n      <expression />\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <source>\r\n        <orientation>BottomCenter</orientation>\r\n        <x>211</x>\r\n        <y>204</y>\r\n        <activityID>approve</activityID>\r\n      </source>\r\n      <sink>\r\n        <orientation>TopCenter</orientation>\r\n        <x>376</x>\r\n        <y>311</y>\r\n        <activityID>end</activityID>\r\n      </sink>\r\n      <bendPoints />\r\n    </transition>\r\n  </transitions>\r\n  <activities>\r\n    <activity>\r\n      <activityType>ManualActivity</activityType>\r\n      <allowAgent>true</allowAgent>\r\n      <resetParticipant>FirstParticipantor</resetParticipant>\r\n      <id>apply</id>\r\n      <name>请假申请</name>\r\n      <splitType>XOR</splitType>\r\n      <joinType>AND</joinType>\r\n      <isSplitTransaction>false</isSplitTransaction>\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <activateRule>\r\n        <activateRuleType>DirectRunning</activateRuleType>\r\n        <customAction>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri></applicationUri>\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <activateRuleApp></activateRuleApp>\r\n          <parameters />\r\n        </customAction>\r\n      </activateRule>\r\n      <parameters />\r\n      <style>\r\n        <skin />\r\n        <height>40</height>\r\n        <width>40</width>\r\n        <left>310</left>\r\n        <top>145.10000610351563</top>\r\n        <zIndex>0</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n      <manualActivity>\r\n        <customURL>\r\n          <isSpecifyURL>false</isSpecifyURL>\r\n          <urlType>DefaultURL</urlType>\r\n          <specifyURL />\r\n          <manualProcess>\r\n            <actionPattern>Method</actionPattern>\r\n            <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n            <applicationUri />\r\n            <transactionType>Join</transactionType>\r\n            <exceptionStrategy>Rollback</exceptionStrategy>\r\n            <invokePattern>Synchronous</invokePattern>\r\n            <parameters />\r\n          </manualProcess>\r\n        </customURL>\r\n        <resetURL>\r\n          <isSpecifyURL>false</isSpecifyURL>\r\n          <urlType>CustomURL</urlType>\r\n          <specifyURL />\r\n          <manualProcess>\r\n            <actionPattern>Method</actionPattern>\r\n            <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n            <applicationUri />\r\n            <transactionType>Join</transactionType>\r\n            <exceptionStrategy>Rollback</exceptionStrategy>\r\n            <invokePattern>Synchronous</invokePattern>\r\n            <parameters />\r\n          </manualProcess>\r\n        </resetURL>\r\n        <participant>\r\n          <participantType>Participantor</participantType>\r\n          <allowAppointParticipants>false</allowAppointParticipants>\r\n          <participantValue />\r\n          <specialActivityID />\r\n          <specialPath />\r\n          <participantors>\r\n            <participantor>\r\n              <id>tanrh</id>\r\n              <name>谭任辉</name>\r\n              <participantorType>Person</participantorType>\r\n              <sortOrder>2</sortOrder>\r\n            </participantor>\r\n            <participantor>\r\n              <id>1552</id>\r\n              <name>开发中心开发九部</name>\r\n              <participantorType>Org</participantorType>\r\n              <sortOrder>1</sortOrder>\r\n            </participantor>\r\n          </participantors>\r\n        </participant>\r\n        <form name="请假申请" dataSource="EF_Leave" title="请假申请">\r\n          <field>\r\n            <index>0</index>\r\n            <name>Title</name>\r\n            <extendData />\r\n            <text>请假申请</text>\r\n            <dataSource />\r\n            <required>false</required>\r\n            <controlType>Text</controlType>\r\n            <dataType>String</dataType>\r\n            <accessPattern>ReadOnly</accessPattern>\r\n            <defaultValue />\r\n            <rows>1</rows>\r\n            <cols>1</cols>\r\n            <url />\r\n            <x>352</x>\r\n            <y>20</y>\r\n            <z>0</z>\r\n            <width>151</width>\r\n            <height>30</height>\r\n            <customData />\r\n          </field>\r\n          <field>\r\n            <index>0</index>\r\n            <name>Reason</name>\r\n            <extendData />\r\n            <text>请假原因：</text>\r\n            <dataSource />\r\n            <required>false</required>\r\n            <controlType>TextArea</controlType>\r\n            <dataType>String</dataType>\r\n            <accessPattern>Write</accessPattern>\r\n            <defaultValue />\r\n            <rows>1</rows>\r\n            <cols>1</cols>\r\n            <url />\r\n            <x>266</x>\r\n            <y>100</y>\r\n            <z>0</z>\r\n            <width>388</width>\r\n            <height>140</height>\r\n            <customData />\r\n          </field>\r\n          <field>\r\n            <index>0</index>\r\n            <name>StartTime</name>\r\n            <extendData />\r\n            <text>开始时间：</text>\r\n            <dataSource />\r\n            <required>true</required>\r\n            <controlType>DatePicker</controlType>\r\n            <dataType>DateTime</dataType>\r\n            <accessPattern>Write</accessPattern>\r\n            <defaultValue />\r\n            <rows>1</rows>\r\n            <cols>1</cols>\r\n            <url />\r\n            <x>264</x>\r\n            <y>256</y>\r\n            <z>0</z>\r\n            <width>240</width>\r\n            <height>22</height>\r\n            <customData />\r\n          </field>\r\n          <field>\r\n            <index>0</index>\r\n            <name>EndTime</name>\r\n            <extendData />\r\n            <text>结束时间：</text>\r\n            <dataSource />\r\n            <required>true</required>\r\n            <controlType>DatePicker</controlType>\r\n            <dataType>DateTime</dataType>\r\n            <accessPattern>Write</accessPattern>\r\n            <defaultValue />\r\n            <rows>1</rows>\r\n            <cols>1</cols>\r\n            <url />\r\n            <x>265</x>\r\n            <y>304</y>\r\n            <z>0</z>\r\n            <width>240</width>\r\n            <height>22</height>\r\n            <customData />\r\n          </field>\r\n        </form>\r\n        <timeLimit>\r\n          <isTimeLimitSet>false</isTimeLimitSet>\r\n          <calendar>\r\n            <init />\r\n            <type>CDefault</type>\r\n            <id />\r\n            <name />\r\n          </calendar>\r\n          <timeLimitInfo>\r\n            <timeLimitStrategy>LimitTime</timeLimitStrategy>\r\n            <limitTimeDay>0</limitTimeDay>\r\n            <limitTimeHour>0</limitTimeHour>\r\n            <limitTimeMinute>0</limitTimeMinute>\r\n            <relevantData />\r\n            <isSendMessageForOvertime>false</isSendMessageForOvertime>\r\n          </timeLimitInfo>\r\n          <remindInfo>\r\n            <remindType>Email</remindType>\r\n            <remindStrategy>RemindLimtTime</remindStrategy>\r\n            <remindLimtTimeDay>0</remindLimtTimeDay>\r\n            <remindLimtTimeHour>0</remindLimtTimeHour>\r\n            <remindLimtTimeMinute>0</remindLimtTimeMinute>\r\n            <remindRelevantData />\r\n            <isSendMessageForRemind>false</isSendMessageForRemind>\r\n          </remindInfo>\r\n        </timeLimit>\r\n        <multiWorkItem>\r\n          <isMulWIValid>false</isMulWIValid>\r\n          <workItemNumStrategy>ParticipantNumber</workItemNumStrategy>\r\n          <finishRule>FinishAll</finishRule>\r\n          <finishRquiredNum>0</finishRquiredNum>\r\n          <finishRequiredPercent>0</finishRequiredPercent>\r\n          <isAutoCancel>false</isAutoCancel>\r\n          <isSequentialExecute>false</isSequentialExecute>\r\n        </multiWorkItem>\r\n        <triggerEvents />\r\n        <rollBack>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri />\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <parameters />\r\n        </rollBack>\r\n        <freeFlowRule>\r\n          <isFreeActivity>false</isFreeActivity>\r\n          <freeRangeStrategy>FreeWithinNextActivites</freeRangeStrategy>\r\n          <isOnlyLimitedManualActivity>false</isOnlyLimitedManualActivity>\r\n        </freeFlowRule>\r\n      </manualActivity>\r\n    </activity>\r\n    <activity>\r\n      <activityType>StartActivity</activityType>\r\n      <id>start</id>\r\n      <name>开始活动</name>\r\n      <splitType>XOR</splitType>\r\n      <joinType>AND</joinType>\r\n      <isSplitTransaction>false</isSplitTransaction>\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <parameters />\r\n      <style>\r\n        <skin />\r\n        <height>40</height>\r\n        <width>40</width>\r\n        <left>308.88333129882812</left>\r\n        <top>44</top>\r\n        <zIndex>0</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n      <startActivity>\r\n        <form />\r\n      </startActivity>\r\n    </activity>\r\n    <activity>\r\n      <activityType>EndActivity</activityType>\r\n      <id>end</id>\r\n      <name>结束活动</name>\r\n      <splitType>XOR</splitType>\r\n      <joinType>AND</joinType>\r\n      <isSplitTransaction>false</isSplitTransaction>\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <activateRule>\r\n        <activateRuleType>DirectRunning</activateRuleType>\r\n        <customAction>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri></applicationUri>\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <activateRuleApp></activateRuleApp>\r\n          <parameters />\r\n        </customAction>\r\n      </activateRule>\r\n      <style>\r\n        <skin />\r\n        <height>40</height>\r\n        <width>40</width>\r\n        <left>308.88333129882812</left>\r\n        <top>321.76666259765625</top>\r\n        <zIndex>0</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n    </activity>\r\n    <activity>\r\n      <activityType>ManualActivity</activityType>\r\n      <allowAgent>false</allowAgent>\r\n      <resetParticipant>FirstParticipantor</resetParticipant>\r\n      <id>approve</id>\r\n      <name>主管审批</name>\r\n      <splitType>XOR</splitType>\r\n      <joinType>AND</joinType>\r\n      <isSplitTransaction>false</isSplitTransaction>\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <activateRule>\r\n        <activateRuleType>DirectRunning</activateRuleType>\r\n        <customAction>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri></applicationUri>\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <activateRuleApp></activateRuleApp>\r\n          <parameters />\r\n        </customAction>\r\n      </activateRule>\r\n      <parameters />\r\n      <style>\r\n        <skin />\r\n        <height>40</height>\r\n        <width>40</width>\r\n        <left>308.88333129882812</left>\r\n        <top>236.2166748046875</top>\r\n        <zIndex>0</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n      <manualActivity>\r\n        <customURL>\r\n          <isSpecifyURL>false</isSpecifyURL>\r\n          <urlType>DefaultURL</urlType>\r\n          <specifyURL />\r\n          <manualProcess>\r\n            <actionPattern>Method</actionPattern>\r\n            <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n            <applicationUri />\r\n            <transactionType>Join</transactionType>\r\n            <exceptionStrategy>Rollback</exceptionStrategy>\r\n            <invokePattern>Synchronous</invokePattern>\r\n            <parameters />\r\n          </manualProcess>\r\n        </customURL>\r\n        <resetURL>\r\n          <isSpecifyURL>false</isSpecifyURL>\r\n          <urlType>CustomURL</urlType>\r\n          <specifyURL />\r\n          <manualProcess>\r\n            <actionPattern>Method</actionPattern>\r\n            <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n            <applicationUri />\r\n            <transactionType>Join</transactionType>\r\n            <exceptionStrategy>Rollback</exceptionStrategy>\r\n            <invokePattern>Synchronous</invokePattern>\r\n            <parameters />\r\n          </manualProcess>\r\n        </resetURL>\r\n        <participant>\r\n          <participantType>Participantor</participantType>\r\n          <allowAppointParticipants>false</allowAppointParticipants>\r\n          <participantValue />\r\n          <specialActivityID />\r\n          <specialPath />\r\n          <participantors>\r\n            <participantor>\r\n              <id>dry</id>\r\n              <name>邓任远</name>\r\n              <participantorType>Person</participantorType>\r\n              <sortOrder>1</sortOrder>\r\n            </participantor>\r\n          </participantors>\r\n        </participant>\r\n        <form name="主管审批" dataSource="EF_Leave" title="请假申请">\r\n          <field>\r\n            <index>0</index>\r\n            <name>Title</name>\r\n            <extendData />\r\n            <text>请假申请</text>\r\n            <dataSource />\r\n            <required>false</required>\r\n            <controlType>Text</controlType>\r\n            <dataType>String</dataType>\r\n            <accessPattern>ReadOnly</accessPattern>\r\n            <defaultValue />\r\n            <rows>1</rows>\r\n            <cols>1</cols>\r\n            <url />\r\n            <x>353</x>\r\n            <y>40</y>\r\n            <z>0</z>\r\n            <width>150</width>\r\n            <height>30</height>\r\n            <customData />\r\n          </field>\r\n          <field>\r\n            <index>0</index>\r\n            <name>Reason</name>\r\n            <extendData />\r\n            <text>请假原因：</text>\r\n            <dataSource />\r\n            <required>false</required>\r\n            <controlType>TextArea</controlType>\r\n            <dataType>String</dataType>\r\n            <accessPattern>ReadOnly</accessPattern>\r\n            <defaultValue />\r\n            <rows>1</rows>\r\n            <cols>1</cols>\r\n            <url />\r\n            <x>264</x>\r\n            <y>100</y>\r\n            <z>0</z>\r\n            <width>388</width>\r\n            <height>140</height>\r\n            <customData />\r\n          </field>\r\n          <field>\r\n            <index>0</index>\r\n            <name>StartTime</name>\r\n            <extendData />\r\n            <text>开始时间：</text>\r\n            <dataSource />\r\n            <required>true</required>\r\n            <controlType>DatePicker</controlType>\r\n            <dataType>DateTime</dataType>\r\n            <accessPattern>ReadOnly</accessPattern>\r\n            <defaultValue />\r\n            <rows>1</rows>\r\n            <cols>1</cols>\r\n            <url />\r\n            <x>262</x>\r\n            <y>254</y>\r\n            <z>0</z>\r\n            <width>240</width>\r\n            <height>20</height>\r\n            <customData />\r\n          </field>\r\n          <field>\r\n            <index>0</index>\r\n            <name>EndTime</name>\r\n            <extendData />\r\n            <text>结束时间：</text>\r\n            <dataSource />\r\n            <required>true</required>\r\n            <controlType>DatePicker</controlType>\r\n            <dataType>DateTime</dataType>\r\n            <accessPattern>ReadOnly</accessPattern>\r\n            <defaultValue />\r\n            <rows>1</rows>\r\n            <cols>1</cols>\r\n            <url />\r\n            <x>263</x>\r\n            <y>302</y>\r\n            <z>0</z>\r\n            <width>240</width>\r\n            <height>20</height>\r\n            <customData />\r\n          </field>\r\n          <field>\r\n            <index>0</index>\r\n            <name>ManagerApproveResult</name>\r\n            <extendData />\r\n            <text>是否通过：</text>\r\n            <dataSource />\r\n            <required>false</required>\r\n            <controlType>CheckBox</controlType>\r\n            <dataType>String</dataType>\r\n            <accessPattern>Write</accessPattern>\r\n            <defaultValue />\r\n            <rows>1</rows>\r\n            <cols>1</cols>\r\n            <url />\r\n            <x>263</x>\r\n            <y>436</y>\r\n            <z>0</z>\r\n            <width>240</width>\r\n            <height>24</height>\r\n            <customData />\r\n          </field>\r\n          <field>\r\n            <index>0</index>\r\n            <name>DirectorApprove</name>\r\n            <extendData />\r\n            <text>主管审批：</text>\r\n            <dataSource />\r\n            <required>false</required>\r\n            <controlType>TextArea</controlType>\r\n            <dataType>String</dataType>\r\n            <accessPattern>Write</accessPattern>\r\n            <defaultValue />\r\n            <rows>1</rows>\r\n            <cols>1</cols>\r\n            <url />\r\n            <x>261</x>\r\n            <y>340</y>\r\n            <z>0</z>\r\n            <width>390</width>\r\n            <height>80</height>\r\n            <customData />\r\n          </field>\r\n        </form>\r\n        <timeLimit>\r\n          <isTimeLimitSet>false</isTimeLimitSet>\r\n          <calendar>\r\n            <init />\r\n            <type>CDefault</type>\r\n            <id />\r\n            <name />\r\n          </calendar>\r\n          <timeLimitInfo>\r\n            <timeLimitStrategy>LimitTime</timeLimitStrategy>\r\n            <limitTimeDay>0</limitTimeDay>\r\n            <limitTimeHour>0</limitTimeHour>\r\n            <limitTimeMinute>0</limitTimeMinute>\r\n            <relevantData />\r\n            <isSendMessageForOvertime>false</isSendMessageForOvertime>\r\n          </timeLimitInfo>\r\n          <remindInfo>\r\n            <remindType>Email</remindType>\r\n            <remindStrategy>RemindLimtTime</remindStrategy>\r\n            <remindLimtTimeDay>0</remindLimtTimeDay>\r\n            <remindLimtTimeHour>0</remindLimtTimeHour>\r\n            <remindLimtTimeMinute>0</remindLimtTimeMinute>\r\n            <remindRelevantData />\r\n            <isSendMessageForRemind>false</isSendMessageForRemind>\r\n          </remindInfo>\r\n        </timeLimit>\r\n        <multiWorkItem>\r\n          <isMulWIValid>false</isMulWIValid>\r\n          <workItemNumStrategy>ParticipantNumber</workItemNumStrategy>\r\n          <finishRule>FinishAll</finishRule>\r\n          <finishRquiredNum>0</finishRquiredNum>\r\n          <finishRequiredPercent>0</finishRequiredPercent>\r\n          <isAutoCancel>false</isAutoCancel>\r\n          <isSequentialExecute>false</isSequentialExecute>\r\n        </multiWorkItem>\r\n        <triggerEvents />\r\n        <rollBack>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri />\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <parameters />\r\n        </rollBack>\r\n        <freeFlowRule>\r\n          <isFreeActivity>false</isFreeActivity>\r\n          <freeRangeStrategy>FreeWithinNextActivites</freeRangeStrategy>\r\n          <isOnlyLimitedManualActivity>false</isOnlyLimitedManualActivity>\r\n        </freeFlowRule>\r\n      </manualActivity>\r\n    </activity>\r\n  </activities>\r\n  <resource>\r\n    <bizVariables />\r\n    <notes />\r\n  </resource>\r\n</workflowDefine>', 'eClient', 1, 0, 'qlj', 1, '1.0', 'test', '2012-11-28 13:57:32', 'admi', '2012-11-28 13:57:32', NULL);
+	('ProcessDefine1348488332831', '请假流程', '请假流程', '<workflowDefine version="1.0" author="qlj">\r\n  <basic>\r\n    <name>请假流程</name>\r\n    <id>请假流程</id>\r\n    <startURL>/workflow/eform</startURL>\r\n    <timeLimit>\r\n      <calendar />\r\n      <timeLimitInfo />\r\n      <remindInfo />\r\n    </timeLimit>\r\n    <triggerEvents />\r\n    <initiator>\r\n      <starterType />\r\n    </initiator>\r\n  </basic>\r\n  <transitions>\r\n    <transition>\r\n      <id>con_67</id>\r\n      <name></name>\r\n      <skin />\r\n      <isDefault>false</isDefault>\r\n      <zIndex>0</zIndex>\r\n      <expression />\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <source>\r\n        <orientation>BottomCenter</orientation>\r\n        <x>211</x>\r\n        <y>9</y>\r\n        <activityID>start</activityID>\r\n      </source>\r\n      <sink>\r\n        <orientation>TopCenter</orientation>\r\n        <x>213</x>\r\n        <y>94</y>\r\n        <activityID>apply</activityID>\r\n      </sink>\r\n      <bendPoints />\r\n    </transition>\r\n    <transition>\r\n      <id>con_113</id>\r\n      <name></name>\r\n      <skin />\r\n      <isDefault>false</isDefault>\r\n      <zIndex>0</zIndex>\r\n      <expression />\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <source>\r\n        <orientation>BottomCenter</orientation>\r\n        <x>209</x>\r\n        <y>115</y>\r\n        <activityID>apply</activityID>\r\n      </source>\r\n      <sink>\r\n        <orientation>TopCenter</orientation>\r\n        <x>201</x>\r\n        <y>202</y>\r\n        <activityID>approve</activityID>\r\n      </sink>\r\n      <bendPoints />\r\n    </transition>\r\n    <transition>\r\n      <id>con_136</id>\r\n      <name></name>\r\n      <skin />\r\n      <isDefault>false</isDefault>\r\n      <zIndex>0</zIndex>\r\n      <expression />\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <source>\r\n        <orientation>BottomCenter</orientation>\r\n        <x>211</x>\r\n        <y>204</y>\r\n        <activityID>approve</activityID>\r\n      </source>\r\n      <sink>\r\n        <orientation>TopCenter</orientation>\r\n        <x>376</x>\r\n        <y>311</y>\r\n        <activityID>end</activityID>\r\n      </sink>\r\n      <bendPoints />\r\n    </transition>\r\n  </transitions>\r\n  <activities>\r\n    <activity>\r\n      <activityType>ManualActivity</activityType>\r\n      <allowAgent>true</allowAgent>\r\n      <resetParticipant>FirstParticipantor</resetParticipant>\r\n      <id>apply</id>\r\n      <name>请假申请</name>\r\n      <splitType>XOR</splitType>\r\n      <joinType>AND</joinType>\r\n      <isSplitTransaction>false</isSplitTransaction>\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <activateRule>\r\n        <activateRuleType>DirectRunning</activateRuleType>\r\n        <customAction>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri></applicationUri>\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <activateRuleApp></activateRuleApp>\r\n          <parameters />\r\n        </customAction>\r\n      </activateRule>\r\n      <parameters />\r\n      <style>\r\n        <skin />\r\n        <height>40</height>\r\n        <width>40</width>\r\n        <left>310</left>\r\n        <top>145.10000610351563</top>\r\n        <zIndex>0</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n      <manualActivity>\r\n        <customURL>\r\n          <isSpecifyURL>false</isSpecifyURL>\r\n          <urlType>DefaultURL</urlType>\r\n          <specifyURL />\r\n          <manualProcess>\r\n            <actionPattern>Method</actionPattern>\r\n            <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n            <applicationUri />\r\n            <transactionType>Join</transactionType>\r\n            <exceptionStrategy>Rollback</exceptionStrategy>\r\n            <invokePattern>Synchronous</invokePattern>\r\n            <parameters />\r\n          </manualProcess>\r\n        </customURL>\r\n        <resetURL>\r\n          <isSpecifyURL>false</isSpecifyURL>\r\n          <urlType>CustomURL</urlType>\r\n          <specifyURL />\r\n          <manualProcess>\r\n            <actionPattern>Method</actionPattern>\r\n            <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n            <applicationUri />\r\n            <transactionType>Join</transactionType>\r\n            <exceptionStrategy>Rollback</exceptionStrategy>\r\n            <invokePattern>Synchronous</invokePattern>\r\n            <parameters />\r\n          </manualProcess>\r\n        </resetURL>\r\n        <participant>\r\n          <participantType>Participantor</participantType>\r\n          <allowAppointParticipants>false</allowAppointParticipants>\r\n          <participantValue />\r\n          <specialActivityID />\r\n          <specialPath />\r\n          <participantors>\r\n            <participantor>\r\n              <id>tanrh</id>\r\n              <name>谭任辉</name>\r\n              <participantorType>Person</participantorType>\r\n              <sortOrder>2</sortOrder>\r\n            </participantor>\r\n            <participantor>\r\n              <id>1552</id>\r\n              <name>开发中心开发九部</name>\r\n              <participantorType>Org</participantorType>\r\n              <sortOrder>1</sortOrder>\r\n            </participantor>\r\n          </participantors>\r\n        </participant>\r\n        <form name="请假申请" dataSource="EF_Leave" title="请假申请">\r\n          <field>\r\n            <index>0</index>\r\n            <name>Title</name>\r\n            <extendData />\r\n            <text>请假申请</text>\r\n            <dataSource />\r\n            <required>false</required>\r\n            <controlType>Text</controlType>\r\n            <dataType>String</dataType>\r\n            <accessPattern>ReadOnly</accessPattern>\r\n            <defaultValue />\r\n            <rows>1</rows>\r\n            <cols>1</cols>\r\n            <url />\r\n            <x>352</x>\r\n            <y>20</y>\r\n            <z>0</z>\r\n            <width>151</width>\r\n            <height>30</height>\r\n            <customData />\r\n          </field>\r\n          <field>\r\n            <index>0</index>\r\n            <name>Reason</name>\r\n            <extendData />\r\n            <text>请假原因：</text>\r\n            <dataSource />\r\n            <required>false</required>\r\n            <controlType>TextArea</controlType>\r\n            <dataType>String</dataType>\r\n            <accessPattern>Write</accessPattern>\r\n            <defaultValue />\r\n            <rows>1</rows>\r\n            <cols>1</cols>\r\n            <url />\r\n            <x>266</x>\r\n            <y>100</y>\r\n            <z>0</z>\r\n            <width>388</width>\r\n            <height>140</height>\r\n            <customData />\r\n          </field>\r\n          <field>\r\n            <index>0</index>\r\n            <name>StartTime</name>\r\n            <extendData />\r\n            <text>开始时间：</text>\r\n            <dataSource />\r\n            <required>true</required>\r\n            <controlType>DatePicker</controlType>\r\n            <dataType>DateTime</dataType>\r\n            <accessPattern>Write</accessPattern>\r\n            <defaultValue />\r\n            <rows>1</rows>\r\n            <cols>1</cols>\r\n            <url />\r\n            <x>264</x>\r\n            <y>256</y>\r\n            <z>0</z>\r\n            <width>240</width>\r\n            <height>22</height>\r\n            <customData />\r\n          </field>\r\n          <field>\r\n            <index>0</index>\r\n            <name>EndTime</name>\r\n            <extendData />\r\n            <text>结束时间：</text>\r\n            <dataSource />\r\n            <required>true</required>\r\n            <controlType>DatePicker</controlType>\r\n            <dataType>DateTime</dataType>\r\n            <accessPattern>Write</accessPattern>\r\n            <defaultValue />\r\n            <rows>1</rows>\r\n            <cols>1</cols>\r\n            <url />\r\n            <x>265</x>\r\n            <y>304</y>\r\n            <z>0</z>\r\n            <width>240</width>\r\n            <height>22</height>\r\n            <customData />\r\n          </field>\r\n        </form>\r\n        <timeLimit>\r\n          <isTimeLimitSet>false</isTimeLimitSet>\r\n          <calendar>\r\n            <init />\r\n            <type>CDefault</type>\r\n            <id />\r\n            <name />\r\n          </calendar>\r\n          <timeLimitInfo>\r\n            <timeLimitStrategy>LimitTime</timeLimitStrategy>\r\n            <limitTimeDay>0</limitTimeDay>\r\n            <limitTimeHour>0</limitTimeHour>\r\n            <limitTimeMinute>0</limitTimeMinute>\r\n            <relevantData />\r\n            <isSendMessageForOvertime>false</isSendMessageForOvertime>\r\n          </timeLimitInfo>\r\n          <remindInfo>\r\n            <remindType>Email</remindType>\r\n            <remindStrategy>RemindLimtTime</remindStrategy>\r\n            <remindLimtTimeDay>0</remindLimtTimeDay>\r\n            <remindLimtTimeHour>0</remindLimtTimeHour>\r\n            <remindLimtTimeMinute>0</remindLimtTimeMinute>\r\n            <remindRelevantData />\r\n            <isSendMessageForRemind>false</isSendMessageForRemind>\r\n          </remindInfo>\r\n        </timeLimit>\r\n        <multiWorkItem>\r\n          <isMulWIValid>false</isMulWIValid>\r\n          <workItemNumStrategy>ParticipantNumber</workItemNumStrategy>\r\n          <finishRule>FinishAll</finishRule>\r\n          <finishRquiredNum>0</finishRquiredNum>\r\n          <finishRequiredPercent>0</finishRequiredPercent>\r\n          <isAutoCancel>false</isAutoCancel>\r\n          <isSequentialExecute>false</isSequentialExecute>\r\n        </multiWorkItem>\r\n        <triggerEvents />\r\n        <rollBack>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri />\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <parameters />\r\n        </rollBack>\r\n        <freeFlowRule>\r\n          <isFreeActivity>false</isFreeActivity>\r\n          <freeRangeStrategy>FreeWithinNextActivites</freeRangeStrategy>\r\n          <isOnlyLimitedManualActivity>false</isOnlyLimitedManualActivity>\r\n        </freeFlowRule>\r\n      </manualActivity>\r\n    </activity>\r\n    <activity>\r\n      <activityType>StartActivity</activityType>\r\n      <id>start</id>\r\n      <name>开始活动</name>\r\n      <splitType>XOR</splitType>\r\n      <joinType>AND</joinType>\r\n      <isSplitTransaction>false</isSplitTransaction>\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <parameters />\r\n      <style>\r\n        <skin />\r\n        <height>40</height>\r\n        <width>40</width>\r\n        <left>308.88333129882812</left>\r\n        <top>44</top>\r\n        <zIndex>0</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n      <startActivity>\r\n        <form />\r\n      </startActivity>\r\n    </activity>\r\n    <activity>\r\n      <activityType>EndActivity</activityType>\r\n      <id>end</id>\r\n      <name>结束活动</name>\r\n      <splitType>XOR</splitType>\r\n      <joinType>AND</joinType>\r\n      <isSplitTransaction>false</isSplitTransaction>\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <activateRule>\r\n        <activateRuleType>DirectRunning</activateRuleType>\r\n        <customAction>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri></applicationUri>\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <activateRuleApp></activateRuleApp>\r\n          <parameters />\r\n        </customAction>\r\n      </activateRule>\r\n      <style>\r\n        <skin />\r\n        <height>40</height>\r\n        <width>40</width>\r\n        <left>308.88333129882812</left>\r\n        <top>321.76666259765625</top>\r\n        <zIndex>0</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n    </activity>\r\n    <activity>\r\n      <activityType>ManualActivity</activityType>\r\n      <allowAgent>false</allowAgent>\r\n      <resetParticipant>FirstParticipantor</resetParticipant>\r\n      <id>approve</id>\r\n      <name>主管审批</name>\r\n      <splitType>XOR</splitType>\r\n      <joinType>AND</joinType>\r\n      <isSplitTransaction>false</isSplitTransaction>\r\n      <priority>Middle</priority>\r\n      <description />\r\n      <activateRule>\r\n        <activateRuleType>DirectRunning</activateRuleType>\r\n        <customAction>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri></applicationUri>\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <activateRuleApp></activateRuleApp>\r\n          <parameters />\r\n        </customAction>\r\n      </activateRule>\r\n      <parameters />\r\n      <style>\r\n        <skin />\r\n        <height>40</height>\r\n        <width>40</width>\r\n        <left>308.88333129882812</left>\r\n        <top>236.2166748046875</top>\r\n        <zIndex>0</zIndex>\r\n        <isGroup>false</isGroup>\r\n      </style>\r\n      <manualActivity>\r\n        <customURL>\r\n          <isSpecifyURL>false</isSpecifyURL>\r\n          <urlType>DefaultURL</urlType>\r\n          <specifyURL />\r\n          <manualProcess>\r\n            <actionPattern>Method</actionPattern>\r\n            <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n            <applicationUri />\r\n            <transactionType>Join</transactionType>\r\n            <exceptionStrategy>Rollback</exceptionStrategy>\r\n            <invokePattern>Synchronous</invokePattern>\r\n            <parameters />\r\n          </manualProcess>\r\n        </customURL>\r\n        <resetURL>\r\n          <isSpecifyURL>false</isSpecifyURL>\r\n          <urlType>CustomURL</urlType>\r\n          <specifyURL />\r\n          <manualProcess>\r\n            <actionPattern>Method</actionPattern>\r\n            <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n            <applicationUri />\r\n            <transactionType>Join</transactionType>\r\n            <exceptionStrategy>Rollback</exceptionStrategy>\r\n            <invokePattern>Synchronous</invokePattern>\r\n            <parameters />\r\n          </manualProcess>\r\n        </resetURL>\r\n        <participant>\r\n          <participantType>Participantor</participantType>\r\n          <allowAppointParticipants>false</allowAppointParticipants>\r\n          <participantValue />\r\n          <specialActivityID />\r\n          <specialPath />\r\n          <participantors>\r\n            <participantor>\r\n              <id>dry</id>\r\n              <name>邓任远</name>\r\n              <participantorType>Person</participantorType>\r\n              <sortOrder>1</sortOrder>\r\n            </participantor>\r\n          </participantors>\r\n        </participant>\r\n        <form name="主管审批" dataSource="EF_Leave" title="请假申请">\r\n          <field>\r\n            <index>0</index>\r\n            <name>Title</name>\r\n            <extendData />\r\n            <text>请假申请</text>\r\n            <dataSource />\r\n            <required>false</required>\r\n            <controlType>Text</controlType>\r\n            <dataType>String</dataType>\r\n            <accessPattern>ReadOnly</accessPattern>\r\n            <defaultValue />\r\n            <rows>1</rows>\r\n            <cols>1</cols>\r\n            <url />\r\n            <x>353</x>\r\n            <y>40</y>\r\n            <z>0</z>\r\n            <width>150</width>\r\n            <height>30</height>\r\n            <customData />\r\n          </field>\r\n          <field>\r\n            <index>0</index>\r\n            <name>Reason</name>\r\n            <extendData />\r\n            <text>请假原因：</text>\r\n            <dataSource />\r\n            <required>false</required>\r\n            <controlType>TextArea</controlType>\r\n            <dataType>String</dataType>\r\n            <accessPattern>ReadOnly</accessPattern>\r\n            <defaultValue />\r\n            <rows>1</rows>\r\n            <cols>1</cols>\r\n            <url />\r\n            <x>264</x>\r\n            <y>100</y>\r\n            <z>0</z>\r\n            <width>388</width>\r\n            <height>140</height>\r\n            <customData />\r\n          </field>\r\n          <field>\r\n            <index>0</index>\r\n            <name>StartTime</name>\r\n            <extendData />\r\n            <text>开始时间：</text>\r\n            <dataSource />\r\n            <required>true</required>\r\n            <controlType>DatePicker</controlType>\r\n            <dataType>DateTime</dataType>\r\n            <accessPattern>ReadOnly</accessPattern>\r\n            <defaultValue />\r\n            <rows>1</rows>\r\n            <cols>1</cols>\r\n            <url />\r\n            <x>262</x>\r\n            <y>254</y>\r\n            <z>0</z>\r\n            <width>240</width>\r\n            <height>20</height>\r\n            <customData />\r\n          </field>\r\n          <field>\r\n            <index>0</index>\r\n            <name>EndTime</name>\r\n            <extendData />\r\n            <text>结束时间：</text>\r\n            <dataSource />\r\n            <required>true</required>\r\n            <controlType>DatePicker</controlType>\r\n            <dataType>DateTime</dataType>\r\n            <accessPattern>ReadOnly</accessPattern>\r\n            <defaultValue />\r\n            <rows>1</rows>\r\n            <cols>1</cols>\r\n            <url />\r\n            <x>263</x>\r\n            <y>302</y>\r\n            <z>0</z>\r\n            <width>240</width>\r\n            <height>20</height>\r\n            <customData />\r\n          </field>\r\n          <field>\r\n            <index>0</index>\r\n            <name>ManagerApproveResult</name>\r\n            <extendData />\r\n            <text>是否通过：</text>\r\n            <dataSource />\r\n            <required>false</required>\r\n            <controlType>CheckBox</controlType>\r\n            <dataType>String</dataType>\r\n            <accessPattern>Write</accessPattern>\r\n            <defaultValue />\r\n            <rows>1</rows>\r\n            <cols>1</cols>\r\n            <url />\r\n            <x>263</x>\r\n            <y>436</y>\r\n            <z>0</z>\r\n            <width>240</width>\r\n            <height>24</height>\r\n            <customData />\r\n          </field>\r\n          <field>\r\n            <index>0</index>\r\n            <name>DirectorApprove</name>\r\n            <extendData />\r\n            <text>主管审批：</text>\r\n            <dataSource />\r\n            <required>false</required>\r\n            <controlType>TextArea</controlType>\r\n            <dataType>String</dataType>\r\n            <accessPattern>Write</accessPattern>\r\n            <defaultValue />\r\n            <rows>1</rows>\r\n            <cols>1</cols>\r\n            <url />\r\n            <x>261</x>\r\n            <y>340</y>\r\n            <z>0</z>\r\n            <width>390</width>\r\n            <height>80</height>\r\n            <customData />\r\n          </field>\r\n        </form>\r\n        <timeLimit>\r\n          <isTimeLimitSet>false</isTimeLimitSet>\r\n          <calendar>\r\n            <init />\r\n            <type>CDefault</type>\r\n            <id />\r\n            <name />\r\n          </calendar>\r\n          <timeLimitInfo>\r\n            <timeLimitStrategy>LimitTime</timeLimitStrategy>\r\n            <limitTimeDay>0</limitTimeDay>\r\n            <limitTimeHour>0</limitTimeHour>\r\n            <limitTimeMinute>0</limitTimeMinute>\r\n            <relevantData />\r\n            <isSendMessageForOvertime>false</isSendMessageForOvertime>\r\n          </timeLimitInfo>\r\n          <remindInfo>\r\n            <remindType>Email</remindType>\r\n            <remindStrategy>RemindLimtTime</remindStrategy>\r\n            <remindLimtTimeDay>0</remindLimtTimeDay>\r\n            <remindLimtTimeHour>0</remindLimtTimeHour>\r\n            <remindLimtTimeMinute>0</remindLimtTimeMinute>\r\n            <remindRelevantData />\r\n            <isSendMessageForRemind>false</isSendMessageForRemind>\r\n          </remindInfo>\r\n        </timeLimit>\r\n        <multiWorkItem>\r\n          <isMulWIValid>false</isMulWIValid>\r\n          <workItemNumStrategy>ParticipantNumber</workItemNumStrategy>\r\n          <finishRule>FinishAll</finishRule>\r\n          <finishRquiredNum>0</finishRquiredNum>\r\n          <finishRequiredPercent>0</finishRequiredPercent>\r\n          <isAutoCancel>false</isAutoCancel>\r\n          <isSequentialExecute>false</isSequentialExecute>\r\n        </multiWorkItem>\r\n        <triggerEvents />\r\n        <rollBack>\r\n          <actionPattern>Method</actionPattern>\r\n          <suppressJoinFailure>Suppress</suppressJoinFailure>\r\n          <applicationUri />\r\n          <transactionType>Join</transactionType>\r\n          <exceptionStrategy>Rollback</exceptionStrategy>\r\n          <invokePattern>Synchronous</invokePattern>\r\n          <parameters />\r\n        </rollBack>\r\n        <freeFlowRule>\r\n          <isFreeActivity>false</isFreeActivity>\r\n          <freeRangeStrategy>FreeWithinNextActivites</freeRangeStrategy>\r\n          <isOnlyLimitedManualActivity>false</isOnlyLimitedManualActivity>\r\n        </freeFlowRule>\r\n      </manualActivity>\r\n    </activity>\r\n  </activities>\r\n  <resource>\r\n    <bizVariables />\r\n    <notes />\r\n  </resource>\r\n</workflowDefine>', 'eClient', 1, 0, 'qlj', 1, '1.0', 'test', '2012-11-28 13:57:32', 'admi', '2012-11-28 13:57:32', NULL),
+	('a57c8802-a1de-4ccc-ae7b-f8d0256693ef', 'ceres_urchase_sourcing', '采购寻源流程', '{"version":"1.0","name":"采购寻源流程","author":"","transitions":[{"id":"con_28","sourcePoint":{"x":183,"y":45,"z":0},"sinkPoint":{"x":215,"y":188,"z":0},"sourceOrientation":"BottomCenter","sinkOrientation":"TopCenter","srcActivity":"StartActivity1385654598828","destActivity":"ManualActivity1385654600000","name":"","priority":3,"isDefault":false,"expression":""},{"id":"con_33","sourcePoint":{"x":191,"y":185,"z":0},"sinkPoint":{"x":301,"y":285,"z":0},"sourceOrientation":"RightMiddle","sinkOrientation":"TopCenter","srcActivity":"ManualActivity1385654600000","destActivity":"EndActivity1385654602094","name":"","priority":3,"isDefault":false,"expression":""}],"activities":[{"name":"开始活动","id":"StartActivity1385654598828","activityType":"StartActivity","style":{"left":283,"top":32,"width":40,"height":40,"zIndex":0}},{"name":"人工活动","id":"ManualActivity1385654600000","activityType":"ManualActivity","style":{"left":313,"top":143,"width":40,"height":40,"zIndex":0}},{"name":"结束活动","id":"EndActivity1385654602094","activityType":"EndActivity","style":{"left":347,"top":256,"width":40,"height":40,"zIndex":0}},{"name":"人工活动","id":"ManualActivity1385654627438","activityType":"ManualActivity","style":{"left":152,"top":153,"width":40,"height":40,"zIndex":0}},{"name":"人工活动","id":"ManualActivity1385654636625","activityType":"ManualActivity","style":{"left":166,"top":244,"width":40,"height":40,"zIndex":0}},{"name":"路由活动","id":"RouterActivity1385654655797","activityType":"RouterActivity","style":{"left":243,"top":108,"width":40,"height":40,"zIndex":0}}],"id":"ceres_urchase_sourcing","startURL":"workflow/eform"}', 'ceres', 0, 0, '', 0, '1.0', '采购寻源流程', '2013-11-29 00:07:23', 'admin', NULL, NULL);
 /*!40000 ALTER TABLE `wf_processdef` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.wf_processform
+-- 导出  表 agileeap.wf_processform 结构
+DROP TABLE IF EXISTS `wf_processform`;
 CREATE TABLE IF NOT EXISTS `wf_processform` (
   `ID` varchar(36) NOT NULL,
   `ProcessInstID` varchar(36) NOT NULL,
@@ -10271,7 +10331,7 @@ CREATE TABLE IF NOT EXISTS `wf_processform` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.wf_processform: 11 rows
+-- 正在导出表  agileeap.wf_processform 的数据：11 rows
 /*!40000 ALTER TABLE `wf_processform` DISABLE KEYS */;
 INSERT INTO `wf_processform` (`ID`, `ProcessInstID`, `BizTable`, `BizID`, `KeyWord`, `CreateTime`, `Creator`) VALUES
 	('189ddc94-9960-4dcd-8e06-a14000e8345b', '6dbd12d5-b27a-4f4e-8c6e-a14000e833f6', 'VF_ApplyInfo', '11bb314e-f66e-4440-9de6-a14000e83456', '1552', '2013-01-08 14:05:25', 'xuy'),
@@ -10288,7 +10348,8 @@ INSERT INTO `wf_processform` (`ID`, `ProcessInstID`, `BizTable`, `BizID`, `KeyWo
 /*!40000 ALTER TABLE `wf_processform` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.wf_processinst
+-- 导出  表 agileeap.wf_processinst 结构
+DROP TABLE IF EXISTS `wf_processinst`;
 CREATE TABLE IF NOT EXISTS `wf_processinst` (
   `ID` varchar(36) NOT NULL,
   `Name` varchar(32) DEFAULT NULL,
@@ -10311,7 +10372,7 @@ CREATE TABLE IF NOT EXISTS `wf_processinst` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.wf_processinst: 12 rows
+-- 正在导出表  agileeap.wf_processinst 的数据：12 rows
 /*!40000 ALTER TABLE `wf_processinst` DISABLE KEYS */;
 INSERT INTO `wf_processinst` (`ID`, `Name`, `ProcessDefID`, `ProcessDefName`, `ParentProcessID`, `ParentActivityID`, `CurrentState`, `LimitTime`, `StartTime`, `EndTime`, `FinalTime`, `RemindTime`, `IsTimeOut`, `TimeOutTime`, `ProcessVersion`, `Description`, `Creator`, `CreateTime`) VALUES
 	('6dbd12d5-b27a-4f4e-8c6e-a14000e833f6', '电子政务云虚拟机修改流程', 'b9f58e84-2ca5-4e90-8fa2-0cd89289c38b', '电子政务云虚拟机修改流程', '', '', 4, '2099-01-01 00:00:00', '2013-01-08 14:05:23', '2099-01-01 00:00:00', '2099-01-01 00:00:00', '2099-01-01 00:00:00', 0, '2099-01-01 00:00:00', '1.0', '电子政务云虚拟机修改流程', 'xuy', '2013-01-08 14:05:25'),
@@ -10329,7 +10390,8 @@ INSERT INTO `wf_processinst` (`ID`, `Name`, `ProcessDefID`, `ProcessDefName`, `P
 /*!40000 ALTER TABLE `wf_processinst` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.wf_tracelog
+-- 导出  表 agileeap.wf_tracelog 结构
+DROP TABLE IF EXISTS `wf_tracelog`;
 CREATE TABLE IF NOT EXISTS `wf_tracelog` (
   `ID` varchar(36) NOT NULL,
   `ActionType` smallint(6) DEFAULT NULL,
@@ -10345,7 +10407,7 @@ CREATE TABLE IF NOT EXISTS `wf_tracelog` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.wf_tracelog: 19 rows
+-- 正在导出表  agileeap.wf_tracelog 的数据：19 rows
 /*!40000 ALTER TABLE `wf_tracelog` DISABLE KEYS */;
 INSERT INTO `wf_tracelog` (`ID`, `ActionType`, `Operator`, `ClientIP`, `ProcessID`, `ProcessInstID`, `ActivityID`, `ActivityInstID`, `WorkItemID`, `Message`, `CreateTime`) VALUES
 	('aed06c4d-1b07-489b-bdc5-a142011e5195', 10, 'WorkflowEngine', '172.16.70.130', '8270d129-4c3a-413a-b0e4-e7d7b73bedd5', '3b02965d-baf0-4497-b673-a1420118285e', 'CreateVirtualMachine', '6bdb100e-7277-4a16-8a8c-a142011828f1', '3abeb99f-5a7b-4cc4-9485-a142011828f2', '完成工作项创建虚拟机', '2013-01-10 17:22:27'),
@@ -10370,7 +10432,8 @@ INSERT INTO `wf_tracelog` (`ID`, `ActionType`, `Operator`, `ClientIP`, `ProcessI
 /*!40000 ALTER TABLE `wf_tracelog` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.wf_transcontrol
+-- 导出  表 agileeap.wf_transcontrol 结构
+DROP TABLE IF EXISTS `wf_transcontrol`;
 CREATE TABLE IF NOT EXISTS `wf_transcontrol` (
   `ID` varchar(36) NOT NULL,
   `SrcActID` varchar(36) NOT NULL,
@@ -10383,7 +10446,7 @@ CREATE TABLE IF NOT EXISTS `wf_transcontrol` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.wf_transcontrol: 31 rows
+-- 正在导出表  agileeap.wf_transcontrol 的数据：31 rows
 /*!40000 ALTER TABLE `wf_transcontrol` DISABLE KEYS */;
 INSERT INTO `wf_transcontrol` (`ID`, `SrcActID`, `SrcActName`, `DestActID`, `DestActName`, `ProcessInstID`, `TransTime`, `TransWeight`) VALUES
 	('700e60be-a60c-4625-9c9a-a148009ae7fb', 'StartActivity1353657576593', '开始活动', 'applyResource', '申请资源', 'a4829b76-bfdf-4ca0-a303-a148009ae7ed', '2013-01-16 09:23:58', 100),
@@ -10420,7 +10483,8 @@ INSERT INTO `wf_transcontrol` (`ID`, `SrcActID`, `SrcActName`, `DestActID`, `Des
 /*!40000 ALTER TABLE `wf_transcontrol` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.wf_transition
+-- 导出  表 agileeap.wf_transition 结构
+DROP TABLE IF EXISTS `wf_transition`;
 CREATE TABLE IF NOT EXISTS `wf_transition` (
   `ID` varchar(36) NOT NULL,
   `SrcActID` varchar(36) NOT NULL,
@@ -10437,7 +10501,7 @@ CREATE TABLE IF NOT EXISTS `wf_transition` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.wf_transition: 31 rows
+-- 正在导出表  agileeap.wf_transition 的数据：31 rows
 /*!40000 ALTER TABLE `wf_transition` DISABLE KEYS */;
 INSERT INTO `wf_transition` (`ID`, `SrcActID`, `SrcActInstID`, `SrcActInstName`, `SrcActName`, `DestActInstID`, `DestActInstName`, `DestActID`, `DestActName`, `ProcessInstID`, `ProcessInstName`, `TransTime`) VALUES
 	('2fe8cfb9-30ec-40d1-8572-a148009ae7fb', 'StartActivity1353657576593', '7f9b24a8-0f1e-48fe-ae59-a148009ae7ee', '启动资源配额分配流程', '开始活动', '01c25b1f-3517-4795-ad9b-a148009ae7fa', '申请资源', 'applyResource', '申请资源', 'a4829b76-bfdf-4ca0-a303-a148009ae7ed', '资源配额分配流程', '2013-01-16 09:23:58'),
@@ -10474,7 +10538,8 @@ INSERT INTO `wf_transition` (`ID`, `SrcActID`, `SrcActInstID`, `SrcActInstName`,
 /*!40000 ALTER TABLE `wf_transition` ENABLE KEYS */;
 
 
--- Dumping structure for table agileeap.wf_workitem
+-- 导出  表 agileeap.wf_workitem 结构
+DROP TABLE IF EXISTS `wf_workitem`;
 CREATE TABLE IF NOT EXISTS `wf_workitem` (
   `ID` varchar(36) NOT NULL,
   `Name` varchar(32) DEFAULT NULL,
@@ -10507,7 +10572,7 @@ CREATE TABLE IF NOT EXISTS `wf_workitem` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk;
 
--- Dumping data for table agileeap.wf_workitem: 23 rows
+-- 正在导出表  agileeap.wf_workitem 的数据：23 rows
 /*!40000 ALTER TABLE `wf_workitem` DISABLE KEYS */;
 INSERT INTO `wf_workitem` (`ID`, `Name`, `Type`, `StartTime`, `EndTime`, `Description`, `CurrentState`, `Participant`, `IsTimeOut`, `TimeOutTime`, `RemindTime`, `ActionURL`, `ActionMask`, `RootProcessInstID`, `ProcessInstID`, `ProcessInstName`, `ActivityInstID`, `ActivityInstName`, `ProcessID`, `ProcessName`, `AllowAgent`, `BizState`, `Executor`, `ExecutorName`, `ExecuteTime`, `Creator`, `CreatorName`, `CreateTime`) VALUES
 	('a71e146e-f225-47c5-8e77-a14000e8340d', '申请修改虚拟机', 2, '2013-01-08 14:05:24', '2099-01-01 00:00:00', NULL, 5, '', 0, '2099-01-01 00:00:00', '2099-01-01 00:00:00', 'iClient/ModifyQuotaVirtualMachine/Approve', '', '', '6dbd12d5-b27a-4f4e-8c6e-a14000e833f6', '电子政务云虚拟机修改流程', '014fbc32-b09e-46da-b249-a14000e8340a', '申请修改虚拟机', 'b9f58e84-2ca5-4e90-8fa2-0cd89289c38b', '电子政务云虚拟机修改流程', 0, 1, 'xuy', '徐杨', '2013-01-08 14:05:25', 'xuy', '徐杨', '2013-01-08 14:05:24'),
@@ -10534,5 +10599,6 @@ INSERT INTO `wf_workitem` (`ID`, `Name`, `Type`, `StartTime`, `EndTime`, `Descri
 	('a8867522-0873-4a83-a3ef-a1410113098f', '申请虚拟机', 2, '2013-01-09 16:41:21', '2099-01-01 00:00:00', NULL, 5, '', 0, '2099-01-01 00:00:00', '2099-01-01 00:00:00', 'eClient/ApplyVirtualMachine/Approve', '', '', 'd85f3425-a61e-476e-befa-a14101130986', '佳都新太虚拟机申请流程', '64490f05-76b0-4876-9b32-a1410113098f', '申请虚拟机', '02e2fd86-39f3-446b-9a9e-a06700bde8a4', '佳都新太虚拟机申请流程', 0, 1, 'xuy', '徐杨', '2013-01-09 16:41:23', 'xuy', '徐杨', '2013-01-09 16:41:21'),
 	('deda1a29-4211-4dbd-8e74-a14101130b05', '主管审批', 2, '2013-01-09 16:41:24', '2099-01-01 00:00:00', NULL, 1, '', 0, '2099-01-01 00:00:00', '2099-01-01 00:00:00', 'eClient/ApplyVirtualMachine/Approve', '', '', 'd85f3425-a61e-476e-befa-a14101130986', '佳都新太虚拟机申请流程', '6075d830-b01a-4a61-a1e7-a14101130b05', '主管审批', '02e2fd86-39f3-446b-9a9e-a06700bde8a4', '佳都新太虚拟机申请流程', 0, 1, '', '', '2013-01-09 16:41:24', 'xuy', '徐杨', '2013-01-09 16:41:24');
 /*!40000 ALTER TABLE `wf_workitem` ENABLE KEYS */;
-/*!40014 SET FOREIGN_KEY_CHECKS=1 */;
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
