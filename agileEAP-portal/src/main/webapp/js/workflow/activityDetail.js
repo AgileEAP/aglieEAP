@@ -407,7 +407,7 @@ function ActivityDetailCtrl($scope) {
     }
     $scope.addParticipant = function () {
         //var participantors = openOperateDialog("添加参与者", "../../Workflow/ChooseParticipantor.aspx", 980, 700, true, 1);
-        var participantors = openTopDialog("actionDialog3", "workflow/participantor/choose", "添加参与者",980, 700, true);
+        var participantors = openTopDialog("actionDialog3", "workflow/designer/participantor", "添加参与者",980, 700, true);
         if (participantors == null) return;
         if (participantors.length != 0) {
             var tbody = $("tbody", "#gvOrgizationOrRole_container");

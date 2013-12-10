@@ -222,7 +222,7 @@
                             var left = x; //selectactivity.style.left;
                             var top = y; //selectactivity.style.top;
                             var img = "../themes/default/workflowDesigner/images/" + selectactivity.activityType + ".png";
-                            var activityResource = "<div id=\"" + id + "\"  class=\"designeractivity\" name=\"" + name + "\" ActivityType=\"" + activityType + "\" style=\"left:" + left + "px;top:" + top + "px;width:40px;height:40px;position:absolute\"><img style=\"width:40px;height:40px;\" src=\"" + img + "\" /><label style=\"width:100px;position:absolute;Top:40px;left:-30px\">" + name + "</label></div>";
+                            var activityResource = "<div id=\"" + id + "\"  class=\"designeractivity\" name=\"" + name + "\" ActivityType=\"" + activityType + "\" style=\"left:" + left + "px;top:" + top + "px;width:40px;height:40px;position:absolute\"><img style=\"width:40px;height:40px;\" src=\"" + img + "\" /><label style=\"width:100px;position:absolute;Top:40px;left: -8px\">" + name + "</label></div>";
                             $("#" + containerment).append(activityResource);
                             $("#" + id).bind("mouseover", function () { jsPlumb.show(id, $("#" + id)); });
                             $("#" + id).bind("dblclick", function () { openTopDialog("actionDialog2", "workflow/designer/activity?processDefID=" + processDefine.id + "&activityID=" + id + "&activityType=" + activityType,'活动配置', 850, 580, true);});
@@ -428,7 +428,7 @@
                     var left = currentObject.style.left;
                     var top = currentObject.style.top;
                     var img = "../themes/default/workflowDesigner/images/" + currentObject.activityType + ".png";
-                    var activityResource = "<div id=\"" + id + "\"  class=\"designeractivity\" name=\"" + name + "\" ActivityType=\"" + activityType + "\" style=\"left:" + left + "px;top:" + top + "px;width:40px;height:40px;position:absolute\"><img style=\"width:40px;height:40px;\" src=\"" + img + "\" /><label style=\"width:100px;position:absolute;Top:40px;left:-30px\">" + name + "</label></div>";
+                    var activityResource = "<div id=\"" + id + "\"  class=\"designeractivity\" name=\"" + name + "\" ActivityType=\"" + activityType + "\" style=\"left:" + left + "px;top:" + top + "px;width:40px;height:40px;position:absolute\"><img style=\"width:40px;height:40px;\" src=\"" + img + "\" /><label style=\"width:100px;position:absolute;Top:40px;left: -8px\">" + name + "</label></div>";
                     $("#" + containerment).append(activityResource);
                     $("#" + id).bind("mouseover", function () { jsPlumb.show(id, $("#" + id)); });
                     $("#" + id).bind("dblclick", function () { openTopDialog("actionDialog2", "workflow/designer/activity?processDefID=" + processDefine.id + "&activityID=" + id + "&activityType=" + activityType,'活动配置', 850, 580, true); });
@@ -624,7 +624,7 @@
                     var left = currentObject.style.left;
                     var top = currentObject.style.top;
                     var img = "../themes/default/workflowDesigner/images/" + currentObject.activityType + ".png";
-                    var activityResource = "<div id=\"" + id + "\"  class=\"designeractivity\" name=\"" + name + "\" ActivityType=\"" + activityType + "\" style=\"left:" + left + "px;top:" + top + "px;width:40px;height:40px;position:absolute\"><img style=\"width:40px;height:40px;\" src=\"" + img + "\" /><label style=\"width:100px;position:absolute;Top:40px;left:-30px\">" + name + "</label></div>"
+                    var activityResource = "<div id=\"" + id + "\"  class=\"designeractivity\" name=\"" + name + "\" ActivityType=\"" + activityType + "\" style=\"left:" + left + "px;top:" + top + "px;width:40px;height:40px;position:absolute\"><img style=\"width:40px;height:40px;\" src=\"" + img + "\" /><label style=\"width:100px;position:absolute;Top:40px;left: -8px\">" + name + "</label></div>"
                     $("#" + containerment).append(activityResource);
                     $("#" + id).bind("mouseover", function () { jsPlumb.show(id, $("#" + id)); });
                     $("#" + id).bind("dblclick", function () { openTopDialog("actionDialog2", "workflow/designer/activity?processDefID=" + processDefine.id + "&activityID=" + id + "&activityType=" + activityType,'活动配置', 850, 580, true);});
@@ -1185,7 +1185,7 @@
                         var img = $(ui.draggable[0]).children()[0];
                         var pointx = (event.clientX + $(document).find("#" + container).scrollLeft() - 20) || event.offsetX;
                         var pointy = (event.clientY + $(document).find("#" + container).scrollTop() - 20) || event.offsetY;
-                        var activityResource = "<div id=\"" + id + "\"  class=\"designeractivity\" name=\"" + text + "\" ActivityType=\"" + $.trim($(ui.draggable[0]).attr("id")) + "\" style=\"left:" + pointx + "px;top:" + pointy + "px;width:40px;height:40px;position:absolute\"><img style=\"width:40px;height:40px;\" src=\"" + $(img).attr("src") + "\" /><label style=\"width:100px;position:absolute;Top:40px;left:-30px\">" + text + "</label></div>"
+                        var activityResource = "<div id=\"" + id + "\"  class=\"designeractivity\" name=\"" + text + "\" ActivityType=\"" + $.trim($(ui.draggable[0]).attr("id")) + "\" style=\"left:" + pointx + "px;top:" + pointy + "px;width:40px;height:40px;position:absolute\"><img style=\"width:40px;height:40px;\" src=\"" + $(img).attr("src") + "\" /><label style=\"width:100px;position:absolute;Top:40px;left: -8px\">" + text + "</label></div>"
                         $("#" + container).append(activityResource);
                         $("#" + id).bind("mouseover", function () { jsPlumb.show(id, $("#" + id)); });
                         $("#" + id).bind("dblclick", function () { openTopDialog("actionDialog2", "workflow/designer/activity?processDefID=" + processDefine.id + "&activityID=" + id + "&activityType=" + $.trim($(ui.draggable[0]).attr("id")),'活动配置', 850, 580, true); });
@@ -1409,7 +1409,7 @@
         }
         var left = activity.style.left + $("#main_leftcontent").width();
         var height = activity.style.top + $("#header").height() + $("#tabcontainer").height() + $("#designer_title").height();
-        var activityResource = "<div id=\"" + activity.id + "\"  class=\"designeractivity\" name=\"" + activity.name + "\" ActivityType=\"" + activity.activityType + "\"  style=\"left:" + left + "px;top:" + height + "px;width:40px;height:40px;position:absolute\"><img style=\"width:40px;height:40px;\" src=\"" + resource + "\" /><label style=\"width:100px;position:absolute;Top:40px;left:-30px\">" + activity.name + "</label></div>"
+        var activityResource = "<div id=\"" + activity.id + "\"  class=\"designeractivity\" name=\"" + activity.name + "\" ActivityType=\"" + activity.activityType + "\"  style=\"left:" + left + "px;top:" + height + "px;width:40px;height:40px;position:absolute\"><img style=\"width:40px;height:40px;\" src=\"" + resource + "\" /><label style=\"width:100px;position:absolute;Top:40px;left: -8px\">" + activity.name + "</label></div>"
         $("#" + container).append(activityResource);
         $("#" + activity.id).bind("mouseover", function () { jsPlumb.show(activity.id, $("#" + activity.id)); });
         $("#" + activity.id).bind("dblclick", function () { openTopDialog("actionDialog2", "workflow/designer/activity?processDefID=" + $.query.get("processDefID") + "&activityID=" + activity.id + "&activityType=" + $(activity).attr("ActivityType"),'活动配置', 850, 580, true); });
@@ -1752,7 +1752,8 @@
     };
     
     WorkflowDesigner.draw = function (url, proDefContent, container) {
-        $.post(url, { processDefContent: proDefContent }, function ($processDefine) {
+    	var $processDefine=JSON.parse(proDefContent);
+        //$.post(url, { processDefContent: proDefContent }, function ($processDefine) {
             jsPlumb.removeEveryEndpoint();
             for (var q = 0; q < $processDefine.activities.length; q++) {
                 if (document.getElementById("leftcontent")) {
@@ -1760,11 +1761,11 @@
                 }
                 drawActivityInst($processDefine.activities[q], 0, container);
             }
-/*                if (ajaxResult.RetValue.processDefine.transitions.length > 0) {
-                    for (var j = 0; j < ajaxResult.RetValue.processDefine.transitions.length; j++) {
-                        drawConnection(ajaxResult.RetValue.processDefine.transitions[j], ajaxResult.RetValue.activityInsts, ajaxResult.RetValue.transList, container);
-                    }
-                }*/
+           if ($processDefine.transitions.length > 0) {
+                for (var j = 0; j < $processDefine.transitions.length; j++) {
+                    drawConnection($processDefine.transitions[j], null, null, container);
+                }
+            }
             jsPlumb.addEndpoint($(".designeractivity"), exampleGreyEndpointOptions, { anchor: "BottomCenter" });
             jsPlumb.addEndpoint($(".designeractivity"), exampleGreyEndpointOptions, { anchor: "TopCenter" });
             jsPlumb.addEndpoint($(".designeractivity"), exampleGreyEndpointOptions, { anchor: "LeftMiddle" });
@@ -1790,7 +1791,7 @@
                        containment: $("#" + container)
                    });
             initProcessDefine($processDefine);
-        });
+        //});
     };
 
     WorkflowDesigner.reloadXML = function (url) {
@@ -1860,9 +1861,10 @@
         processDefine.startURL = $.trim($("#starturl").val());
         processDefine.id = name;//2012.11.16
         var processDefContent = JSON.stringify(processDefine);
-        $.post(url, { processDefContent: processDefContent }, function (xmlContent) {
-            $("#XMLdesigner_content").val(xmlContent);
-        });
+        $("#XMLdesigner_content").val(processDefContent);
+//        $.post(url, { processDefContent: processDefContent }, function (xmlContent) {
+//            $("#XMLdesigner_content").val(xmlContent);
+//        });
     };
     //流程图设计静态初始化方法
     WorkflowDesigner.init = function (url, processDefID, processInstID, container, designerDefine, defineUrl) {

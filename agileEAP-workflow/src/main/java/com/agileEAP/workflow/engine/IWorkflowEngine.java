@@ -23,7 +23,7 @@ public interface IWorkflowEngine
 	IWorkflowPersistence getWorkflowPersistence();
 
 	/** 
-	 创建工作流
+	 创建流程实例
 	 
 	 @param processDefID 流程定义ID
 	 @return 

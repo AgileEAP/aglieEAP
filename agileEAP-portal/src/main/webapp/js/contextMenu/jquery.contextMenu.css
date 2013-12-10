@@ -1,142 +1,237 @@
-/*!
- * jQuery contextMenu - Plugin for simple contextMenu handling
- *
- * Version: 1.6.5
- *
- * Authors: Rodney Rehm, Addy Osmani (patches for FF)
- * Web: http://medialize.github.com/jQuery-contextMenu/
- *
- * Licensed under
- *   MIT License http://www.opensource.org/licenses/mit-license
- *   GPL v3 http://opensource.org/licenses/GPL-3.0
- *
- */
-
-.context-menu-list {
-    margin:0; 
-    padding:0;
-    
-    min-width: 120px;
-    max-width: 250px;
-    display: inline-block;
+/* Generic context menu styles */
+.contextMenu
+{
     position: absolute;
-    list-style-type: none;
-    
-    border: 1px solid #DDD;
+    width: 150px;
+    z-index: 99999;
+    border: solid 1px #CCC;
     background: #EEE;
-    
-    -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-       -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-        -ms-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-         -o-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-    
-    font-family: Verdana, Arial, Helvetica, sans-serif;
+    padding: 0px;
+    margin: 0px;
+    display: none;
     font-size: 11px;
 }
 
-.context-menu-item {
-    padding: 2px 2px 2px 24px;
-    background-color: #EEE;
-    position: relative;
-    -webkit-user-select: none;
-       -moz-user-select: -moz-none;
-        -ms-user-select: none;
-            user-select: none;
-}
+    .contextMenu LI
+    {
+        list-style: none;
+        padding: 0px;
+        margin: 0px;
+    }
 
-.context-menu-separator {
-    padding-bottom:0;
-    border-bottom: 1px solid #DDD;
-}
+    .contextMenu A
+    {
+        color: #333;
+        text-decoration: none;
+        display: block;
+        line-height: 20px;
+        height: 20px;
+        background-position: 6px center;
+        background-repeat: no-repeat;
+        outline: none;
+        padding: 1px 5px;
+        padding-left: 28px;
+    }
 
-.context-menu-item > label > input,
-.context-menu-item > label > textarea {
-    -webkit-user-select: text;
-       -moz-user-select: text;
-        -ms-user-select: text;
-            user-select: text;
-}
+    .contextMenu LI.hover A
+    {
+        color: #FFF;
+        background-color: #3399FF;
+    }
 
-.context-menu-item.hover {
-    cursor: pointer;
-    background-color: #39F;
-}
+    .contextMenu LI.disabled A
+    {
+        color: #AAA;
+        cursor: default;
+    }
 
-.context-menu-item.disabled {
-    color: #666;
-}
+    .contextMenu LI.hover.disabled A
+    {
+        background-color: transparent;
+    }
 
-.context-menu-input.hover,
-.context-menu-item.disabled.hover {
-    cursor: default;
-    background-color: #EEE;
-}
+    .contextMenu LI.separator
+    {
+        border-top: solid 1px #CCC;
+    }
 
-.context-menu-submenu:after {
-    content: ">";
-    color: #666;
-    position: absolute;
-    top: 0;
-    right: 3px;
-    z-index: 1;
-}
+    /*
+	Adding Icons
+	
+	You can add icons to the context menu by adding
+	classes to the respective LI element(s)
+*/
 
-/* icons
-    #protip:
-    In case you want to use sprites for icons (which I would suggest you do) have a look at
-    http://css-tricks.com/13224-pseudo-spriting/ to get an idea of how to implement 
-    .context-menu-item.icon:before {}
- */
-.context-menu-item.icon { min-height: 18px; background-repeat: no-repeat; background-position: 4px 2px; }
-.context-menu-item.icon-edit { background-image: url(images/page_white_edit.png); }
-.context-menu-item.icon-cut { background-image: url(images/cut.png); }
-.context-menu-item.icon-copy { background-image: url(images/page_white_copy.png); }
-.context-menu-item.icon-paste { background-image: url(images/page_white_paste.png); }
-.context-menu-item.icon-delete { background-image: url(images/page_white_delete.png); }
-.context-menu-item.icon-add { background-image: url(images/page_white_add.png); }
-.context-menu-item.icon-quit { background-image: url(images/door.png); }
+    .contextMenu LI.edit A
+    {
+        background-image: url(../../themes/default/images/contextMenu/page_white_edit.png);
+    }
 
-/* vertically align inside labels */
-.context-menu-input > label > * { vertical-align: top; }
+    .contextMenu LI.cut A
+    {
+        background-image: url(../../themes/default/images/contextMenu/cut.png);
+    }
 
-/* position checkboxes and radios as icons */
-.context-menu-input > label > input[type="checkbox"],
-.context-menu-input > label > input[type="radio"] {
-    margin-left: -17px;
-}
-.context-menu-input > label > span {
-    margin-left: 5px;
-}
+    .contextMenu LI.copy A
+    {
+        background-image: url(../../themes/default/images/contextMenu/page_white_copy.png);
+    }
 
-.context-menu-input > label,
-.context-menu-input > label > input[type="text"],
-.context-menu-input > label > textarea,
-.context-menu-input > label > select {
-    display: block;
-    width: 100%;
-    
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-        -ms-box-sizing: border-box;
-         -o-box-sizing: border-box;
-            box-sizing: border-box;
-}
+    .contextMenu LI.paste A
+    {
+        background-image: url(../../themes/default/images/contextMenu/page_white_paste.png);
+    }
 
-.context-menu-input > label > textarea {
-    height: 100px;
-}
-.context-menu-item > .context-menu-list {
-    display: none;
-    /* re-positioned by js */
-    right: -5px;
-    top: 5px;
-}
+    .contextMenu LI.delete A
+    {
+        background-image: url(../../themes/default/images/contextMenu/page_white_delete.png);
+    }
 
-.context-menu-item.hover > .context-menu-list {
-    display: block;
-}
+    .contextMenu LI.AddFolder A
+    {
+        background-image: url(../../themes/default/images/contextMenu/AddFolder.png);
+    }
 
-.context-menu-accesskey {
-    text-decoration: underline;
-}
+    .contextMenu LI.EditFolder A
+    {
+        background-image: url(../../themes/default/images/contextMenu/EditFolder.png);
+    }
+
+    .contextMenu LI.DeleteFolder A
+    {
+        background-image: url(../../themes/default/images/contextMenu/DeleteFolder.png);
+    }
+
+
+    .contextMenu LI.AddModel A
+    {
+        background-image: url(../../themes/default/images/contextMenu/AddModel.png);
+    }
+
+    .contextMenu LI.EditModel A
+    {
+        background-image: url(../../themes/default/images/contextMenu/EditModel.png);
+    }
+
+    .contextMenu LI.DeleteModel A
+    {
+        background-image: url(../../themes/default/images/contextMenu/DeleteModel.png);
+    }
+
+    .contextMenu LI.AddReport A
+    {
+        background-image: url(../../themes/default/images/contextMenu/AddReport.png);
+    }
+
+    .contextMenu LI.EditReport A
+    {
+        background-image: url(../../themes/default/images/contextMenu/EditReport.png);
+    }
+
+    .contextMenu LI.DeleteReport A
+    {
+        background-image: url(../../themes/default/images/contextMenu/DeleteReport.png);
+    }
+
+    .contextMenu LI.ExecuteReport A
+    {
+        background-image: url(../../themes/default/images/contextMenu/ExecuteReport.png);
+    }
+
+
+
+    .contextMenu LI.startvm A
+    {
+        background-image: url(/Plugins/eClient/Content/Themes/default/Images/ActionBar/VMplay.png);
+    }
+
+    .contextMenu LI.powoffvm A
+    {
+        background-image: url(/Plugins/eClient/Content/Themes/default/Images/SelfPortal/control-stop-square.png);
+    }
+
+    .contextMenu LI.stopvm A
+    {
+        background-image: url(/Plugins/eClient/Content/Themes/default/Images/SelfPortal/control-pause.png);
+    }
+
+    .contextMenu LI.restartvm A
+    {
+        background-image: url(/Plugins/eClient/Content/Themes/default/Images/SelfPortal/arrow-circle-315.png);
+    }
+
+    .contextMenu LI.openconsole A
+    {
+        background-image: url(/Plugins/eClient/Content/Themes/default/Images/SelfPortal/monitor2.png);
+    }
+
+    .contextMenu LI.editvm A
+    {
+        background-image: url(/Plugins/eClient/Content/Themes/default/Images/SelfPortal/edit.png);
+    }
+
+    .contextMenu LI.edit A
+    {
+        background-image: url(../../themes/default/images/contextMenu/page_white_edit.png);
+    }
+
+    .contextMenu LI.cutcontrol A
+    {
+        background-image: url(../../themes/default/images/contextMenu/cut.png);
+    }
+
+    .contextMenu LI.copycontrol A
+    {
+        background-image: url(../../themes/default/images/contextMenu/page_white_copy.png);
+    }
+
+    .contextMenu LI.pastecontrol A
+    {
+        background-image: url(../../themes/default/images/contextMenu/page_white_paste.png);
+    }
+
+    .contextMenu LI.delcontrol A
+    {
+        background-image: url(../../themes/default/images/contextMenu/page_white_delete.png);
+    }
+
+    .contextMenu LI.leftcontrol A
+    {
+        background-image: url(../../themes/default/images/contextMenu/position/left.png);
+    }
+
+    .contextMenu LI.centercontrol A
+    {
+        background-image: url(../../themes/default/images/contextMenu/position/center.png);
+    }
+
+    .contextMenu LI.rightcontrol A
+    {
+        background-image: url(../../themes/default/images/contextMenu/position/right.png);
+    }
+       .contextMenu LI.upcontrol A
+    {
+        background-image: url(../../themes/default/images/contextMenu/position/up.png);
+    }
+
+    .contextMenu LI.middlecontrol A
+    {
+        background-image: url(../../themes/default/images/contextMenu/position/middle.png);
+    }
+
+    .contextMenu LI.bottomcontrol A
+    {
+        background-image: url(../../themes/default/images/contextMenu/position/bottom.png);
+    }
+       .contextMenu LI.attrcontrol A
+    {
+        background-image: url(../../themes/default/images/contextMenu/attr.png);
+    }
+          .contextMenu LI.formcontrol A
+    {
+        background-image: url(../../themes/default/images/contextMenu/form.png);
+    }
+/*.contextMenu LI.editvm A
+    {
+        background-image: url(/Plugins/Resources/Content/Themes/Default/Images/edit.png);
+    }*/

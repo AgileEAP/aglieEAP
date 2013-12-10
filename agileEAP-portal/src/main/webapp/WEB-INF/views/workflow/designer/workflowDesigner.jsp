@@ -6,9 +6,11 @@
 <html>
 <head>
 <title>流程设计器</title>
-<link href="${ctx}/themes/default/workflowDesigner/workflowDesigner.css" rel="stylesheet">
 <link href="${ctx}/themes/default/tab.css" rel="stylesheet">
+<link href="${ctx}/themes/default/jquery-ui.custom.css" rel="stylesheet">
 <link href="${ctx}/js/contextMenu/jquery.contextMenu.css" rel="stylesheet"	type="text/css" />
+<link href="${ctx}/themes/default/workflowDesigner/workflowDesigner.css" rel="stylesheet">
+
 <script src="${ctx}/js/jquery.contextMenu.js"	type="text/javascript"></script>
 <script src="${ctx}/js/tab/tab.js"	type="text/javascript"></script>
 <script src="${ctx}/js/jquery-ui.min.js" type="text/javascript"></script>
@@ -57,7 +59,7 @@
                     } break;
                 case "XML":
                     if ($(me).parent().attr("class").indexOf("ui-tabs-selected") < 0) {
-                        WorkflowDesigner.reloadXML("${ctx}/workflow/designer/getProcessDef");
+                        WorkflowDesigner.reloadXML("${ctx}/workflow/designer/getProcessDefContent");
                     } break;
             }
 

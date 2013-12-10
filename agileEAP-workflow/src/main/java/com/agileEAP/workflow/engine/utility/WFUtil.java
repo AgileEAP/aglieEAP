@@ -7,12 +7,12 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import org.eclipse.persistence.jaxb.JAXBContextFactory;
 
+import org.apache.shiro.SecurityUtils;
+import org.eclipse.persistence.jaxb.JAXBContextFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.apache.shiro.SecurityUtils;
 import com.agileEAP.security.service.ShiroDbRealm.ShiroUser;
 import com.agileEAP.workflow.definition.Activity;
 import com.agileEAP.workflow.definition.AutoActivity;
@@ -35,9 +35,18 @@ public final class WFUtil {
 	 * Gets or sets the current user
 	 */
 	public static ShiroUser getUser() {
-		ShiroUser user = (ShiroUser) SecurityUtils.getSubject().getPrincipal();
+		try {
+			if (SecurityUtils.getSubject() != null
+					& SecurityUtils.getSubject().getPrincipal() != null)
+				return (ShiroUser) SecurityUtils.getSubject().getPrincipal();
+			// String id,short userType, String loginName, String name, String
+			// corpId, String corpName,String orgId) {
+		} catch (Throwable e) {
 
-		return user;
+		}
+		return new ShiroUser("workflowEngine", (short) 0, "workflowEngine",
+				"workflowEngine", "workflowEngine", "workflowEngine",
+				"workflowEngine");
 	}
 
 	/**
@@ -82,22 +91,20 @@ public final class WFUtil {
 	public static ProcessDefine parseProcessDefine(String xml) {
 		JAXBContext jaxbContext;
 		try {
-/*			jaxbContext = JAXBContext
-					.newInstance(new Class[] { ProcessDefine.class,
-							StartActivity.class, ManualActivity.class,
-							AutoActivity.class,SubflowActivity.class,
-							RouterActivity.class,EndActivity.class});*/
-			//jaxbUnmarshaller.setProperty("javax.xml.bind.context.factory", new org.eclipse.persistence.jaxb.JAXBContextFactory());
-			 jaxbContext = JAXBContextFactory.createContext(new Class[] { 
-					 ProcessDefine.class,
-					 StartActivity.class,
-					 ManualActivity.class,
-					 AutoActivity.class,
-					 SubflowActivity.class,
-					 RouterActivity.class,
-					 EndActivity.class}, null);
+			/*
+			 * jaxbContext = JAXBContext .newInstance(new Class[] {
+			 * ProcessDefine.class, StartActivity.class, ManualActivity.class,
+			 * AutoActivity.class,SubflowActivity.class,
+			 * RouterActivity.class,EndActivity.class});
+			 */
+			// jaxbUnmarshaller.setProperty("javax.xml.bind.context.factory",
+			// new org.eclipse.persistence.jaxb.JAXBContextFactory());
+			jaxbContext = JAXBContextFactory.createContext(new Class[] {
+					ProcessDefine.class, StartActivity.class,
+					ManualActivity.class, AutoActivity.class,
+					SubflowActivity.class, RouterActivity.class,
+					EndActivity.class }, null);
 
-			
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			return (ProcessDefine) jaxbUnmarshaller.unmarshal(new StringReader(
 					xml));
@@ -111,25 +118,28 @@ public final class WFUtil {
 	public static String parseProcessDefineToXML(ProcessDefine processDefine) {
 		JAXBContext jaxbContext;
 		try {
-			jaxbContext = JAXBContext
-					.newInstance(new Class[] { ProcessDefine.class,
-							StartActivity.class, ManualActivity.class,
-							AutoActivity.class,SubflowActivity.class,
-							RouterActivity.class,EndActivity.class});
+			jaxbContext = JAXBContext.newInstance(new Class[] {
+					ProcessDefine.class, StartActivity.class,
+					ManualActivity.class, AutoActivity.class,
+					SubflowActivity.class, RouterActivity.class,
+					EndActivity.class });
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
-			   // for getting nice formatted output
-			   jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+			// for getting nice formatted output
+			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,
+					Boolean.TRUE);
 
-			   java.io.Writer writer= new java.io.StringWriter();
-			   // Writing to XML file
-			   jaxbMarshaller.marshal(processDefine, writer); 
-			   // Writing to console
-			   jaxbMarshaller.marshal(processDefine, System.out); 
-			   return writer.toString();
-			//return jaxbMarshaller.marshal();
+			java.io.Writer writer = new java.io.StringWriter();
+			// Writing to XML file
+			jaxbMarshaller.marshal(processDefine, writer);
+			// Writing to console
+			jaxbMarshaller.marshal(processDefine, System.out);
+			return writer.toString();
+			// return jaxbMarshaller.marshal();
 		} catch (JAXBException e) {
-			logger.error("ProcessDefine %1s to xml error " + processDefine.getID(), e);
+			logger.error(
+					"ProcessDefine %1s to xml error " + processDefine.getID(),
+					e);
 			e.printStackTrace();
 		}
 		return null;

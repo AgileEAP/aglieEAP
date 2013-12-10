@@ -228,6 +228,7 @@ public class ProcessDefine {
 
 		for (Activity activity : getActivities()) {
 			if (activity instanceof StartActivity) {
+				//activity.setActivityType(ActivityType.StartActivity);
 				return (StartActivity) activity;
 			}
 		}
@@ -244,6 +245,7 @@ public class ProcessDefine {
 
 		for (Activity activity : getActivities()) {
 			if (activity instanceof EndActivity) {
+				//activity.setActivityType(ActivityType.EndActivity);
 				return (EndActivity) activity;
 			}
 		}
