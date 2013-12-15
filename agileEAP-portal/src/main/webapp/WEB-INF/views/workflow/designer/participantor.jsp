@@ -19,32 +19,6 @@
             });
         });
 
-        //树节点单击获取部门下的人员
-        function onNodeClick(id1, id2) {
-            var type = $("#" + id1).attr("tag");
-            $.post(getCurrentUrl(), { AjaxAction: "GetOrgOrRoleUsers", AjaxArgument: id1, Type: type }, function (value) {
-                var ajaxResult = JSON2.parse(value);
-                if (ajaxResult) {
-                    if (ajaxResult.PromptMsg != null && ajaxResult.PromptMsg != "") {
-                        var retValue = ajaxResult.RetValue
-                        if (retValue) {
-                            var strHtml = "";
-                            for (var i = 0; i < retValue.length; i++) {
-                                strHtml += "<option value=\"" + retValue[i].ID + "\">" + retValue[i].Name + "</option>";
-                            }
-                            $("#selects").empty();
-                            if (strHtml != "")
-                                $("#selects").append(strHtml);
-                        }
-                        if (window.parent)
-                            window.parent.closeDialog();
-                    }
-                }
-                else {
-                    alert("系统出错，请与管理员联系！");
-                }
-            });
-        }
 
         //树节点双击选取部门或角色
         function onNodeDblclick(id1, id2) {
@@ -175,6 +149,7 @@
 		        model: {
 		            id: 'id',
 		            text: 'text',
+
 		            imageUrl:'icon',
 		            hasChildren: "hasChildren"
 		        }
@@ -186,15 +161,25 @@
             dataValueField: 'id',
             dataTextField: 'text',
             dataImageUrlField:'icon',
-            checkboxes: {
-                checkChildren: false,
-                template: "<input type='checkbox' name='#= item.id #' title='#= item.text #' onclick=\"singleCheck(this);\" />"
-            }, 
+            template: "<span id='#= item.id #' type='#= item.participantorType #'>#= item.text #</span>",
             select: function(e)
-            {
-            	$("input[type='checkbox']").prop("checked",false);
-            	var checkbox = $("input[type='checkbox']", e.node)[0];
-            	checkbox.click();
+            {  	
+            	var nodeid=$("#treeview").data("kendoTreeView").dataItem(e.node).id;
+           	  	var participantorType = $("#" +nodeid).attr("type");
+                 $.post("${ctx}/workflow/designer/participantors", { parentID: nodeid, participantorType: participantorType }, function (value) {
+                     if (value) {
+                         var participantors = JSON.parse(value);
+                             if (participantors) {
+                                 var strHtml = "";
+                                 for (var i = 0; i < participantors.length; i++) {
+                                     strHtml += "<option value=\"" + participantors[i].id + "\">" + participantors[i].name + "</option>";
+                                 }
+                                 $("#selects").empty();
+                                 if (strHtml != "")
+                                     $("#selects").append(strHtml);
+                             }
+                         }
+                 });
             } 
         });      	
     });
@@ -233,10 +218,8 @@
         <div style="width: 100%; height: 5%; overflow: hidden; float: left;">
             <ul class="commandbar">
                 <li class="commanditem_first"></li>
-                <li onclick="chooseItems();" onmouseover="CommandItemOver(this)" onmouseout="CommandItemOut(this)"
-                    class="commanditem" id="cmdChoose" style="cursor: pointer;">选择</li>
-                <li onclick="delItems();" onmouseover="CommandItemOver(this)" onmouseout="CommandItemOut(this)"
-                    class="commanditem" id="cmdDel" style="cursor: pointer;">删除</li><li class="commanditem_last">
+                <li onclick="chooseItems();" class="commanditem" id="cmdChoose" style="cursor: pointer;">选择</li>
+                <li onclick="delItems();"    class="commanditem" id="cmdDel" style="cursor: pointer;">删除</li><li class="commanditem_last">
                     </li>
             </ul>
         </div>

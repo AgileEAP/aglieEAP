@@ -19,6 +19,8 @@ import com.agileEAP.infrastructure.service.ActionLogService;
 import com.agileEAP.infrastructure.service.EFormService;
 import com.agileEAP.security.service.ShiroDbRealm.ShiroUser;
 import com.agileEAP.utils.Identities;
+import com.agileEAP.workflow.definition.Participantor;
+import com.agileEAP.workflow.definition.ParticipantorType;
 import com.agileEAP.workflow.definition.ProcessDefine;
 import com.agileEAP.workflow.engine.IWorkflowEngine;
 import com.agileEAP.workflow.entity.ActivityInst;
@@ -188,5 +190,14 @@ public class WorkflowDesignerController {
 	@RequestMapping(value = "participantor")
 	public final String participantor() {
 		return "workflow/designer/participantor";
+	}
+
+	// 获取组织或角色下的人员
+	@RequestMapping(value = "participantors")
+	public List<Participantor> GetOrgOrRoleUsers(
+			ParticipantorType participantorType, String parentID) {
+		return workflowEngine.GetPersonParticipantors(participantorType,
+				parentID);
+
 	}
 }
